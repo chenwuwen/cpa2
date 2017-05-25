@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-import cn.kanyun.cpa.pojo.CpaResult;
+import cn.kanyun.cpa.model.CpaResult;
 
 public interface ICommonService <K extends Serializable,T extends Serializable>  {
 	    /**
@@ -101,7 +101,7 @@ public interface ICommonService <K extends Serializable,T extends Serializable> 
 	     * @param params 条件语句出现的位置参数值
 	     * @return
 	     */
-	    public CpaResult<T> getScrollData(int firstResult, int maxResult, String where, Object[] params);
+	    public CpaResult getScrollData(int firstResult, int maxResult, String where, Object[] params);
 	    /**
 	     * 分页获取记录
 	     * @param firstResult 开始索引,如果输入值为-1,即获取全部数据

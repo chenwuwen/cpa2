@@ -6,6 +6,10 @@ import java.sql.Timestamp;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.user.CpaUser;
+import cn.kanyun.cpa.service.user.IUserService;
+import cn.kanyun.cpa.util.MD5util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	@Resource(name=IUserService.SERVICE_NAME)
+	@Resource(name= IUserService.SERVICE_NAME)
 	private IUserService userService;
 	/* 登陆检查 */
 	@RequestMapping("/login.do")

@@ -1,10 +1,12 @@
 package cn.kanyun.cpa.service.unitexam.impl;
 
-import cn.kanyun.cpa.dao.IUnitExamDao;
-import cn.kanyun.cpa.pojo.CpaOption;
-import cn.kanyun.cpa.pojo.CpaRepertory;
-import cn.kanyun.cpa.pojo.CpaResult;
-import cn.kanyun.cpa.service.IUnitExamService;
+
+import cn.kanyun.cpa.dao.unitexam.IUnitExamDao;
+import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.exam.CpaOption;
+import cn.kanyun.cpa.model.exam.CpaRepertory;
+import cn.kanyun.cpa.service.CommonServiceImpl;
+import cn.kanyun.cpa.service.unitexam.IUnitExamService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,7 +20,7 @@ public class UnitExamServiceImpl extends CommonServiceImpl<Integer,CpaRepertory>
     @Resource(name = IUnitExamDao.SERVICE_NAME)
     private IUnitExamDao unitExamDao;
     //获取单元测试数据
-    public CpaResult getUnitExam(String where,Object[] params) {
+    public CpaResult getUnitExam(String where, Object[] params) {
         CpaResult result = unitExamDao.getScrollData(-1, -1, where, params);
         if (result.getTotalCount() > 0) {
             List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

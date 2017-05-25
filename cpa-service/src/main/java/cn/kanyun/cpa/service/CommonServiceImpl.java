@@ -1,5 +1,9 @@
 package cn.kanyun.cpa.service;
 
+import cn.kanyun.cpa.dao.ICommonDao;
+import cn.kanyun.cpa.model.CpaResult;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -88,8 +92,8 @@ public abstract class CommonServiceImpl<K extends Serializable, T extends Serial
     }
 
     @Override
-    public CpaResult<T> getScrollData(int firstResult, int maxResult,
-                                      String where, Object[] params) {
+    public CpaResult getScrollData(int firstResult, int maxResult,
+                                   String where, Object[] params) {
         return commondao.getScrollData(firstResult, maxResult, where, params);
     }
 
