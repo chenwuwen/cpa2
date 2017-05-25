@@ -170,15 +170,23 @@
 
         <!--日志记录-->
         <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--slf4j的核心包,只有日志的接口，并没有实现-->
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.1</version>
         </dependency>
+        <!--slf4j转换各日志实现包-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.22</version>
         </dependency>
+        <!--日志实现包-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -187,10 +195,9 @@
 
         <!--Excel导入导出-->
         <dependency>
-            <groupId>poi</groupId>
-            <artifactId>poi-scratchpad</artifactId>
-            <version>3.1-FINAL</version>
-            <type>pom</type>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
         </dependency>
 
         <!--JSON解析和序列化-->
@@ -248,11 +255,7 @@
             <artifactId>commons-io</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-        </dependency>
+
 
         <dependency>
             <groupId>javax.validation</groupId>

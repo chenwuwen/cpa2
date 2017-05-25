@@ -15,7 +15,7 @@
 	 <context:property-placeholder location="classpath:db.properties"/>
 	<!-- 1：注解的方式，引入组件的自动扫描，在类和方法上可以添加对注解的支持 -->
 	<!-- Spring的扫描仅仅是扫描@Service @Repository，@Components标记!!!@Controller是有SpingMVC来扫描的 -->
-	<context:component-scan base-package="cn.kanyun.cpa"/>
+	<context:component-scan base-package="cn.kanyun"/>
 	<!-- c3p0数据库连接池 -->
 	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
