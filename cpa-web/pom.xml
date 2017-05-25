@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-dao</artifactId>
+            <artifactId>cpa-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -49,10 +49,11 @@
             <artifactId>spring-orm</artifactId>
             <version>4.3.3.release</version>
         </dependency>
+        <!--spring bom 解决spring依赖多版本问题,引入该POM文件后,再引入其他spring的jar包可不标明版本-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-framework-bom</artifactId>
-            <version>4.0.0.release</version>
+            <version>4.3.5.RELEASE</version>
             <type>pom</type>
         </dependency>
 
@@ -110,30 +111,6 @@
             <version>3.1-FINAL</version>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 </project>

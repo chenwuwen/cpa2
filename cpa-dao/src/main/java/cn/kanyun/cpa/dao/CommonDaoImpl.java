@@ -7,14 +7,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.kanyun.cpa.model.CpaResult;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 
-import cn.kanyun.cpa.pojo.CpaResult;
-import org.springframework.stereotype.Repository;
 
 /**
  * 不一定必须是abstract类型的， 请不要对CommonDaoImpl使用@Repository注解，因为无法直接指定clatt属性值

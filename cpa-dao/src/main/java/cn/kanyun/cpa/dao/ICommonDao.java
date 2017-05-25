@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
+import cn.kanyun.cpa.model.CpaResult;
 import org.hibernate.Session;
 
-import cn.kanyun.cpa.pojo.CpaResult;
 public interface ICommonDao<K extends Serializable ,T extends Serializable> {
     /**
      * 由session工厂获取当前session对象 
@@ -62,7 +62,7 @@ public interface ICommonDao<K extends Serializable ,T extends Serializable> {
      * 加载所有记录集合 
      * @return 所有记录集合 
      */  
-    public CpaResult<T> loadAll();  
+    public CpaResult<T> loadAll();
     /** 
      * 分页加载记录集合 
      * @param page 当前第多少页 

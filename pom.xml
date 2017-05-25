@@ -61,6 +61,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -131,10 +132,11 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.3.3.release</version>
 		</dependency>
+		<!--spring bom 解决spring依赖多版本问题,引入该POM文件后,再引入其他spring的jar包可不标明版本-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-framework-bom</artifactId>
-			<version>4.0.0.release</version>
+			<version>4.3.5.RELEASE</version>
 			<type>pom</type>
 		</dependency>
 

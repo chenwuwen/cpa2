@@ -1,6 +1,9 @@
 package cn.kanyun.cpa.dao.unitexam;
 
 
+import cn.kanyun.cpa.dao.ICommonDao;
+import cn.kanyun.cpa.model.exam.CpaRepertory;
+
 /**
  * Created by KANYUN on 2017/4/13.
  */
