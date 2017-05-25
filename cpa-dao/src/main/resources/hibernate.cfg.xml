@@ -53,10 +53,10 @@
         <property name="hibernate.generate_statistics">true</property>
 
         <!-- 加载映射文件 ,注册ORM映射文件-->
-        <mapping resource="entityMapping/CpaUser.hbm.xml" />
-        <mapping resource="entityMapping/CpaOption.hbm.xml" />
-        <mapping resource="entityMapping/CpaRepertory.hbm.xml" />
-        <mapping resource="entityMapping/CpaSolution.hbm.xml" />
+        <mapping resource="CpaUser.hbm.xml" />
+        <mapping resource="CpaOption.hbm.xml" />
+        <mapping resource="CpaRepertory.hbm.xml" />
+        <mapping resource="CpaSolution.hbm.xml" />
 
     </session-factory>
 
