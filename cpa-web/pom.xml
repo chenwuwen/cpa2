@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cpa-web</artifactId>
-
+    <packaging>war</packaging>
+    <name>cpa-web</name>
     <dependencies>
         <!--项目模块依赖-->
         <dependency>
@@ -113,4 +114,50 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--设置maven编译的JDK版本-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <!--未指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码， 通过encoding属性设置字符编码， 告诉maven这个项目使用UTF-8来编译 -->
+                    <encoding>utf8</encoding>
+                </configuration>
+            </plugin>
+            <!--设置maven-tomcat7热部署,需设置权限-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/cpa</url>
+                    <!--<port>8080</port>-->
+                    <!--path就是地址的配置，默认值是/${project.artifactId}-->
+                    <!--<path>/</path>-->
+                    <!-- 与settings.xml文件中Server的id相同 -->
+                    <server>tomcat7</server>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <update>true</update>
+                </configuration>
+            </plugin>
+            <!--设置Maven构建项目为UTF-8编码格式-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <forkMode>once</forkMode>
+                    <argLine>Dfile.encoding=UTF-8</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

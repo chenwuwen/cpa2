@@ -120,7 +120,7 @@ public class JsonUtils<T> {
         return null;
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 
 //        JsonUtils<CarMessage> jsonUtils = new JsonUtils<CarMessage>();
 //        CarMessage objectFromStr = jsonUtils.getObjectFromStr(CarMessage.class, "{\"type\":1,\"driverId\":1,\"driverName\":\"18868877621\",\"driverLocation\":{\"longitude\":121.581206,\"latitude\":29.864368,\"driverType\":10,\"status\":1}}");
@@ -139,5 +139,5 @@ public class JsonUtils<T> {
 //        System.out.println(s3);
 //        List<CarMessage> listObjectFromStr = jsonUtils.getArrayListObjectFromStr(CarMessage.class, s3);
 //        System.out.println(jsonUtils.toJSon(listObjectFromStr));
-    }
+//    }
 }

@@ -63,7 +63,7 @@
 		<property name="dataSource" ref="c3p0"/>
         <!--将Hibernate整合进spring的配置文件中，不配置这个可能会造成 is not mapped 的错误-->
 		<property name="configLocation">
-		    <value>classpath:src/main/resources/hibernate.cfg.xml</value>
+		    <value>classpath:hibernate.cfg.xml</value>
 		</property>
 	</bean>
 	<!-- 报错找不到“找不到类型返回值的转换器”解决方案，同时应该加入这两个jar包 -->
