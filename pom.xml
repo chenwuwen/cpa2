@@ -55,6 +55,11 @@
         </repository>
     </repositories>
 
+    <!-- 指明编译源代码时使用的字符编码，maven编译的时候默认使用的GBK编码， 通过project.build.sourceEncoding属性设置字符编码，告诉maven这个项目使用UTF-8来编译 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
             <!--设置maven编译的JDK版本-->
@@ -65,7 +70,7 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
-  <!--未指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码， 通过encoding属性设置字符编码， 告诉maven这个项目使用UTF-8来编译 -->
+                    <!--未指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码， 通过encoding属性设置字符编码， 告诉maven这个项目使用UTF-8来编译 -->
                     <encoding>utf8</encoding>
                 </configuration>
             </plugin>
@@ -218,6 +223,20 @@
             <version>1.6.1</version>
         </dependency>
 
+        <!--为防止与tomcat中的servlet发生冲突,导致服务无法启动,所以加上scope定义该jar包的使用范围-->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+            <version>3.0.1</version>
+        </dependency>
+
         <!--其他-->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -234,11 +253,7 @@
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
-        </dependency>
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -285,11 +300,7 @@
             <artifactId>infinispan-core</artifactId>
             <version>5.1.4.FINAL</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-        </dependency>
+
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
