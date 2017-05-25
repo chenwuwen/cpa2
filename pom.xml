@@ -8,6 +8,8 @@
 	<packaging>pom</packaging>
 	<name>cpa</name>
 	<version>0.0.1-SNAPSHOT</version>
+	<url>http://maven.apache.org</url>
+
 	<modules>
 		<module>cpa-dao</module>
 		<module>cpa-service</module>
@@ -93,9 +95,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<packaging>pom</packaging>
-	<name>cpa</name>
-	<url>http://maven.apache.org</url>
+
 	<dependencies>
         <!--Junit单元测试-->
         <dependency>
