@@ -22,11 +22,6 @@
             <artifactId>cpa-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>cn.kanyun</groupId>
-            <artifactId>cpa-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 
         <!--Spring相关-->
         <dependency>
@@ -114,6 +109,31 @@
             <artifactId>poi-scratchpad</artifactId>
             <version>3.1-FINAL</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.kanyun</groupId>
+            <artifactId>cpa-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kanyun</groupId>
+            <artifactId>cpa-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kanyun</groupId>
+            <artifactId>cpa-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kanyun</groupId>
+            <artifactId>cpa-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.kanyun</groupId>
+            <artifactId>cpa-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

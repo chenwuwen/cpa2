@@ -10,10 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.kanyun.cpa.pojo.CpaResult;
-import cn.kanyun.cpa.pojo.CpaUser;
-import cn.kanyun.cpa.service.IUserService;
-import cn.kanyun.cpa.util.MD5util;
 
 @Controller
 @RequestMapping("/user")

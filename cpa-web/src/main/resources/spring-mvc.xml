@@ -13,7 +13,7 @@
     <!-- 这是SpringMVC的配置文件，这里的扫描仅仅针对@Controller和@Handlermapping来说的，而Spring配置
         文件中的扫描是针对@Service @Repository，@Components来说的，Spring是桥梁, 而SpringMVC更专注了控制和转发，所以虽然两者都要进行注解扫描，但是所扫描的
         内容是不一样的 -->
-    <context:component-scan base-package="cn.kanyun.cpa.controller,cn.kanyun.cpa.util"/>
+    <context:component-scan base-package="cn.kanyun.cpa"/>
     <!-- 通知spring使用cglib而不是jdk的来生成代理方法，这样 AOP可以拦截到Controller -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
 

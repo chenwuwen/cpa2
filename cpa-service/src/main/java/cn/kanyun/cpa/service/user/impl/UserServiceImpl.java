@@ -5,13 +5,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.kanyun.cpa.service.user.IUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.kanyun.cpa.dao.IUserDao;
-import cn.kanyun.cpa.pojo.CpaResult;
-import cn.kanyun.cpa.pojo.CpaUser;
-import cn.kanyun.cpa.service.IUserService;
 import cn.kanyun.cpa.util.MD5util;
 
 @Service(IUserService.SERVICE_NAME)

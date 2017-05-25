@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-import cn.kanyun.cpa.dao.ICommonDao;
-import cn.kanyun.cpa.dao.impl.CommonDaoImpl;
-import cn.kanyun.cpa.pojo.CpaResult;
-import cn.kanyun.cpa.service.ICommonService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class CommonServiceImpl<K extends Serializable, T extends Serializable>
         implements ICommonService<K, T> {
