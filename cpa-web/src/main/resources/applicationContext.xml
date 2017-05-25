@@ -65,6 +65,20 @@
 		<property name="configLocation">
 		    <value>classpath:hibernate.cfg.xml</value>
 		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:cn/kanyun/cpa/model/CpaOption.hbm.xml</value>
+				<value>classpath:cn/kanyun/cpa/model/CpaRepertory.hbm.xml</value>
+				<value>classpath:cn/kanyun/cpa/model/CpaSolution.hbm.xml</value>
+				<value>classpath:cn/kanyun/cpa/model/CpaUser.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/cpa</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+			</props>
+		</property>
 	</bean>
 	<!-- 报错找不到“找不到类型返回值的转换器”解决方案，同时应该加入这两个jar包 -->
 	<mvc:annotation-driven>
