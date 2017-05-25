@@ -17,6 +17,8 @@
         </property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
+        <!--错误org.hibernate.HibernateException: Error applying BeanValidation relational constraints的解决方法-->
+        <property name="javax.persistence.validation.mode">none</property>
 		<!-- 将hibernate底层执行的sql语句从控制台显示 -->
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>

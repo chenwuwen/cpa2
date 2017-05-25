@@ -4,7 +4,6 @@ import cn.kanyun.cpa.dao.unitexam.IUnitExamDao;
 import cn.kanyun.cpa.model.exam.CpaRepertory;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 
 /**
  * Created by KANYUN on 2017/4/13.
