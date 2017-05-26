@@ -102,6 +102,15 @@
                     <argLine>Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
+            <!--多模块Maven项目如何使用javadoc插件生成文档-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

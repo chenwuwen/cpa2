@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySql
-Source Server Version : 50712
+Source Server         : LocalMysql
+Source Server Version : 50718
 Source Host           : localhost:3306
 Source Database       : cpa
 
 Target Server Type    : MYSQL
-Target Server Version : 50712
+Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-05-23 21:36:21
+Date: 2017-05-26 14:58:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -254,12 +254,12 @@ CREATE TABLE `cpa_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户表主键ID',
   `username` varchar(255) NOT NULL COMMENT '登录名',
   `password` varchar(255) NOT NULL COMMENT '登陆密码',
-  `petname` varchar(255) DEFAULT NULL COMMENT '昵称',
-  `gender` char(2) DEFAULT NULL COMMENT '性别',
-  `email` varchar(255) DEFAULT NULL COMMENT 'Email',
+  `petname` varchar(255) DEFAULT '' COMMENT '昵称',
+  `gender` char(2) DEFAULT '' COMMENT '性别',
+  `email` varchar(255) DEFAULT '' COMMENT 'Email',
   `regdate` timestamp NULL DEFAULT NULL COMMENT '注册时间',
   `lastlogindate` timestamp NULL DEFAULT NULL COMMENT '上次登陆时间',
-  `pet_name` varchar(20) DEFAULT NULL,
+  `pet_name` varchar(20) DEFAULT '',
   `reg_date` timestamp NULL DEFAULT NULL,
   `last_login_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
