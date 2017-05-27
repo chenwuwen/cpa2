@@ -7,7 +7,7 @@ import cn.kanyun.cpa.model.exam.CpaOption;
 import cn.kanyun.cpa.model.exam.CpaRepertory;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.unitexam.IUnitExamService;
-import org.hibernate.service.Service;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;

@@ -5297,4 +5297,263 @@ Caused by: java.lang.AbstractMethodError: org.hibernate.validator.internal.engin
  2017-05-27 10:47:14,721 [localhost-startStop-1] [org.springframework.web.servlet.DispatcherServlet] [INFO] - FrameworkServlet 'springmvc': initialization completed in 406 ms
  2017-05-27 10:47:26,350 [http-bio-8080-exec-8] [org.hibernate.hql.internal.ast.HqlSqlWalker] [WARN] - [DEPRECATION] Encountered positional parameter near line 1, column 72.  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
  2017-05-27 10:47:26,397 [http-bio-8080-exec-8] [org.hibernate.hql.internal.ast.HqlSqlWalker] [WARN] - [DEPRECATION] Encountered positional parameter near line 1, column 79.  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+ 2017-05-27 10:56:54,532 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization started
+ 2017-05-27 10:56:54,571 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing Root WebApplicationContext: startup date [Sat May 27 10:56:54 CST 2017]; root of context hierarchy
+ 2017-05-27 10:56:54,604 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [applicationContext.xml]
+ 2017-05-27 10:56:56,021 [localhost-startStop-1] [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] [INFO] - Loading properties file from class path resource [db.properties]
+ 2017-05-27 10:56:56,045 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 10:56:56,344 [localhost-startStop-1] [com.mchange.v2.log.MLog] [INFO] - MLog clients using log4j logging.
+ 2017-05-27 10:56:56,406 [localhost-startStop-1] [com.mchange.v2.c3p0.C3P0Registry] [INFO] - Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+ 2017-05-27 10:56:57,012 [localhost-startStop-1] [org.hibernate.annotations.common.Version] [INFO] - HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+ 2017-05-27 10:56:57,055 [localhost-startStop-1] [org.hibernate.Version] [INFO] - HHH000412: Hibernate Core {4.1.4.Final}
+ 2017-05-27 10:56:57,063 [localhost-startStop-1] [org.hibernate.cfg.Environment] [INFO] - HHH000206: hibernate.properties not found
+ 2017-05-27 10:56:57,070 [localhost-startStop-1] [org.hibernate.cfg.Environment] [INFO] - HHH000021: Bytecode provider name : javassist
+ 2017-05-27 10:56:57,144 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000044: Configuring from URL: file:/E:/cpa/cpa-dao/target/classes/hibernate.cfg.xml
+ 2017-05-27 10:56:57,264 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaUser.hbm.xml
+ 2017-05-27 10:56:57,319 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaOption.hbm.xml
+ 2017-05-27 10:56:57,363 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaRepertory.hbm.xml
+ 2017-05-27 10:56:57,402 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaSolution.hbm.xml
+ 2017-05-27 10:56:57,436 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000041: Configured SessionFactory: null
+ 2017-05-27 10:56:57,855 [localhost-startStop-1] [com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource] [INFO] - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> true, automaticTestTable -> null, breakAfterAcquireFailure -> true, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgeby99ojxjk8w1to6krc|493aaa, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgeby99ojxjk8w1to6krc|493aaa, idleConnectionTestPeriod -> 60, initialPoolSize -> 10, jdbcUrl -> jdbc:mysql://localhost:3306/cpa?useUnicode=true&amp;characterEncoding=UTF-8, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 60, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> SELECT 1, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+ 2017-05-27 10:56:58,360 [localhost-startStop-1] [org.hibernate.dialect.Dialect] [INFO] - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+ 2017-05-27 10:56:58,384 [localhost-startStop-1] [org.hibernate.engine.jdbc.internal.LobCreatorBuilder] [INFO] - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+ 2017-05-27 10:56:58,415 [localhost-startStop-1] [org.hibernate.engine.transaction.internal.TransactionFactoryInitiator] [INFO] - HHH000399: Using default transaction strategy (direct JDBC transactions)
+ 2017-05-27 10:56:58,429 [localhost-startStop-1] [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] [INFO] - HHH000397: Using ASTQueryTranslatorFactory
+ 2017-05-27 10:56:59,162 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000228: Running hbm2ddl schema update
+ 2017-05-27 10:56:59,163 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000102: Fetching database metadata
+ 2017-05-27 10:56:59,170 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000396: Updating schema
+ 2017-05-27 10:56:59,199 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_option
+ 2017-05-27 10:56:59,199 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, option_data, select_data, re_id]
+ 2017-05-27 10:56:59,200 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: [cpa_option_ibfk_1]
+ 2017-05-27 10:56:59,201 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary, re_id]
+ 2017-05-27 10:56:59,209 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_repertory
+ 2017-05-27 10:56:59,209 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, insert_date, test_type, test_stem]
+ 2017-05-27 10:56:59,210 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: []
+ 2017-05-27 10:56:59,211 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary]
+ 2017-05-27 10:56:59,219 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_solution
+ 2017-05-27 10:56:59,219 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, result, re_id]
+ 2017-05-27 10:56:59,220 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: [cpa_solution_ibfk_1]
+ 2017-05-27 10:56:59,220 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary, re_id]
+ 2017-05-27 10:56:59,230 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_user
+ 2017-05-27 10:56:59,230 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, lastlogindate, username, petname, pet_name, email, last_login_date, regdate, gender, reg_date, password]
+ 2017-05-27 10:56:59,231 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: []
+ 2017-05-27 10:56:59,231 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [username, primary]
+ 2017-05-27 10:56:59,233 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000232: Schema update complete
+ 2017-05-27 10:56:59,915 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/unitExam/getUnitExam.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.unitexam.UnitExamController.getUnitExam(java.lang.String)
+ 2017-05-27 10:56:59,922 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/checkname.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.checkName(java.lang.String)
+ 2017-05-27 10:56:59,923 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/login.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.toLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+ 2017-05-27 10:56:59,924 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/register.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.saveUser(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession) throws java.security.NoSuchAlgorithmException
+ 2017-05-27 10:56:59,926 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/code]}" onto public void cn.kanyun.cpa.util.CodeController.getCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+ 2017-05-27 10:57:00,024 [localhost-startStop-1] [org.hibernate.validator.internal.util.Version] [INFO] - HV000001: Hibernate Validator 5.2.5.Final
+ 2017-05-27 10:57:01,446 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: Root WebApplicationContext: startup date [Sat May 27 10:56:54 CST 2017]; root of context hierarchy
+ 2017-05-27 10:57:01,597 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: Root WebApplicationContext: startup date [Sat May 27 10:56:54 CST 2017]; root of context hierarchy
+ 2017-05-27 10:57:01,808 [localhost-startStop-1] [org.springframework.orm.hibernate4.HibernateTransactionManager] [INFO] - Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> true, automaticTestTable -> null, breakAfterAcquireFailure -> true, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgeby99ojxjk8w1to6krc|493aaa, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgeby99ojxjk8w1to6krc|493aaa, idleConnectionTestPeriod -> 60, initialPoolSize -> 10, jdbcUrl -> jdbc:mysql://localhost:3306/cpa?useUnicode=true&amp;characterEncoding=UTF-8, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 60, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> SELECT 1, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+ 2017-05-27 10:57:01,908 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization completed in 7374 ms
+ 2017-05-27 10:57:01,968 [localhost-startStop-1] [org.springframework.web.servlet.DispatcherServlet] [INFO] - FrameworkServlet 'springmvc': initialization started
+ 2017-05-27 10:57:01,973 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 10:57:01 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 10:57:01,974 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [spring-mvc.xml]
+ 2017-05-27 10:57:02,149 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 10:57:02,426 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/unitExam/getUnitExam.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.unitexam.UnitExamController.getUnitExam(java.lang.String)
+ 2017-05-27 10:57:02,429 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/checkname.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.checkName(java.lang.String)
+ 2017-05-27 10:57:02,430 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/login.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.toLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+ 2017-05-27 10:57:02,431 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/register.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.saveUser(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession) throws java.security.NoSuchAlgorithmException
+ 2017-05-27 10:57:02,432 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/code]}" onto public void cn.kanyun.cpa.util.CodeController.getCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+ 2017-05-27 10:57:02,589 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 10:57:01 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 10:57:02,650 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 10:57:01 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 10:57:02,908 [localhost-startStop-1] [org.springframework.web.servlet.DispatcherServlet] [INFO] - FrameworkServlet 'springmvc': initialization completed in 940 ms
+ 2017-05-27 10:58:39,053 [http-bio-8080-exec-6] [org.hibernate.hql.internal.ast.HqlSqlWalker] [WARN] - [DEPRECATION] Encountered positional parameter near line 1, column 67.  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+ 2017-05-27 10:58:39,661 [http-bio-8080-exec-6] [org.hibernate.hql.internal.ast.HqlSqlWalker] [WARN] - [DEPRECATION] Encountered positional parameter near line 1, column 74.  Positional parameter are considered deprecated; use named parameters or JPA-style positional parameters instead.
+ 2017-05-27 14:05:04,627 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization started
+ 2017-05-27 14:05:04,676 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing Root WebApplicationContext: startup date [Sat May 27 14:05:04 CST 2017]; root of context hierarchy
+ 2017-05-27 14:05:04,707 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [applicationContext.xml]
+ 2017-05-27 14:05:05,114 [localhost-startStop-1] [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] [INFO] - Loading properties file from class path resource [db.properties]
+ 2017-05-27 14:05:05,130 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 14:05:05,208 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [WARN] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+ 2017-05-27 14:05:05,208 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+ org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:444)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:326)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:687)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:284)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:169)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 22 more
+2017-05-27 14:07:15,096 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization started
+ 2017-05-27 14:07:15,143 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing Root WebApplicationContext: startup date [Sat May 27 14:07:15 CST 2017]; root of context hierarchy
+ 2017-05-27 14:07:15,174 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [applicationContext.xml]
+ 2017-05-27 14:07:15,533 [localhost-startStop-1] [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] [INFO] - Loading properties file from class path resource [db.properties]
+ 2017-05-27 14:07:15,533 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 14:07:15,611 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [WARN] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+ 2017-05-27 14:07:15,611 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+ org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:444)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:326)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:687)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:284)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:169)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 22 more
+2017-05-27 14:08:42,051 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization started
+ 2017-05-27 14:08:42,082 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing Root WebApplicationContext: startup date [Sat May 27 14:08:42 CST 2017]; root of context hierarchy
+ 2017-05-27 14:08:42,113 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [applicationContext.xml]
+ 2017-05-27 14:08:42,443 [localhost-startStop-1] [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] [INFO] - Loading properties file from class path resource [db.properties]
+ 2017-05-27 14:08:42,459 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 14:08:42,521 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [WARN] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+ 2017-05-27 14:08:42,521 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+ org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'unitExamController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:444)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:326)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cn.kanyun.cpa.service.impl.UnitExamServiceImpl' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:687)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:284)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:169)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 22 more
+2017-05-27 14:12:14,260 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization started
+ 2017-05-27 14:12:14,307 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing Root WebApplicationContext: startup date [Sat May 27 14:12:14 CST 2017]; root of context hierarchy
+ 2017-05-27 14:12:14,354 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [applicationContext.xml]
+ 2017-05-27 14:12:14,791 [localhost-startStop-1] [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] [INFO] - Loading properties file from class path resource [db.properties]
+ 2017-05-27 14:12:14,791 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 14:12:15,071 [localhost-startStop-1] [com.mchange.v2.log.MLog] [INFO] - MLog clients using log4j logging.
+ 2017-05-27 14:12:15,103 [localhost-startStop-1] [com.mchange.v2.c3p0.C3P0Registry] [INFO] - Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+ 2017-05-27 14:12:15,274 [localhost-startStop-1] [org.hibernate.annotations.common.Version] [INFO] - HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+ 2017-05-27 14:12:15,290 [localhost-startStop-1] [org.hibernate.Version] [INFO] - HHH000412: Hibernate Core {4.1.4.Final}
+ 2017-05-27 14:12:15,290 [localhost-startStop-1] [org.hibernate.cfg.Environment] [INFO] - HHH000206: hibernate.properties not found
+ 2017-05-27 14:12:15,290 [localhost-startStop-1] [org.hibernate.cfg.Environment] [INFO] - HHH000021: Bytecode provider name : javassist
+ 2017-05-27 14:12:15,321 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000044: Configuring from URL: file:/E:/cpa/cpa-dao/target/classes/hibernate.cfg.xml
+ 2017-05-27 14:12:15,352 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaUser.hbm.xml
+ 2017-05-27 14:12:15,383 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaOption.hbm.xml
+ 2017-05-27 14:12:15,399 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaRepertory.hbm.xml
+ 2017-05-27 14:12:15,399 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000221: Reading mappings from resource: CpaSolution.hbm.xml
+ 2017-05-27 14:12:15,415 [localhost-startStop-1] [org.hibernate.cfg.Configuration] [INFO] - HHH000041: Configured SessionFactory: null
+ 2017-05-27 14:12:15,617 [localhost-startStop-1] [com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource] [INFO] - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> true, automaticTestTable -> null, breakAfterAcquireFailure -> true, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgeby99ok4iqgfwh6wld|24d5ae8d, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgeby99ok4iqgfwh6wld|24d5ae8d, idleConnectionTestPeriod -> 60, initialPoolSize -> 10, jdbcUrl -> jdbc:mysql://localhost:3306/cpa?useUnicode=true&amp;characterEncoding=UTF-8, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 60, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> SELECT 1, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+ 2017-05-27 14:12:15,820 [localhost-startStop-1] [org.hibernate.dialect.Dialect] [INFO] - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+ 2017-05-27 14:12:15,820 [localhost-startStop-1] [org.hibernate.engine.jdbc.internal.LobCreatorBuilder] [INFO] - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+ 2017-05-27 14:12:15,851 [localhost-startStop-1] [org.hibernate.engine.transaction.internal.TransactionFactoryInitiator] [INFO] - HHH000399: Using default transaction strategy (direct JDBC transactions)
+ 2017-05-27 14:12:15,867 [localhost-startStop-1] [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] [INFO] - HHH000397: Using ASTQueryTranslatorFactory
+ 2017-05-27 14:12:16,163 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000228: Running hbm2ddl schema update
+ 2017-05-27 14:12:16,163 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000102: Fetching database metadata
+ 2017-05-27 14:12:16,163 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000396: Updating schema
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_option
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, option_data, select_data, re_id]
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: [cpa_option_ibfk_1]
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary, re_id]
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_repertory
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, insert_date, test_type, test_stem]
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: []
+ 2017-05-27 14:12:16,179 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_solution
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, result, re_id]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: [cpa_solution_ibfk_1]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [primary, re_id]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000261: Table found: cpa.cpa_user
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000037: Columns: [id, lastlogindate, username, petname, pet_name, email, last_login_date, regdate, gender, reg_date, password]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000108: Foreign keys: []
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.TableMetadata] [INFO] - HHH000126: Indexes: [username, primary]
+ 2017-05-27 14:12:16,195 [localhost-startStop-1] [org.hibernate.tool.hbm2ddl.SchemaUpdate] [INFO] - HHH000232: Schema update complete
+ 2017-05-27 14:12:16,382 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/unitExam/getUnitExam.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.unitexam.UnitExamController.getUnitExam(java.lang.String)
+ 2017-05-27 14:12:16,397 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/checkname.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.checkName(java.lang.String)
+ 2017-05-27 14:12:16,397 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/register.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.saveUser(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession) throws java.security.NoSuchAlgorithmException
+ 2017-05-27 14:12:16,397 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/login.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.toLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+ 2017-05-27 14:12:16,397 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/code]}" onto public void cn.kanyun.cpa.util.CodeController.getCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+ 2017-05-27 14:12:16,429 [localhost-startStop-1] [org.hibernate.validator.internal.util.Version] [INFO] - HV000001: Hibernate Validator 5.2.5.Final
+ 2017-05-27 14:12:16,819 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: Root WebApplicationContext: startup date [Sat May 27 14:12:14 CST 2017]; root of context hierarchy
+ 2017-05-27 14:12:16,881 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: Root WebApplicationContext: startup date [Sat May 27 14:12:14 CST 2017]; root of context hierarchy
+ 2017-05-27 14:12:16,990 [localhost-startStop-1] [org.springframework.orm.hibernate4.HibernateTransactionManager] [INFO] - Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> true, automaticTestTable -> null, breakAfterAcquireFailure -> true, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgeby99ok4iqgfwh6wld|24d5ae8d, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgeby99ok4iqgfwh6wld|24d5ae8d, idleConnectionTestPeriod -> 60, initialPoolSize -> 10, jdbcUrl -> jdbc:mysql://localhost:3306/cpa?useUnicode=true&amp;characterEncoding=UTF-8, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 60, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> SELECT 1, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+ 2017-05-27 14:12:17,037 [localhost-startStop-1] [org.springframework.web.context.ContextLoader] [INFO] - Root WebApplicationContext: initialization completed in 2777 ms
+ 2017-05-27 14:12:17,068 [localhost-startStop-1] [org.springframework.web.servlet.DispatcherServlet] [INFO] - FrameworkServlet 'springmvc': initialization started
+ 2017-05-27 14:12:17,068 [localhost-startStop-1] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 14:12:17 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 14:12:17,068 [localhost-startStop-1] [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] [INFO] - Loading XML bean definitions from class path resource [spring-mvc.xml]
+ 2017-05-27 14:12:17,146 [localhost-startStop-1] [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] [INFO] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+ 2017-05-27 14:12:17,287 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/unitExam/getUnitExam.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.unitexam.UnitExamController.getUnitExam(java.lang.String)
+ 2017-05-27 14:12:17,287 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/checkname.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.checkName(java.lang.String)
+ 2017-05-27 14:12:17,287 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/register.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.saveUser(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession) throws java.security.NoSuchAlgorithmException
+ 2017-05-27 14:12:17,287 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/user/login.do]}" onto public cn.kanyun.cpa.model.CpaResult cn.kanyun.cpa.controller.user.UserController.toLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+ 2017-05-27 14:12:17,287 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] [INFO] - Mapped "{[/code]}" onto public void cn.kanyun.cpa.util.CodeController.getCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+ 2017-05-27 14:12:17,365 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 14:12:17 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 14:12:17,380 [localhost-startStop-1] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter] [INFO] - Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Sat May 27 14:12:17 CST 2017]; parent: Root WebApplicationContext
+ 2017-05-27 14:12:17,536 [localhost-startStop-1] [org.springframework.web.servlet.DispatcherServlet] [INFO] - FrameworkServlet 'springmvc': initialization completed in 468 ms
  
