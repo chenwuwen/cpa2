@@ -5,7 +5,6 @@
 *.releaseBackup
 release.properties
 
-.logs/
 .idea/
 target/
 .setting/

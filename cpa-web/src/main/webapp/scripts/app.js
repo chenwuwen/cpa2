@@ -14,7 +14,7 @@
 //该Js为采用anjular-ui-router组件，来进行页面转换
 
 //定义自己的module(app),括号中的是这个module的依赖
-var app = angular.module('myapp', ['ui.router']);
+var app = angular.module('myapp', ['ui.router','ui.check']);
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('index', {
