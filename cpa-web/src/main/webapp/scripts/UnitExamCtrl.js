@@ -7,7 +7,7 @@ app.controller('UnitExamCtrl',function($scope, $stateParams, $http){
     var typeCode = $stateParams.typeCode;
     $http({
         method: 'GET',
-        url: '/cpa/unitExam/getUnitExam.do',
+        url: '/unitExam/getUnitExam.do',
         // data:{'typeCode':typeCode}
         params:{typeCode:typeCode}
     }).then(function onSuccess(response) {
