@@ -16,10 +16,11 @@
 
 package cn.kanyun.cpa.regions;
 
+
 import org.hibernate.cache.CacheException;
 import org.hibernate.cache.redis.client.RedisClient;
+
 import org.hibernate.cache.redis.hibernate4.ConfigurableRedisRegionFactory;
-import org.hibernate.cache.redis.hibernate4.regions.RedisTransactionalDataRegion;
 import org.hibernate.cache.redis.hibernate4.strategy.RedisAccessStrategyFactory;
 import org.hibernate.cache.spi.CacheDataDescription;
 import org.hibernate.cache.spi.NaturalIdRegion;

@@ -35,7 +35,7 @@ import java.util.Properties;
  * <p/>
  * This implementation returns Redis specific access strategy instances for all the non-transactional access types.
  * Transactional access is not supported.
- *
+ *mvn
  * @author sunghyouk.bae@gmail.com
  * @since 13. 4. 5. 오후 8:54
  */

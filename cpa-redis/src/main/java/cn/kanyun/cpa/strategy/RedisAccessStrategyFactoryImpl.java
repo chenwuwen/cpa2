@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.cache.redis.hibernate4.regions.RedisCollectionRegion;
 import org.hibernate.cache.redis.hibernate4.regions.RedisEntityRegion;
 import org.hibernate.cache.redis.hibernate4.regions.RedisNaturalIdRegion;
-import org.hibernate.cache.redis.hibernate4.strategy.*;
 import org.hibernate.cache.spi.access.AccessType;
 import org.hibernate.cache.spi.access.CollectionRegionAccessStrategy;
 import org.hibernate.cache.spi.access.EntityRegionAccessStrategy;
