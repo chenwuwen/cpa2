@@ -27,16 +27,10 @@
         <!-- 报错信息为：No CurrentSessionContext configured!或者No TransactionManagerLookup specified -->
         <property name="current_session_context_class">thread</property>
 
-        <!--&lt;!&ndash; 开启二级缓存 &ndash;&gt;-->
-        <!--<property name="hibernate.cache.use_second_level_cache">true</property>-->
-        <!--&lt;!&ndash; 启动"查询缓存"如果想缓存使用findall()、list()、Iterator()、createCriteria()、createQuery()等方法获得的数据结果集,必须配置此项&ndash;&gt;-->
-        <!--<property name="hibernate.cache.use_query_cache">true</property>-->
-        <!--&lt;!&ndash; 设置二级缓存插件JbossCache的Provider类&ndash;&gt;-->
-        <!--<property name="hibernate.cache.provider_class">-->
-        <!--org.jboss.hibernate.cache.TreeCacheProvider-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 二级缓存区域名的前缀 &ndash;&gt;-->
-        <!--<property name="hibernate.cache.region_prefix">test</property>-->
+        <!-- 开启二级缓存,使用时query查询时，setCacheable设置TRUE,query.setCacheable(true) -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!-- 启动"查询缓存"如果想缓存使用findall()、list()、Iterator()、createCriteria()、createQuery()等方法获得的数据结果集,必须配置此项-->
+        <property name="hibernate.cache.use_query_cache">true</property>
         <!-- 高速缓存提供程序 -->
         <!--<property name="hibernate.cache.region.factory_class">-->
         <!--org.hibernate.cache.jbc2.JBossCacheRegionFactory-->

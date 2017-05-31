@@ -256,7 +256,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.22</version>
+            <version>1.7.9</version>
         </dependency>
         <!--日志实现包-->
         <dependency>

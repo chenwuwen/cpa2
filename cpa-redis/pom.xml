@@ -24,6 +24,11 @@
             <version>2.3.2</version>
         </dependency>
         <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.3.2</version>
@@ -45,7 +50,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.22</version>
+            <version>1.7.9</version>
         </dependency>
         <!--日志实现包-->
         <dependency>
@@ -54,6 +59,18 @@
             <version>1.2.17</version>
         </dependency>
 
+        <dependency>
+            <groupId>de.ruedigermoeller</groupId>
+            <artifactId>fst</artifactId>
+            <version>2.48</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xerial.snappy</groupId>
+            <artifactId>snappy-java</artifactId>
+            <version>1.1.2.6</version>
+        </dependency>
+
+        <!--Spring配置-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
