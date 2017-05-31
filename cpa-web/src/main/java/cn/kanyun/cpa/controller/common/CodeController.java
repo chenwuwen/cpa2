@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.util;
+package cn.kanyun.cpa.controller.common;
 
 import java.awt.Color;
 import java.awt.Font;

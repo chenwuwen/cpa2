@@ -15,6 +15,7 @@
         <module>cpa-service</module>
         <module>cpa-model</module>
         <module>cpa-web</module>
+        <module>cpa-redis</module>
     </modules>
     <!--增加仓库配置,不然可能插件找不到,导致报错-->
     <repositories>
@@ -209,18 +210,18 @@
             <version>4.1.4.Final</version>
         </dependency>
         <!--Hibernate-jbosscache二级缓存,该缓存插件可用于分布式-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-jbosscache</artifactId>-->
+            <!--<version>3.6.10.Final</version>-->
+        <!--</dependency>-->
+        <!--使用redis做HIbernate的二级缓存-->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jbosscache</artifactId>
-            <version>3.6.10.Final</version>
+            <groupId>com.github.debop</groupId>
+            <artifactId>hibernate-redis</artifactId>
+            <version>2.3.2</version>
         </dependency>
 
-
-        <!--<dependency>-->
-        <!--<groupId>org.hibernate</groupId>-->
-        <!--<artifactId>hibernate-jbosscache2</artifactId>-->
-        <!--<version>3.3.2.GA</version>-->
-        <!--</dependency>-->
 
         <!--数据连接相关-->
         <dependency>
