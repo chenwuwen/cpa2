@@ -1,75 +1,78 @@
 /*
- * Copyright 2011-2013 the original author or authors.
- *
+ * Copyright (c) 2017. Sunghyouk Bae <sunghyouk.bae@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 package cn.kanyun.cpa;
 
-import org.hibernate.boot.spi.SessionFactoryOptions;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.cache.CacheException;
-import org.hibernate.cache.redis.util.JedisTool;
+import org.hibernate.cache.redis.hibernate4.*;
+import org.hibernate.cache.redis.util.RedisCacheUtil;
 import org.hibernate.cfg.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * A singleton RedisRegionFactory implementation.
+ * Singleton Hibernate 4.x 2nd Cache Region Factory using Redis
  *
  * @author sunghyouk.bae@gmail.com
- * @since 13. 4. 6. 오전 12:31
  */
-public class SingletonRedisRegionFactory extends AbstractRedisRegionFactory {
+@Slf4j
+public class SingletonRedisRegionFactory extends cn.kanyun.cpa.AbstractRedisRegionFactory {
 
-    private static final AtomicInteger referenceCount = new AtomicInteger();
-    private static final Logger log = LoggerFactory.getLogger(SingletonRedisRegionFactory.class);
+  private static final AtomicInteger ReferenceCount = new AtomicInteger();
 
-    /*@Override
-    public synchronized void start(Settings settings, Properties properties) throws CacheException {
-        
-    }*/
-    
-    @Override
-	public void start(SessionFactoryOptions settings, Properties properties) throws CacheException {
-    	log.info("Starting SingletonRedisRegionFactory...");
+  public SingletonRedisRegionFactory(Properties props) {
+    super(props);
+    log.info("Create SingletonRedisRegionFactory instance.");
+  }
 
-        this.settings = settings;
-        try {
-            initializeRegionFactory(settings, JedisTool.loadCacheProperties(properties));
-            referenceCount.incrementAndGet();
-            log.info("Started SingletonRedisRegionFactory");
-        } catch (Exception e) {
-            throw new CacheException(e);
-        }
-		
-	}
+  @Override
+  public synchronized void start(Settings settings, Properties properties) throws CacheException {
+    log.info("Starting SingletonRedisRegionFactory...");
 
-    @Override
-    public synchronized void stop() {
-        log.debug("Stopping SingletonRedisRegionFactory...");
-
-        if (referenceCount.decrementAndGet() == 0) {
-            try {
-                destroy();
-                log.info("Stopped SingletonRedisRegionFactory");
-            } catch (Exception ignored) {
-            }
-        }
+    this.settings = settings;
+    try {
+      if (redis == null) {
+        RedisCacheUtil.loadCacheProperties(properties);
+        this.redis = createRedisClient();
+        this.cacheTimestamper = createCacheTimestamper(redis, SingletonRedisRegionFactory.class.getName());
+      }
+      ReferenceCount.incrementAndGet();
+      log.info("Started SingletonRedisRegionFactory");
+    } catch (Exception e) {
+      throw new CacheException(e);
     }
+  }
 
-    private static final long serialVersionUID = -7477946174209489184L;
+  @Override
+  public synchronized void stop() {
+    log.debug("Stopping SingletonRedisRegionFactory...");
 
+    if (ReferenceCount.decrementAndGet() == 0) {
+      try {
+        redis.shutdown();
+        redis = null;
+        cacheTimestamper = null;
+        log.info("stopped SingletonRedisRegionFactory");
+      } catch (Exception ignored) {
+        log.warn("Error occurred in stopping hibernate-redis client.", ignored);
+      }
+    }
+  }
+
+  private static final long serialVersionUID = -7477946174209489184L;
 }

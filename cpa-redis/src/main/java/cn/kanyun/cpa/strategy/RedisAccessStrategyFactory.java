@@ -1,11 +1,11 @@
 /*
- * Copyright 2011-2013 the original author or authors.
+ * Copyright 2002-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +16,9 @@
 
 package cn.kanyun.cpa.strategy;
 
-import org.hibernate.cache.redis.regions.RedisCollectionRegion;
-import org.hibernate.cache.redis.regions.RedisEntityRegion;
-import org.hibernate.cache.redis.regions.RedisNaturalIdRegion;
+import org.hibernate.cache.redis.hibernate4.regions.RedisCollectionRegion;
+import org.hibernate.cache.redis.hibernate4.regions.RedisEntityRegion;
+import org.hibernate.cache.redis.hibernate4.regions.RedisNaturalIdRegion;
 import org.hibernate.cache.spi.access.AccessType;
 import org.hibernate.cache.spi.access.CollectionRegionAccessStrategy;
 import org.hibernate.cache.spi.access.EntityRegionAccessStrategy;
@@ -32,31 +32,31 @@ import org.hibernate.cache.spi.access.NaturalIdRegionAccessStrategy;
  */
 public interface RedisAccessStrategyFactory {
 
-    /**
-     * Create {@link EntityRegionAccessStrategy}
-     * for the input {@link org.hibernate.cache.redis.regions.RedisEntityRegion} and {@link AccessType}
-     *
-     * @return the created {@link EntityRegionAccessStrategy}
-     */
-    public EntityRegionAccessStrategy createEntityRegionAccessStrategy(RedisEntityRegion entityRegion,
-                                                                       AccessType accessType);
+  /**
+   * Create {@link EntityRegionAccessStrategy}
+   * for the input {@link RedisEntityRegion} and {@link AccessType}
+   *
+   * @return the created {@link EntityRegionAccessStrategy}
+   */
+  public EntityRegionAccessStrategy createEntityRegionAccessStrategy(RedisEntityRegion entityRegion,
+                                                                     AccessType accessType);
 
-    /**
-     * Create {@link CollectionRegionAccessStrategy}
-     * for the input {@link org.hibernate.cache.redis.regions.RedisCollectionRegion} and {@link AccessType}
-     *
-     * @return the created {@link org.hibernate.cache.redis.regions.RedisCollectionRegion}
-     */
-    public CollectionRegionAccessStrategy createCollectionRegionAccessStrategy(RedisCollectionRegion collectionRegion,
-                                                                               AccessType accessType);
-
-    /**
-     * Create {@link CollectionRegionAccessStrategy}
-     * for the input {@link org.hibernate.cache.redis.regions.RedisNaturalIdRegion} and {@link AccessType}
-     *
-     * @return the created {@link org.hibernate.cache.redis.regions.RedisNaturalIdRegion}
-     */
-    public NaturalIdRegionAccessStrategy createNaturalIdRegionAccessStrategy(RedisNaturalIdRegion naturalIdRegion,
+  /**
+   * Create {@link CollectionRegionAccessStrategy}
+   * for the input {@link RedisCollectionRegion} and {@link AccessType}
+   *
+   * @return the created {@link RedisCollectionRegion}
+   */
+  public CollectionRegionAccessStrategy createCollectionRegionAccessStrategy(RedisCollectionRegion collectionRegion,
                                                                              AccessType accessType);
+
+  /**
+   * Create {@link CollectionRegionAccessStrategy}
+   * for the input {@link RedisNaturalIdRegion} and {@link AccessType}
+   *
+   * @return the created {@link RedisNaturalIdRegion}
+   */
+  public NaturalIdRegionAccessStrategy createNaturalIdRegionAccessStrategy(RedisNaturalIdRegion naturalIdRegion,
+                                                                           AccessType accessType);
 
 }

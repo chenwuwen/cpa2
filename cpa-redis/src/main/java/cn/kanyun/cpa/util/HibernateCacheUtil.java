@@ -5,17 +5,21 @@ import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.persister.entity.EntityPersister;
 
 /**
- * Hibernate utility class
+ * Hibernate 2nd cache Utility class
  *
  * @author sunghyouk.bae@gmail.com
- * @since 13. 9. 26. 오후 4:49
  */
 public final class HibernateCacheUtil {
 
-    public static String getRegionName(SessionFactory sessionFactory, Class entityClass) {
-        EntityPersister p = ((SessionFactoryImpl) sessionFactory).getEntityPersister(entityClass.getName());
-        return p.hasCache()
-                ? p.getCacheAccessStrategy().getRegion().getName()
-                : "";
+  private HibernateCacheUtil() {}
+
+  public static String getRegionName(SessionFactory sessionFactory,
+                                     Class entityClass) {
+    EntityPersister p = ((SessionFactoryImpl) sessionFactory).getEntityPersister(entityClass.getName());
+
+    if (p.hasCache()) {
+      return p.getCacheAccessStrategy().getRegion().getName();
     }
+    return "";
+  }
 }

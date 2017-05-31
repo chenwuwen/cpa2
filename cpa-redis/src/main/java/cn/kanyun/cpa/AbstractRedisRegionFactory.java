@@ -1,232 +1,160 @@
 /*
- * Copyright 2011-2013 the original author or authors.
- *
+ * Copyright (c) 2017. Sunghyouk Bae <sunghyouk.bae@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 package cn.kanyun.cpa;
 
-import cn.kanyun.cpa.regions.RedisCollectionRegion;
-import cn.kanyun.cpa.regions.RedisEntityRegion;
-import cn.kanyun.cpa.regions.RedisNaturalIdRegion;
-import cn.kanyun.cpa.regions.RedisQueryResultsRegion;
-import cn.kanyun.cpa.regions.RedisTimestampsRegion;
-import org.hibernate.boot.spi.SessionFactoryOptions;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.cache.CacheException;
-import org.hibernate.cache.redis.jedis.JedisClient;
-import org.hibernate.cache.redis.regions.*;
-import org.hibernate.cache.redis.strategy.RedisAccessStrategyFactory;
-import org.hibernate.cache.redis.strategy.RedisAccessStrategyFactoryImpl;
-import org.hibernate.cache.redis.timestamper.JedisCacheTimestamper;
-import org.hibernate.cache.redis.util.JedisTool;
+import org.hibernate.cache.redis.client.RedisClient;
+import org.hibernate.cache.redis.client.RedisClientFactory;
+import org.hibernate.cache.redis.hibernate4.ConfigurableRedisRegionFactory;
+import org.hibernate.cache.redis.hibernate4.regions.*;
+import org.hibernate.cache.redis.hibernate4.strategy.RedisAccessStrategyFactory;
+import org.hibernate.cache.redis.hibernate4.strategy.RedisAccessStrategyFactoryImpl;
+import org.hibernate.cache.redis.util.CacheTimestamper;
+import org.hibernate.cache.redis.util.RedisCacheUtil;
+import org.hibernate.cache.redis.util.Timestamper;
 import org.hibernate.cache.spi.*;
 import org.hibernate.cache.spi.access.AccessType;
 import org.hibernate.cfg.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
- * Region Factory for Redis
+ * Abstract Hibernate 4.x 2nd Redis Region Factory
  *
  * @author sunghyouk.bae@gmail.com
  * @since 13. 4. 5. 오후 11:59
  */
-abstract class AbstractRedisRegionFactory implements RegionFactory {
+@Slf4j
+abstract class AbstractRedisRegionFactory implements RegionFactory, ConfigurableRedisRegionFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(AbstractRedisRegionFactory.class);
-    /**
-     * Settings object for the Hibernate persistence unit.
-     */
-    protected SessionFactoryOptions settings;
+  /**
+   * Settings object for the Hibernate persistence unit.
+   */
+  protected Settings settings;
 
-    protected final RedisAccessStrategyFactory accessStrategyFactory = new RedisAccessStrategyFactoryImpl();
+  protected final Properties props;
 
-    /**
-     * Region names
-     */
-    protected final ConcurrentSkipListSet<String> regionNames = new ConcurrentSkipListSet<String>();
+  protected final RedisAccessStrategyFactory accessStrategyFactory = new RedisAccessStrategyFactoryImpl();
 
-    /**
-     * JedisClient instance.
-     */
-    protected JedisClient redis = null;
+  /**
+   * RedisClient instance.
+   */
+  protected RedisClient redis = null;
+  protected CacheTimestamper cacheTimestamper = null;
 
-    /**
-     * JedisCacheTimestamper instance.
-     */
-    protected JedisCacheTimestamper timestamper = null;
+  protected AbstractRedisRegionFactory(Properties props) {
+    this.props = props;
+  }
 
-    /**
-     * expiration management thread
-     */
-    protected static Thread expirationThread = null;
+  @Override
+  public CacheTimestamper createCacheTimestamper(RedisClient redisClient, String cacheKey) {
+    return new Timestamper();
+  }
 
-    /**
-     * Whether to optimize for minimals puts or minimal gets.
-     * <p/>
-     * Indicates whether when operating in non-strict read/write or read-only mode
-     * Hibernate should optimize the access patterns for minimal puts or minimal gets.
-     * In Ehcache we default to minimal puts since this should have minimal to no
-     * affect on unclustered users, and has great benefit for clustered users.
-     * <p/>
-     * This setting can be overridden by setting the "hibernate.cache.use_minimal_puts"
-     * property in the Hibernate configuration.
-     *
-     * @return true, optimize for minimal puts
-     */
-    @Override
-    public boolean isMinimalPutsEnabledByDefault() {
-        return true;
-    }
+  public RedisClient createRedisClient() {
+    return RedisClientFactory.createRedisClient(RedisCacheUtil.getRedissonConfigPath());
+  }
 
-    protected void initializeRegionFactory(SessionFactoryOptions settings, Properties properties) {
-        if (redis != null) {
-            throw new IllegalStateException("Jedis client already initialized!");
-        }
-        redis = JedisTool.createJedisClient(properties);
-        timestamper = JedisTool.createTimestamper(settings, properties, redis);
-        startExpirationThread(redis);
-    }
+  /**
+   * Whether to optimize for minimals puts or minimal gets.
+   * <p/>
+   * Indicates whether when operating in non-strict read/write or read-only mode
+   * Hibernate should optimize the access patterns for minimal puts or minimal gets.
+   * In Ehcache we default to minimal puts since this should have minimal to no
+   * affect on unclustered users, and has great benefit for clustered users.
+   * <p/>
+   * This setting can be overridden by setting the "hibernate.cache.use_minimal_puts"
+   * property in the Hibernate configuration.
+   *
+   * @return true, optimize for minimal puts
+   */
+  @Override
+  public boolean isMinimalPutsEnabledByDefault() {
+    return true;
+  }
 
-    @Override
-    public AccessType getDefaultAccessType() {
-        return AccessType.READ_WRITE;
-    }
+  @Override
+  public AccessType getDefaultAccessType() {
+    return AccessType.READ_WRITE;
+  }
 
-    @Override
-    public long nextTimestamp() {
-        return timestamper.next();
-    }
+  public long nextTimestamp() {
+    return cacheTimestamper.next();
+  }
 
-    private Properties loadCacheProperties(Properties properties) {
-        return JedisTool.loadCacheProperties(properties);
-    }
+  @Override
+  public EntityRegion buildEntityRegion(String regionName,
+                                        Properties properties,
+                                        CacheDataDescription metadata) throws CacheException {
+    return new RedisEntityRegion(accessStrategyFactory,
+                                 redis,
+                                 this,
+                                 regionName,
+                                 settings,
+                                 metadata,
+                                 properties);
+  }
 
-    @Override
-    public EntityRegion buildEntityRegion(String regionName,
-                                          Properties properties,
-                                          CacheDataDescription metadata) throws CacheException {
-        regionNames.add(regionName);
-        return new RedisEntityRegion(accessStrategyFactory,
+  @Override
+  public NaturalIdRegion buildNaturalIdRegion(String regionName,
+                                              Properties properties,
+                                              CacheDataDescription metadata) throws CacheException {
+    return new RedisNaturalIdRegion(accessStrategyFactory,
+                                    redis,
+                                    this,
+                                    regionName,
+                                    settings,
+                                    metadata,
+                                    properties);
+  }
+
+  @Override
+  public CollectionRegion buildCollectionRegion(String regionName,
+                                                Properties properties,
+                                                CacheDataDescription metadata) throws CacheException {
+    return new RedisCollectionRegion(accessStrategyFactory,
                                      redis,
+                                     this,
                                      regionName,
                                      settings,
                                      metadata,
-                                     loadCacheProperties(properties),
-                                     timestamper);
-    }
+                                     properties);
+  }
 
-    @Override
-    public NaturalIdRegion buildNaturalIdRegion(String regionName,
-                                                Properties properties,
-                                                CacheDataDescription metadata) throws CacheException {
-        regionNames.add(regionName);
-        return new RedisNaturalIdRegion(accessStrategyFactory,
-                                        redis,
-                                        regionName,
-                                        settings,
-                                        metadata,
-                                        loadCacheProperties(properties),
-                                        timestamper);
-    }
+  @Override
+  public QueryResultsRegion buildQueryResultsRegion(String regionName,
+                                                    Properties properties) throws CacheException {
+    return new RedisQueryResultsRegion(accessStrategyFactory,
+                                       redis,
+                                       this,
+                                       regionName,
+                                       properties);
+  }
 
-    @Override
-    public CollectionRegion buildCollectionRegion(String regionName,
-                                                  Properties properties,
-                                                  CacheDataDescription metadata) throws CacheException {
-        regionNames.add(regionName);
-        return new RedisCollectionRegion(accessStrategyFactory,
-                                         redis,
-                                         regionName,
-                                         settings,
-                                         metadata,
-                                         loadCacheProperties(properties),
-                                         timestamper);
-    }
+  @Override
+  public TimestampsRegion buildTimestampsRegion(String regionName,
+                                                Properties properties) throws CacheException {
+    return new RedisTimestampsRegion(accessStrategyFactory,
+                                     redis,
+                                     this,
+                                     regionName,
+                                     properties);
+  }
 
-    @Override
-    public QueryResultsRegion buildQueryResultsRegion(String regionName,
-                                                      Properties properties) throws CacheException {
-        regionNames.add(regionName);
-        return new RedisQueryResultsRegion(accessStrategyFactory,
-                                           redis,
-                                           regionName,
-                                           loadCacheProperties(properties),
-                                           timestamper);
-    }
-
-    @Override
-    public TimestampsRegion buildTimestampsRegion(String regionName,
-                                                  Properties properties) throws CacheException {
-        // regionNames.add(regionName);
-        return new RedisTimestampsRegion(accessStrategyFactory,
-                                         redis,
-                                         regionName,
-                                         loadCacheProperties(properties),
-                                         timestamper);
-    }
-
-    /**
-     * Cleanup any resources that the regionFactory might have references to.
-     */
-    protected void destroy() {
-        if (expirationThread != null) {
-            expirationThread.interrupt();
-            expirationThread = null;
-        }
-        if (redis != null) {
-            redis.destroy();
-            redis = null;
-        }
-        timestamper = null;
-    }
-
-    protected synchronized void startExpirationThread(final JedisClient redis) {
-        if (expirationThread != null && expirationThread.isAlive()) {
-            return;
-        }
-
-        expirationThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(1000L);
-                        Set<String> regions = regionNames.clone();
-                        for (final String region : regions) {
-                            if (redis != null) {
-                                try {
-                                    redis.expire(region);
-                                } catch (Exception ignored) {
-                                    log.warn("Error occurred in expiration management thread. but it was ignored", ignored);
-                                }
-                            }
-                        }
-                    } catch (InterruptedException ignored) {
-                        break;
-                    } catch (Exception ignored) {
-                        log.warn("Error occurred in expiration management thread. but it was ignored", ignored);
-                    }
-                }
-            }
-        });
-        expirationThread.setDaemon(true);
-        expirationThread.start();
-    }
-
-    private static final long serialVersionUID = -5441842686229077097L;
+  private static final long serialVersionUID = -5441842686229077097L;
 }
