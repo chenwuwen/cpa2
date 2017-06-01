@@ -195,6 +195,7 @@ public abstract class CommonDaoImpl<K extends Serializable, T extends Serializab
         Session session = getSession();
         Query query = session.createQuery("select o from " + entityName + " o"
                 + whereql + buildOrderby(orderby));
+//        query.setCacheable(true);   //激活二级缓存查询
         if (firstResult != -1 && maxResult != -1)
             query.setFirstResult(firstResult).setMaxResults(maxResult);
         setQueryParameter(query, params);

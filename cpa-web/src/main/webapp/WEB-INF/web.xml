@@ -32,7 +32,7 @@
 	<!-- 当web容器启动的时候，自动加载spring容器 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml</param-value>
+		<param-value>classpath:applicationContext.xml,classpath:spring-redis.xml</param-value>
 	</context-param>
 	<!-- spring监听器 -->
 	<listener>
