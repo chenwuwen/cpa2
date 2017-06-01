@@ -337,12 +337,28 @@
             <version>3.0.1</version>
         </dependency>
 
-        <!--其他-->
+        <!--文件上传-->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.2.1</version>
         </dependency>
+
+        <!-- fastJson json数组有关的 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+
+        <!-- aspectjweaver.jar这是Spring AOP所要用到的包 -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.10</version>
+        </dependency>
+
+        <!--其他-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -417,11 +433,7 @@
             <artifactId>commons-pool</artifactId>
             <version>1.6</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.bundles</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.6.8_2</version>
-        </dependency>
+
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
