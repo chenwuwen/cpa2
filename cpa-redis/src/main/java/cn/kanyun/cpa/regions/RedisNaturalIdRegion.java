@@ -52,6 +52,6 @@ public class RedisNaturalIdRegion extends RedisTransactionalDataRegion implement
 
   @Override
   public NaturalIdRegionAccessStrategy buildAccessStrategy(AccessType accessType) throws CacheException {
-    return getAccessStrategyFactory().createNaturalIdRegionAccessStrategy(this, accessType);
+    return getAccessStrategyFactory().createNaturalIdRegionAccessStrategy(this,accessType);
   }
 }
