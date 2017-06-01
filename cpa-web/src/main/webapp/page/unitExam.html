@@ -1,28 +1,27 @@
- <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <div class="panel panel-default" ng-repeat='(i,exam) in exams.data'>
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{$index+1}}.{{exam.stem}}</h3>
-                </div>
-                <div class="panel-body" crId="{{exam.cr_id}}">
-                    <ul class="list" style="margin:0;padding:0;list-style:none">
-                        <li ng-repeat='(key,option) in exam.options'>
-                            <label>
-                               <input icheck ng-model="option" type="radio"  name="optionsRadio{{i}}" value="{{key | CovertKey}}"  />
-                                <span>{{key | CovertKey}}.{{option}}</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+<div class="row">
+    <div class="col-sm-5 col-sm-offset-1">
+        <div class="panel panel-default" ng-repeat='(i,exam) in exams.data'>
+            <div class="panel-heading">
+                <h3 class="panel-title">{{$index+1}}.{{exam.stem}}</h3>
             </div>
-        </div>
-        <div class="col-sm-4 col-sm-offset-1">
-            <div class="panel panel-default" style="position: fixed">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
+            <div class="panel-body" crId="{{exam.cr_id}}">
+                <ul class="list" style="margin:0;padding:0;list-style:none">
+                    <li ng-repeat='(key,option) in exam.options'>
+
+                        <input class="magic-radio" ng-model="option" type="radio" name="optionsRadio{{i}}" id="{{$index}}"/>
+                        <label for="{{$index}}">{{key | CovertKey}}.{{option}}</label>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+    <div class="col-sm-4 col-sm-offset-1">
+        <div class="panel panel-default" style="position: fixed">
+            <div class="panel-body">
+                Basic panel example
+            </div>
+        </div>
+    </div>
+</div>
 
 
