@@ -78,11 +78,11 @@
             <version>4.1.4.Final</version>
         </dependency>
         <!--Hibernate-jbosscache二级缓存,该缓存插件可用于分布式-->
-        <dependency>
+      <!--  <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jbosscache</artifactId>
             <version>3.6.10.Final</version>
-        </dependency>
+        </dependency>-->
 
 
         <!--<dependency>-->
