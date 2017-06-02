@@ -19,7 +19,7 @@ app.controller('UnitExamCtrl',function($scope, $stateParams, $http){
         alert('error');
     })
 });
-app.filter('CovertKey',function () { //可以注入依赖
+app.filter('CovertKey',function () { //可以注入依赖 ,前台通过{{key|CovertKey}}即可转换
     return function (x) {
         switch (x){
             case 0:

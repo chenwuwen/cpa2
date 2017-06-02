@@ -44,11 +44,16 @@ public class UnitExamServiceImpl extends CommonServiceImpl<Integer,CpaRepertory>
                     }
                 });
 //                从排序后的List集合里取出选项内容，可以保证，他们的顺序不变
-                List<String> listoptions = new ArrayList<String>();
+                List<Map<String, Object>> listoptions = new ArrayList<>();
+//                List<CpaOption> listoptions = new ArrayList<CpaOption>(); //原写法,只取出选项的内容,ABCD在前台用Angular的过滤器来得到,由于选项内容已经排序故不必担心顺序不对的问题
                 for (CpaOption co : listco) {
-                    listoptions.add(co.getOptionData());
+//                    listoptions.add(co.getOptionData()); //原写法,只取出数据即可.但后来发现在提交的时候有些问题,故将ABCD也加上
+                    Map<String, Object> mapco = new HashMap<String, Object>();
+                    mapco.put("optionKey",co.getSelectData());
+                    mapco.put("optionData",co.getOptionData());
+                    listoptions.add(mapco);
                 }
-                map.put("options", listoptions);
+                map.put("optionList", listoptions);
                 list.add(map);
             }
             result.setStatus(1);

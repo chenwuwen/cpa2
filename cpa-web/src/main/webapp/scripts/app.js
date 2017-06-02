@@ -1,16 +1,3 @@
-// //从Cookie获取userid
-// var userId = getCookie("uid");
-// // 从Cookie获取用户昵称
-// var Name = getCookie("name");
-// if (userId == null) {
-// 	window.location.href = "/login.html";
-// }
-// $(document).ready(function() {
-// 	$("p:eq(0)").html(Name);
-// 	showUnitExam();
-// 	})
-// 以上为原Jquery方式
-
 //该Js为采用anjular-ui-router组件，来进行页面转换
 
 //定义自己的module(app),括号中的是这个module的依赖

@@ -6,9 +6,9 @@
             </div>
             <div class="panel-body" crId="{{exam.cr_id}}">
                 <ul class="list" style="margin:0;padding:0;list-style:none">
-                    <li ng-repeat='(key,option) in exam.options'>
+                    <li ng-repeat='(key,options) in exam.optionList'>
                         <input class="magic-radio"  type="radio" name="optionsRadio{{i}}" id="{{i}}{{key}}"/>
-                        <label for="{{i}}{{key}}">{{key | CovertKey}}.{{option}}</label>
+                        <label for="{{i}}{{key}}">{{options.optionKey}}.{{options.optionData}}</label>
                     </li>
                 </ul>
             </div>

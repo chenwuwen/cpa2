@@ -112,9 +112,7 @@
 
 
 /*另外一种样式不是本身自带的,是在网上找的,使用方法为 class="regular-checkbox"  class="regular-checkbox big-checkbox" class="regular-radio" class="regular-radio big-radio"*/
-label {
-  display: inline;
-}
+
 .regular-checkbox {
   display: none;
 }
@@ -159,24 +157,13 @@ label {
   left: 6px;
 }
 
-.tag {
-  font-family: Arial, sans-serif;
-  width: 200px;
-  position: relative;
-  top: 5px;
-  font-weight: bold;
-  text-transform: uppercase;
-  display: block;
-  float: left;
-}
+
 
 .radio-1 {
   width: 193px;
 }
 
-.button-holder {
-  float: left;
-}
+
 
 /* RADIO */
 
