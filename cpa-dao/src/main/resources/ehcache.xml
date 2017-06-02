@@ -45,6 +45,22 @@
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"
     />
+    <!--使用了Hibernate的查询缓存，需要在ehcache.xml中加入下面的配置-->
+ <!--   使用ehcache，打印sql语句是正常的，因为query cache设置为true将会创建两个缓存区域：
+    一个用于保存查询结果集 (org.hibernate.cache.StandardQueryCache)；
+    另一个则用于保存最近查询的一系列表的时间戳(org.hibernate.cache.UpdateTimestampsCache)。
+    请注意：在查询缓存中，它并不缓存结果集中所包含的实体的确切状态；
+    它只缓存这些实体的标识符属性的值、以及各值类型的结果。需要将打印sql语句与最近的cache内 容相比较，
+    将不同之处修改到cache中，所以查询缓存通常会和二级缓存一起使用。-->
+    <cache name="org.hibernate.cache.UpdateTimestampsCache"
+           maxElementsInMemory="5000"
+           eternal="true"
+           overflowToDisk="true" />
+    <cache name="org.hibernate.cache.StandardQueryCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToLiveSeconds="120"
+           overflowToDisk="true" />
 
     <!--
         cache:为指定名称的对象进行缓存的特殊配置

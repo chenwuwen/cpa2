@@ -51,6 +51,7 @@
         <!-- 高速缓存提供程序,设置缓存提供者 -->
         <property name="hibernate.cache.region.factory_class">
             org.hibernate.cache.ehcache.EhCacheRegionFactory
+            <!--org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory-->
         </property>
         <!-- Hibernate4以后都封装到org.hibernate.cache.ehcache.EhCacheRegionFactory -->
         <!-- 指定缓存配置文件位置 -->
