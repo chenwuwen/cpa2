@@ -31,7 +31,8 @@
         <property name="hibernate.cache.use_second_level_cache">true</property>
 
         <!--查询缓存与hibernate二级缓存是有区别的-->
-        <!--1、一级缓存是session级别的，二级缓存和查询缓存都是sessionfactory级别的，查询缓存和二级缓存是一起来使用的-->
+        <!--默认情况下二级缓存只会对load get 之类的方法缓存， 想list iterator 之类的方法也使用缓存 必须跟查询缓存一起使用， 重写查询方法-->
+        <!--1、一级缓存是session级别的，二级缓存和查询缓存都是sessionfactory级别的，查询缓存和二级缓存是一起来使用的 .setCacheable(true) criteria.setCacheable(true).list();-->
 
         <!--2、任何sql执行都会存入到同一个session的一级缓存中去-->
 
