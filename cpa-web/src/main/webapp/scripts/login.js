@@ -32,8 +32,8 @@ $(function () {
                         /*获取用户ID写入Cookie*/
                         var userId = result.data.id;
                         var Name = result.data.petName;
-                        addCookie("uid", userId, remember_me);//存储remember_me小时,此处实际设置的是Cookie的失效时间，正常情况下是关闭浏览器Cookie即失效
-                        addCookie("name", Name, remember_me);
+                        // addCookie("uid", userId, remember_me);//存储remember_me小时,此处实际设置的是Cookie的失效时间，正常情况下是关闭浏览器Cookie即失效
+                        // addCookie("name", Name, remember_me);
                         /*跳转到指定页面，window代表浏览器，location代表当前页面*/
                         window.location.href = "./page/main.html";
                     } else if (result.status == 2) {

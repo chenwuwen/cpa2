@@ -170,13 +170,8 @@
         <!--Hibernate相关-->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.5.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.4.Final</version>
+            <version>4.1.6.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.common</groupId>
@@ -191,7 +186,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.1.4.Final</version>
+            <version>4.1.6.Final</version>
             <optional>true</optional>
             <exclusions>
                 <exclusion>
@@ -200,21 +195,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-infinispan</artifactId>
-            <version>4.1.4.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-envers</artifactId>
-            <version>4.1.4.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-proxool</artifactId>
-            <version>4.1.4.Final</version>
-        </dependency>
         <!--使用Ehcache做Hibernate二级缓存,之前一直想用redis做二级缓存,但是redis还未有实现的案例,
         也有想过使用hibernate memcached来做,但是还需要安装memcached,也是不妥,最有优势的是采用JbossCache做二级缓存,其功能强大,但是又会造成方法冲突
         报错"nested exception is java.lang.NoSuchMethodError: org.jboss.logging.Logger.getMessageLogger(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;"
@@ -222,7 +202,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
-            <version>4.1.4.Final</version>
+            <version>4.1.6.Final</version>
         </dependency>
 
         <!--使用redis-->
