@@ -59,7 +59,12 @@
         <!-- 强制Hibernate以更人性化的格式将数据存入二级缓存 -->
         <property name="hibernate.cache.use_structured_entries">true</property>
 
-        <!-- Hibernate将收集有助于性能调节的统计数据 -->
+        <!-- Hibernate将收集有助于性能调节的统计数据,可以得到二级缓存命中次数等数据 -->
+  <!--  Statistics s = HibernateSessionFactoryUtil.getSessionFactory().getStatistics();
+        System.out.println(s);
+        System.out.println("put:"+s.getSecondLevelCachePutCount());
+        System.out.println("hit:"+s.getSecondLevelCacheHitCount());
+        System.out.println("miss:"+s.getSecondLevelCacheMissCount());-->
         <property name="hibernate.generate_statistics">true</property>
 
         <!-- 加载映射文件 ,注册ORM映射文件-->
