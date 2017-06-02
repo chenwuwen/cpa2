@@ -29,13 +29,25 @@
 
         <!-- 开启二级缓存,使用时query查询时，setCacheable设置TRUE,query.setCacheable(true) -->
         <property name="hibernate.cache.use_second_level_cache">true</property>
-        <!--设置缓存提供者 -->
-        <property name="hibernate.cache.provider_class">
-            org.hibernate.cache.EhCacheProvider
-        </property>
+
+        <!--查询缓存与hibernate二级缓存是有区别的-->
+        <!--1、一级缓存是session级别的，二级缓存和查询缓存都是sessionfactory级别的，查询缓存和二级缓存是一起来使用的-->
+
+        <!--2、任何sql执行都会存入到同一个session的一级缓存中去-->
+
+        <!--3、同时开启查询缓存和二级缓存，可以在不同session间共享缓存的结果-->
+
+        <!--4、二级缓存缓存的是实体，不是属性-->
+
+        <!--5、查询缓存的结果如果只是属性，那么查询缓存中存储的是id和属性的值，如果是实体的集合，那么查询缓存存储的只是实体的id，对应的实体会存储到二级缓存中去。-->
+
+        <!--6、不同session间返回数据的顺序是，二级缓存先将数据返回，然后将数据存入本session的一级缓存中去，以便下次调用时的使用-->
+        <!--二级缓存是用来保存类对象的，并且填充它的所有属性值-->
+        <!--查询缓存保存的是查询方法（list和iterate等）查询的sql语句和结果集，跟load这种装载对象的方法没有关系。也就是说，使用load方法，查询缓存不理睬,并且这个结果集只是对象id列表，对象的其他属性值不保存。例如，list执行的时候，先根据查询缓存中的sql语句，获取对象id列表，然后再load(id)来取对象-->
+        <!--查询缓存是只存储对象的id的，并不去存储真正的对象，查询缓存作为key值的是   hql语句+参数+分页-->
         <!-- 启动"查询缓存"如果想缓存使用findall()、list()、Iterator()、createCriteria()、createQuery()等方法获得的数据结果集,必须配置此项-->
         <property name="hibernate.cache.use_query_cache">true</property>
-        <!-- 高速缓存提供程序 -->
+        <!-- 高速缓存提供程序,设置缓存提供者 -->
         <property name="hibernate.cache.region.factory_class">
             org.hibernate.cache.ehcache.EhCacheRegionFactory
         </property>
@@ -60,6 +72,8 @@
         <!--这个<class-cache>标签必须放在<mapping>标签的后面！-->
         <!--配置哪些实体类的对象需要二级缓存  ,usage属性为缓存策略  -->
         <class-cache class="cn.kanyun.cpa.model.exam.CpaRepertory" usage="read-only"/>
+        <class-cache class="cn.kanyun.cpa.model.exam.CpaOption" usage="read-only"/>
+        <class-cache class="cn.kanyun.cpa.model.exam.CpaSolution" usage="read-only"/>
     </session-factory>
 
 </hibernate-configuration>

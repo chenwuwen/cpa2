@@ -4,7 +4,17 @@
           磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存
           path:指定在硬盘上存储对象的路径
       -->
-    <diskStore path="/ehcache"/>
+    <!--操作系统不同 这个系统属性所表示的目录也不同-->
+    <!--On Windows: java.io.tmpdir:[C:\DOCUME~1\joshua\LOCALS~1\Temp\]-->
+
+    <!--On Solaris: java.io.tmpdir:[/var/tmp/]-->
+
+    <!--On Linux: java.io.tmpdir: [/tmp]-->
+
+    <!--On Mac OS X: java.io.tmpdir: [/tmp]-->
+
+    <diskStore path="java.io.tmpdir"/>
+
 
     <!--
     Mandatory Default Cache configuration. These settings will be applied to caches
