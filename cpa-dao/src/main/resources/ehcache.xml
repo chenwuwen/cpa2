@@ -53,7 +53,7 @@
     它只缓存这些实体的标识符属性的值、以及各值类型的结果。需要将打印sql语句与最近的cache内 容相比较，
     将不同之处修改到cache中，所以查询缓存通常会和二级缓存一起使用。-->
     <cache name="org.hibernate.cache.UpdateTimestampsCache"
-           maxElementsInMemory="5000"
+           maxElementsInMemory="10000"
            eternal="true"
            overflowToDisk="true" />
     <cache name="org.hibernate.cache.StandardQueryCache"
