@@ -23,6 +23,13 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <!-- 自动建表 -->
+        <!--
+ ## auto schema export  自动导出表结构. 自动建表
+ #hibernate.hbm2ddl.auto create        自动建表.每次框架运行都会创建新的表.以前表将会被覆盖,表数据会丢失.(开发环境中测试使用)
+ #hibernate.hbm2ddl.auto create-drop 自动建表.每次框架运行结束都会将所有表删除.(开发环境中测试使用)
+ #hibernate.hbm2ddl.auto update(推荐使用) 自动生成表.如果已经存在不会再生成.如果表有变动.自动更新表(不会删除任何数据).
+ #hibernate.hbm2ddl.auto validate    校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败.
+  -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- 报错信息为：No CurrentSessionContext configured!或者No TransactionManagerLookup specified -->
         <property name="current_session_context_class">thread</property>
@@ -64,11 +71,11 @@
         <property name="hibernate.cache.use_structured_entries">true</property>
 
         <!-- Hibernate将收集有助于性能调节的统计数据,可以得到二级缓存命中次数等数据 -->
-  <!--  Statistics s = HibernateSessionFactoryUtil.getSessionFactory().getStatistics();
-        System.out.println(s);
-        System.out.println("put:"+s.getSecondLevelCachePutCount());
-        System.out.println("hit:"+s.getSecondLevelCacheHitCount());
-        System.out.println("miss:"+s.getSecondLevelCacheMissCount());-->
+        <!--  Statistics s = HibernateSessionFactoryUtil.getSessionFactory().getStatistics();
+              System.out.println(s);
+              System.out.println("put:"+s.getSecondLevelCachePutCount());
+              System.out.println("hit:"+s.getSecondLevelCacheHitCount());
+              System.out.println("miss:"+s.getSecondLevelCacheMissCount());-->
         <property name="hibernate.generate_statistics">true</property>
 
         <!-- 加载映射文件 ,注册ORM映射文件-->
