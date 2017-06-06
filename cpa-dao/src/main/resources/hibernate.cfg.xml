@@ -59,6 +59,9 @@
         <property name="hibernate.cache.use_query_cache">true</property>
         <!-- 高速缓存提供程序,设置缓存提供者 -->
         <property name="hibernate.cache.region.factory_class">
+            <!--当spring也配置了ehcache作为缓存时，为了使spring缓存和hibernate缓存使用同一缓存管理器，从而保证缓存的一致性，
+            需要使用org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory。如果仅是hibernate使用ehcache的话，
+            org.hibernate.cache.ehcache.EhCacheRegionFactory即可-->
             org.hibernate.cache.ehcache.EhCacheRegionFactory
             <!--org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory-->
         </property>
