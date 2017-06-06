@@ -3,6 +3,7 @@ package cn.kanyun.cpa.dao;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;

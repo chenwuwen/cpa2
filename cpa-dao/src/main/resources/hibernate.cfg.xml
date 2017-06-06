@@ -48,6 +48,7 @@
         <!--查询缓存是只存储对象的id的，并不去存储真正的对象，查询缓存作为key值的是   hql语句+参数+分页-->
         <!-- 启动"查询缓存"如果想缓存使用findall()、list()、Iterator()、createCriteria()、createQuery()等方法获得的数据结果集,必须配置此项-->
         <!--查询缓存,使用时query.list()查询时，setCacheable设置TRUE,query.setCacheable(true)-->
+        <!--Iterator不使用查询缓存（查询缓存仅仅对query.list(）有效）-->
         <property name="hibernate.cache.use_query_cache">true</property>
         <!-- 高速缓存提供程序,设置缓存提供者 -->
         <property name="hibernate.cache.region.factory_class">
@@ -79,9 +80,9 @@
         <!--指定需要缓存的对象类型:这里可以在映射文件中配置，也可以在hibernate核心配置文件中进行配置（推荐）-->
         <!--这个<class-cache>标签必须放在<mapping>标签的后面！-->
         <!--配置哪些实体类的对象需要二级缓存  ,usage属性为缓存策略  -->
-        <class-cache class="cn.kanyun.cpa.model.exam.CpaRepertory" usage="read-only"/>
-        <class-cache class="cn.kanyun.cpa.model.exam.CpaOption" usage="read-only"/>
-        <class-cache class="cn.kanyun.cpa.model.exam.CpaSolution" usage="read-only"/>
+        <class-cache class="cn.kanyun.cpa.model.exam.CpaRepertory" usage="read-write"/>
+        <class-cache class="cn.kanyun.cpa.model.exam.CpaOption" usage="read-write"/>
+        <class-cache class="cn.kanyun.cpa.model.exam.CpaSolution" usage="read-write"/>
     </session-factory>
 
 </hibernate-configuration>
