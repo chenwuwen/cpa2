@@ -70,7 +70,7 @@
         <!-- Hibernate4以后都封装到org.hibernate.cache.ehcache.EhCacheRegionFactory -->
         <!-- 指定缓存配置文件位置 -->
         <property name="hibernate.cache.provider_configuration_file_resource_path">
-            ehcache.xml
+            classpath:ehcache.xml
         </property>
         <!-- 强制Hibernate以更人性化的格式将数据存入二级缓存 -->
         <property name="hibernate.cache.use_structured_entries">true</property>
