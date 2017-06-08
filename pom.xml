@@ -208,6 +208,11 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>4.1.6.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
         <!--使用redis-->
         <dependency>

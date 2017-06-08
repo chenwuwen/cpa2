@@ -7,16 +7,16 @@
     <session-factory>
         <!-- 连接数据库的信息-->
         <property name="dialect">
-            org.hibernate.dialect.MySQLDialect
+            ${dialect}
         </property>
         <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            ${hibernate.connection.driver_class}
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/cpa?useUnicode=true&amp;characterEncoding=utf8
+            ${hibernate.connection.url}
         </property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.username">${hibernate.connection.username}</property>
+        <property name="hibernate.connection.password">${hibernate.connection.password}</property>
         <!--错误org.hibernate.HibernateException: Error applying BeanValidation relational constraints的解决方法-->
         <property name="javax.persistence.validation.mode">none</property>
         <!-- 将hibernate底层执行的sql语句从控制台显示 -->
@@ -31,6 +31,8 @@
  #hibernate.hbm2ddl.auto validate    校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败.
   -->
         <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- session要从当前线程中产生,不配置可能报错-->
         <!-- 报错信息为：No CurrentSessionContext configured!或者No TransactionManagerLookup specified -->
         <property name="current_session_context_class">thread</property>
 
