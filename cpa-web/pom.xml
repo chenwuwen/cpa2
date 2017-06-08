@@ -139,7 +139,7 @@
                 <configuration>
                     <!--配置该url貌似没有用,所以配置port 与path即可-->
                     <!--<url>http://localhost:8080/cpa</url>-->
-                    <port>8080</port>
+                    <port>8899</port>
                     <!--path就是地址的配置，默认值是/${project.artifactId}-->
                     <path>/</path>
                     <!-- 与settings.xml文件中Server的id相同 -->
@@ -148,7 +148,8 @@
                     <password>tomcat</password>
                     <uriEncoding>UTF-8</uriEncoding>
                     <update>true</update>
-                    <warFile>${basedir}/target/${project.build.finalName}.war</warFile>
+                    <!--配置打包名和打包路径，测试不必要，打包后的名称为build标签下的finalName标签的值-->
+                    <!--<warFile>${basedir}/target/${project.build.finalName}.war</warFile>-->
                 </configuration>
             </plugin>
             <!--设置Maven构建项目为UTF-8编码格式-->
