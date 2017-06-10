@@ -8,7 +8,6 @@ app.controller('UnitExamCtrl',function($scope, $stateParams, $http){
     $http({
         method: 'GET',
         url: '/unitExam/getUnitExam.do',
-        // data:{'typeCode':typeCode}
         params:{typeCode:typeCode}
     }).then(function onSuccess(response) {
         // 请求成功执行代码
