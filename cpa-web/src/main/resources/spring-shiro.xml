@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm.java -->
-    <bean id="myRealm" class="com.papio.realm.MyRealm"/>
+    <!--<bean id="myRealm" class="com.papio.realm.MyRealm"/>-->
 
     <!-- 定义缓存管理器 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
@@ -21,11 +20,11 @@
     <!-- 即<property name="sessionMode" value="native"/>,详细说明见官方文档 -->
     <!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="myRealm"/>
-        <!-- 使用配置的缓存管理器 -->
-        <property name="cacheManager" ref="cacheManager"></property>
-        <!-- 会话管理 -->
-        <property name="sessionManager" ref="sessionManager" />
+        <!--<property name="realm" ref="myRealm"/>-->
+        <!--&lt;!&ndash; 使用配置的缓存管理器 &ndash;&gt;-->
+        <!--<property name="cacheManager" ref="cacheManager"></property>-->
+        <!--&lt;!&ndash; 会话管理 &ndash;&gt;-->
+        <!--<property name="sessionManager" ref="sessionManager" />-->
     </bean>
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
