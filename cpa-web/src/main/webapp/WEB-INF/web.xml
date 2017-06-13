@@ -70,9 +70,16 @@
         <filter-class>
             org.springframework.web.filter.CharacterEncodingFilter
         </filter-class>
+        <!--其中encoding用来设置编码格式，forceEncoding用来设置是否理会 request.getCharacterEncoding()方法，设置为true则强制覆盖之前的编码格式-->
+        <!--当Servlet容器启动的时候，会读取web.xml中对于过滤器的配置信息， 读取到<init-param>中的子标签<param-name>encoding和forceEncoding所对应的<param-value>的值，再通过调用该类setEncoding(String encoding)和setForceEncoding(boolean forceEncoding) 将值注入到这连个字段中-->
         <init-param>
             <param-name>encoding</param-name>
             <param-value>utf8</param-value>
+        </init-param>
+        <!--设置foreEncoding为true会覆盖掉request.getCharacterEncoding()中的方法-->
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
         </init-param>
     </filter>
     <filter-mapping>
