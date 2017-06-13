@@ -9,6 +9,10 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
+    <mvc:view-controller path="/" view-name="forward:/login.html"/>
+
     <!-- 1：注解的方式，引入组件的自动扫描，在类和方法上可以添加对注解的支持 -->
     <!-- 这是SpringMVC的配置文件，这里的扫描仅仅针对@Controller和@Handlermapping来说的，而Spring配置
         文件中的扫描是针对@Service @Repository，@Components来说的，Spring是桥梁, 而SpringMVC更专注了控制和转发，所以虽然两者都要进行注解扫描，但是所扫描的
@@ -25,7 +29,9 @@
     <!-- <mvc:default-servlet-handler/> -->
 
     <!-- 静态资源访问 -->
-    <!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
+    <!-- 由于web.xml中设置是：由SpringMVC拦截所有请求,于是在读取静态资源文件的时候就会受到影响(说白了就是读不到) -->
+    <!-- 经过下面的配置，该标签的作用就是：所有页面中引用"/js/**"的资源，都会从"/resources/js/"里面进行查找 -->
+     <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <!-- handlermapping 支持@RequestMapping,@ReponseBody,@Exceptionhandler -->
     <mvc:annotation-driven/>
