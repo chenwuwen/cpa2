@@ -3,18 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
-    <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm.java -->
-    <!--<bean id="myRealm" class="com.papio.realm.MyRealm"/>-->
+    <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm -->
+    <!-- Shiro配置,继承自AuthorizingRealm的自定义Realm (解决初始化时的依赖循环问题，通过这里向realm中注入userservice实现)-->
+    <bean id="myRealm" class="cn.kanyun.cpa.controller.MyRealm"/>
 
-    <!-- 定义缓存管理器 -->
-    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    <!-- 定义缓存管理器,可使用多种缓存组件-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:cache/ehcache.xml"/>
+    </bean>
 
     <!-- 记住我cookie -->
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="v_v-re-baidu"/>
-        <property name="httpOnly" value="true"/>
+        <!--<constructor-arg value="v_v-re-baidu"/>-->
+        <!--<property name="httpOnly" value="true"/>-->
         <!-- 配置存储rememberMe Cookie的domain为 一级域名 -->
-        <property name="domain" value=".itboy.net"/>
+        <!--<property name="domain" value=".itboy.net"/>-->
         <property name="maxAge" value="2592000"/><!-- 30天时间，记住我30天 -->
     </bean>
 
@@ -35,11 +38,18 @@
         <property name="deleteInvalidSessions" value="true"/>
     </bean>
 
+    <!--4 凭证匹配器 -->
+    <bean id="credentialsMatcher"
+          class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5" />
+        <property name="hashIterations" value="1" />
+    </bean>
+
 
     <!-- 安全管理器 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--<property name="realm" ref="myRealm"/>-->
-        <!--&lt;!&ndash; 使用配置的缓存管理器 &ndash;&gt;-->
+        <property name="realm" ref="myRealm"/>
+        <!-- 使用配置的缓存管理器 -->
         <property name="cacheManager" ref="cacheManager"></property>
         <!-- 会话管理 -->
         <property name="sessionManager" ref="sessionManager" />
@@ -47,6 +57,8 @@
         <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
 
+    <!-- Shiro 的Web过滤器 -->
+    <!--================================================1、与web.xml对应的bean===================================-->
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
     <!-- Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -59,6 +71,14 @@
         <!-- 用户访问未对其授权的资源时,所显示的连接 没有权限跳转的地址 -->
         <!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->
         <property name="unauthorizedUrl" value="/"/>
+        <!-- 自定义filter配置 -->
+        <property name="filters">
+            <map>
+                <!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
+                <entry key="authc" value-ref="formAuthenticationFilter" />
+            </map>
+        </property>
+        <!--过滤定义，从上而下，蒋匿名的anon放最下面-->
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <!-- 此处可配合这篇文章来理解各个过滤连的作用http://blog.csdn.net/jadyer/article/details/12172839 -->
         <!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->
@@ -103,7 +123,8 @@
 
         <property name="passwordParam" value="password" />
 
-        <!-- <property name="rememberMeParam" value="rememberMe"/> -->
+        <!--记住我input框名称-->
+        <property name="rememberMeParam" value="rememberMe"/>
 
         <!-- loginurl：用户登陆地址，此地址是可以http访问的url地址 -->
 

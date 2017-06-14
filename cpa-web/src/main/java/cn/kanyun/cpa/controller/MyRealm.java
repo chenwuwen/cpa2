@@ -1,21 +1,10 @@
 package cn.kanyun.cpa.controller;
-
-/**
- * Created by Administrator on 2017/6/14.
- */
             import java.util.Date;
             import java.util.List;
 
             import javax.annotation.Resource;
 
             import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
-            import net.shopxx.Setting.AccountLockType;
-            import net.shopxx.Setting.CaptchaType;
-            import net.shopxx.entity.Admin;
-            import net.shopxx.service.AdminService;
-            import net.shopxx.service.CaptchaService;
-            import net.shopxx.util.SettingUtils;
-
             import org.apache.commons.codec.digest.DigestUtils;
             import org.apache.commons.lang.ArrayUtils;
             import org.apache.commons.lang.time.DateUtils;
@@ -35,15 +24,9 @@ package cn.kanyun.cpa.controller;
     /**
      * 权限认证
      *
-     * @author LinkCity Team
-     * @version 3.0
+     * Created by Administrator on 2017/6/14.
      */
     public class MyRealm extends AuthorizingRealm {
-
-        @Resource(name = "captchaServiceImpl")
-        private CaptchaService captchaService;
-        @Resource(name = "adminServiceImpl")
-        private AdminService adminService;
 
         /**
          * 获取认证信息
