@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cpa_permission", schema = "cpa", catalog = "")
-public class CpaPermission {
+public class CpaPermission implements java.io.Serializable{
     private int id;
     private String permission;
 

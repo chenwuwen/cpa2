@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cpa_role", schema = "cpa", catalog = "")
-public class CpaRole {
+public class CpaRole implements java.io.Serializable{
     private int id;
     private String roleName;
 
