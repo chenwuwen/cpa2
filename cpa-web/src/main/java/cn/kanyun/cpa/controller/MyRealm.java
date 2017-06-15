@@ -4,10 +4,14 @@ package cn.kanyun.cpa.controller;
 
             import javax.annotation.Resource;
 
+            import cn.kanyun.cpa.model.user.CpaUser;
+            import cn.kanyun.cpa.service.user.IUserService;
             import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
             import org.apache.commons.codec.digest.DigestUtils;
             import org.apache.commons.lang.ArrayUtils;
             import org.apache.commons.lang.time.DateUtils;
+            import org.apache.shiro.SecurityUtils;
+            import org.apache.shiro.authc.AuthenticationException;
             import org.apache.shiro.authc.AuthenticationInfo;
             import org.apache.shiro.authc.AuthenticationToken;
             import org.apache.shiro.authc.DisabledAccountException;
@@ -27,112 +31,113 @@ package cn.kanyun.cpa.controller;
      * Created by Administrator on 2017/6/14.
      */
     public class MyRealm extends AuthorizingRealm {
+        
+            //注入service
+            @Resource
+            private IUserService userService;
 
-        /**
-         * 获取认证信息
-         *
-         * @param token
-         *            令牌
-         * @return 认证信息
-         */
-        @Override
-    /*
-     * 验证当前用户的合法性---也就是登录验证
-     */
-        protected AuthenticationInfo doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken token) {
-            //获取当前登录令牌（令牌包括的信息有username、password、remember、captcha验证码、登录IP）
-            AuthenticationToken authenticationToken = (AuthenticationToken) token;
-            String username = authenticationToken.getUsername();
-            String password = new String(authenticationToken.getPassword());
-            String captchaId = authenticationToken.getCaptchaId();
-            String captcha = authenticationToken.getCaptcha();
-            String ip = authenticationToken.getHost();
-            //验证验证码是否正确
-            if (!captchaService.isValid(CaptchaType.adminLogin, captchaId, captcha)) {
-                throw new UnsupportedTokenException();
+            // 设置realm的名称
+            @Override
+            public void setName(String name) {
+                super.setName("customRealm");
             }
-            if (username != null && password != null) {
-                //根据当前username获取数据库的admin用户
-                Admin admin = adminService.findByUsername(username);
-                //判断是否有此用户
-                if (admin == null) {
-                    throw new UnknownAccountException();
+
+            // 用于认证
+            //realm的认证方法，从数据库查询用户信息
+            @Override
+            protected AuthenticationInfo doGetAuthenticationInfo(
+                    AuthenticationToken token) throws AuthenticationException {
+
+                // token是用户输入的用户名和密码 
+                // 第一步从token中取出用户名
+                String userCode = (String) token.getPrincipal();
+
+                // 第二步：根据用户输入的userCode从数据库查询
+                CpaUser user = null;
+                try {
+                    user = userService.finduserByUserCode(userCode);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
-                //判断当前用户是否可用
-                if (!admin.getIsEnabled()) {
-                    throw new DisabledAccountException();
+
+                // 如果查询不到返回null
+                if(user==null){//
+                    return null;
                 }
-                ManagementAssertion.Setting setting = SettingUtils.get();
-                //判断用户是否被锁定
-                if (admin.getIsLocked()) {
-                    if (ArrayUtils.contains(setting.getAccountLockTypes(), AccountLockType.admin)) {
-                        int loginFailureLockTime = setting.getAccountLockTime();
-                        if (loginFailureLockTime == 0) {
-                            throw new LockedAccountException();
-                        }
-                        Date lockedDate = admin.getLockedDate();
-                        Date unlockDate = DateUtils.addMinutes(lockedDate, loginFailureLockTime);
-                        if (new Date().after(unlockDate)) {
-                            admin.setLoginFailureCount(0);
-                            admin.setIsLocked(false);
-                            admin.setLockedDate(null);
-                            adminService.update(admin);
-                        } else {
-                            throw new LockedAccountException();
-                        }
-                    } else {
-                        admin.setLoginFailureCount(0);
-                        admin.setIsLocked(false);
-                        admin.setLockedDate(null);
-                        adminService.update(admin);
+                // 从数据库查询到密码
+                String password = user.getPassword();
+
+                //盐
+                String salt = user.getSalt();
+
+                // 如果查询到返回认证信息AuthenticationInfo
+
+                //activeUser就是用户身份信息
+                ActiveUser activeUser = new ActiveUser();
+
+                activeUser.setUserid(user.getId());
+                activeUser.setUsercode(user.getUsercode());
+                activeUser.setUsername(user.getUsername());
+                //..
+
+                //根据用户id取出菜单
+                List<SysPermission> menus  = null;
+                try {
+                    //通过service取出菜单 
+                    menus = sysService.findMenuListByUserId(user.getId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //将用户菜单 设置到activeUser
+                activeUser.setMenus(menus);
+
+                //将activeUser设置simpleAuthenticationInfo
+                SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
+                        activeUser, password,ByteSource.Util.bytes(salt), this.getName());
+
+                return simpleAuthenticationInfo;
+            }
+
+
+
+            // 用于授权
+            @Override
+            protected AuthorizationInfo doGetAuthorizationInfo(
+                    PrincipalCollection principals) {
+
+                //从 principals获取主身份信息
+                //将getPrimaryPrincipal方法返回值转为真实身份类型（在上边的doGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo中身份类型），
+                ActiveUser activeUser =  (ActiveUser) principals.getPrimaryPrincipal();
+
+                //根据身份信息获取权限信息
+                //从数据库获取到权限数据
+                List<SysPermission> permissionList = null;
+                try {
+                    permissionList = sysService.findMenuListByUserId(activeUser.getUserid());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //单独定一个集合对象 
+                List<String> permissions = new ArrayList<String>();
+                if(permissionList!=null){
+                    for(SysPermission sysPermission:permissionList){
+                        //将数据库中的权限标签 符放入集合
+                        permissions.add(sysPermission.getPercode());
                     }
                 }
-                //判断密码是否正确
-                if (!DigestUtils.md5Hex(password).equals(admin.getPassword())) {
-                    int loginFailureCount = admin.getLoginFailureCount() + 1;
-                    if (loginFailureCount >= setting.getAccountLockCount()) {
-                        admin.setIsLocked(true);
-                        admin.setLockedDate(new Date());
-                    }
-                    admin.setLoginFailureCount(loginFailureCount);
-                    adminService.update(admin);
-                    throw new IncorrectCredentialsException();
-                }
-                admin.setLoginIp(ip);
-                admin.setLoginDate(new Date());
-                admin.setLoginFailureCount(0);
-                //更新用户登录信息
-                adminService.update(admin);
-                //返回一个封装了用户信息的AuthenticationInfo实例
-                return new SimpleAuthenticationInfo(new Principal(admin.getId(), username), password, getName());
-            }
-            throw new UnknownAccountException();
-        }
 
-        /**
-         * 获取授权信息
-         *
-         * @param principals
-         *            principals
-         * @return 授权信息
-         */
-        @Override
-        protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-            //获取当前登录用户的信息
-            Principal principal = (Principal) principals.fromRealm(getName()).iterator().next();
-            if (principal != null) {
-                //查找当前用户的角色
-                List<String> authorities = adminService.findAuthorities(principal.getId());
-                if (authorities != null) {
-                    //获取当前用户的登录令牌
-                    SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-                    //为当前用户令牌添加权限集合
-                    authorizationInfo.addStringPermissions(authorities);
-                    return authorizationInfo;
-                }
-            }
-            return null;
-        }
+                //查到权限数据，返回授权信息(要包括 上边的permissions)
+                SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+                //将上边查询到授权信息填充到simpleAuthorizationInfo对象中
+                simpleAuthorizationInfo.addStringPermissions(permissions);
 
+                return simpleAuthorizationInfo;
+            }
+
+            //清除缓存
+            public void clearCached() {
+                PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+                super.clearCache(principals);
+            }
     }
 
