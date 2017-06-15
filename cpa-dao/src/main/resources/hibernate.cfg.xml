@@ -9,14 +9,8 @@
         <property name="dialect">
             ${dialect}
         </property>
-        <property name="hibernate.connection.driver_class">
-            ${hibernate.connection.driver_class}
-        </property>
-        <property name="hibernate.connection.url">
-            ${hibernate.connection.url}
-        </property>
-        <property name="hibernate.connection.username">${hibernate.connection.username}</property>
-        <property name="hibernate.connection.password">${hibernate.connection.password}</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/cpa?useUnicode=true&characterEncoding=utf8]]></property>
         <!--错误org.hibernate.HibernateException: Error applying BeanValidation relational constraints的解决方法-->
         <property name="javax.persistence.validation.mode">none</property>
         <!-- 将hibernate底层执行的sql语句从控制台显示 -->
@@ -88,6 +82,10 @@
         <mapping resource="CpaOption.hbm.xml"/>
         <mapping resource="CpaRepertory.hbm.xml"/>
         <mapping resource="CpaSolution.hbm.xml"/>
+        <mapping resource="CpaPermission.hbm.xml"/>
+        <mapping resource="CpaRole.hbm.xml"/>
+        <mapping resource="RolePermission.hbm.xml"/>
+        <mapping resource="UserRole.hbm.xml"/>
 
         <!--指定需要缓存的对象类型:这里可以在映射文件中配置，也可以在hibernate核心配置文件中进行配置（推荐）-->
         <!--这个<class-cache>标签必须放在<mapping>标签的后面！-->

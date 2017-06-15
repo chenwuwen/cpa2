@@ -62,6 +62,39 @@
         <property name="configLocation">
             <value>classpath:hibernate.cfg.xml</value>
         </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>cn.kanyun.cpa.model.system.CpaPermission</value>
+                <value>cn.kanyun.cpa.model.system.CpaRole</value>
+                <value>cn.kanyun.cpa.model.system.RolePermission</value>
+                <value>cn.kanyun.cpa.model.system.UserRole</value>
+                <value>cn.kanyun.cpa.model.system.CpaPermission</value>
+                <value>cn.kanyun.cpa.model.system.CpaRole</value>
+                <value>cn.kanyun.cpa.model.system.RolePermission</value>
+                <value>cn.kanyun.cpa.model.system.UserRole</value>
+            </list>
+        </property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaPermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaRole.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/RolePermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/UserRole.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaPermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaSolution.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/UserRole.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaPermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/RolePermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/CpaPermission.hbm.xml</value>
+                <value>classpath:cn/kanyun/cpa/model/system/RolePermission.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/cpa?useUnicode=true&characterEncoding=utf8]]></prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+            </props>
+        </property>
         <!--Hibernate与Spring整合有两种方式，一种是写hibernate.cfg.xml文件，一种不写hibernate的配置文件它和spring配置文件写在一起，故需如下配置-->
         <!--<property name="hibernateProperties">-->
             <!--<props>-->
