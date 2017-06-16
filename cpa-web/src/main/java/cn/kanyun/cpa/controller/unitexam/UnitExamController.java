@@ -1,7 +1,7 @@
 package cn.kanyun.cpa.controller.unitexam;
 
 import cn.kanyun.cpa.model.CpaResult;
-import cn.kanyun.cpa.service.unitexam.IUnitExamService;
+import cn.kanyun.cpa.service.itempool.IUnitExamService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.stereotype.Controller;
