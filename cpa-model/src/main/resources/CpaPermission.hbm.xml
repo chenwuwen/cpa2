@@ -7,14 +7,15 @@
     <class name="cn.kanyun.cpa.model.system.CpaPermission" table="cpa_permission" schema="cpa">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="permission">
             <column name="permission" sql-type="varchar(255)" not-null="true"/>
         </property>
         <set name="rolePermissions" inverse="true">
             <key>
-                <column name="role_id">
-                    <comment>角色ID</comment>
+                <column name="permission_id">
+                    <comment>权限ID</comment>
                 </column>
             </key>
             <one-to-many class="cn.kanyun.cpa.model.system.RolePermission" />

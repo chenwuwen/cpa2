@@ -7,6 +7,7 @@
     <class name="cn.kanyun.cpa.model.system.RolePermission" table="role_permission" schema="cpa">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="roleId">
             <column name="role_id" sql-type="int(11)" not-null="true"/>

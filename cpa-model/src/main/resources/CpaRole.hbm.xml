@@ -7,6 +7,7 @@
     <class name="cn.kanyun.cpa.model.system.CpaRole" table="cpa_role" schema="cpa">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="roleName">
             <column name="role_name" sql-type="varchar(10)" length="10" not-null="true"/>
@@ -18,14 +19,6 @@
                 </column>
             </key>
             <one-to-many class="cn.kanyun.cpa.model.system.RolePermission" />
-        </set>
-        <set name="userRole" inverse="true">
-            <key>
-                <column name="role_id">
-                    <comment>角色ID</comment>
-                </column>
-            </key>
-            <one-to-many class="cn.kanyun.cpa.model.system.UserRole" />
         </set>
     </class>
 </hibernate-mapping>
