@@ -1,6 +1,8 @@
 package cn.kanyun.cpa.model.user;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -23,6 +25,7 @@ public class CpaUser  implements java.io.Serializable {
      private String petName;
      private Timestamp regDate;
      private Timestamp lastLoginDate;
+    private Set userRoles=new HashSet<>();
 
 
     // Constructors
@@ -50,7 +53,13 @@ public class CpaUser  implements java.io.Serializable {
         this.regDate = regDate;
         this.lastLoginDate = lastLoginDate;
     }
+    public Set getUserRoles() {
+        return userRoles;
+    }
 
+    public void setUserRoles(Set userRoles) {
+        this.userRoles = userRoles;
+    }
    
     // Property accessors
 
