@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/6/15.
@@ -14,6 +16,15 @@ import javax.persistence.Table;
 public class CpaPermission implements java.io.Serializable{
     private int id;
     private String permission;
+    private Set RolePermissions = new HashSet<>();
+
+    public Set getRolePermissions() {
+        return RolePermissions;
+    }
+
+    public void setRolePermissions(Set rolePermissions) {
+        RolePermissions = rolePermissions;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
