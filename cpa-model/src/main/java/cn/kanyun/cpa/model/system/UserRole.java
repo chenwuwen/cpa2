@@ -1,5 +1,7 @@
 package cn.kanyun.cpa.model.system;
 
+import cn.kanyun.cpa.model.user.CpaUser;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,24 @@ public class UserRole implements java.io.Serializable{
     private int id;
     private Integer userId;
     private Integer roleId;
+    private CpaUser cpaUser;
+    private CpaRole cpaRole;
 
+    public CpaRole getCpaRole() {
+        return cpaRole;
+    }
+
+    public void setCpaRole(CpaRole cpaRole) {
+        this.cpaRole = cpaRole;
+    }
+
+    public CpaUser getCpaUser() {
+        return cpaUser;
+    }
+
+    public void setCpaUser(CpaUser cpaUser) {
+        this.cpaUser = cpaUser;
+    }
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

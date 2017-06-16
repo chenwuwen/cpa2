@@ -19,14 +19,14 @@ public class CpaRole implements java.io.Serializable{
     private int id;
     private String roleName;
     private Set RolePermissions = new HashSet();
-    private CpaUser cpaUser;
+    private Set UserRole = new HashSet();
 
-    public CpaUser getCpaUser() {
-        return cpaUser;
+    public Set getUserRole() {
+        return UserRole;
     }
 
-    public void setCpaUser(CpaUser cpaUser) {
-        this.cpaUser = cpaUser;
+    public void setUserRole(Set userRole) {
+        UserRole = userRole;
     }
 
     public Set getRolePermissions() {
