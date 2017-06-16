@@ -1,7 +1,11 @@
 package cn.kanyun.cpa.system;
 
+import cn.kanyun.cpa.model.system.CpaRole;
+import cn.kanyun.cpa.service.ICommonService;
+
 /**
  * Created by Administrator on 2017/6/16.
  */
-public interface ICpaRoleService {
+public interface ICpaRoleService extends ICommonService<Integer,CpaRole> {
+    public static final String SERVICE_NAME="cn.kanyun.cpa.service.system.impl.CpaRoleServiceImpl";
 }
