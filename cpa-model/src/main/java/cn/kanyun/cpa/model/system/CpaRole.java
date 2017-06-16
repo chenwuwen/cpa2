@@ -1,5 +1,7 @@
 package cn.kanyun.cpa.model.system;
 
+import cn.kanyun.cpa.model.user.CpaUser;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,15 @@ public class CpaRole implements java.io.Serializable{
     private int id;
     private String roleName;
     private Set RolePermissions = new HashSet();
+    private CpaUser cpaUser;
+
+    public CpaUser getCpaUser() {
+        return cpaUser;
+    }
+
+    public void setCpaUser(CpaUser cpaUser) {
+        this.cpaUser = cpaUser;
+    }
 
     public Set getRolePermissions() {
         return RolePermissions;

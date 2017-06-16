@@ -15,6 +15,24 @@ public class RolePermission implements java.io.Serializable{
     private int id;
     private Integer roleId;
     private Integer permissionId;
+    private CpaRole cpaRole;
+    private CpaPermission cpaPermission;
+
+    public CpaRole getCpaRole() {
+        return cpaRole;
+    }
+
+    public void setCpaRole(CpaRole cpaRole) {
+        this.cpaRole = cpaRole;
+    }
+
+    public CpaPermission getCpaPermission() {
+        return cpaPermission;
+    }
+
+    public void setCpaPermission(CpaPermission cpaPermission) {
+        this.cpaPermission = cpaPermission;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
