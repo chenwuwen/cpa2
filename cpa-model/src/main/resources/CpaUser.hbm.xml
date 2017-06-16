@@ -55,5 +55,13 @@
         <property name="lastLoginDate" type="java.sql.Timestamp">
             <column name="last_login_date" length="19" />
         </property>
+        <set name="userRoles" inverse="true">
+            <key>
+                <column name="user_id">
+                    <comment>用户ID</comment>
+                </column>
+            </key>
+            <one-to-many class="cn.kanyun.cpa.model.system.UserRole" />
+        </set>
     </class>
 </hibernate-mapping>
