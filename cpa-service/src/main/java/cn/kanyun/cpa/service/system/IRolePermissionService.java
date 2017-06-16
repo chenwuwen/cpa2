@@ -1,6 +1,5 @@
-package cn.kanyun.cpa.system;
+package cn.kanyun.cpa.service.system;
 
-import cn.kanyun.cpa.model.exam.CpaRepertory;
 import cn.kanyun.cpa.model.system.RolePermission;
 import cn.kanyun.cpa.service.ICommonService;
 

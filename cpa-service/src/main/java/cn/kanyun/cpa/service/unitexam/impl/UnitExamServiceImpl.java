@@ -1,10 +1,10 @@
 package cn.kanyun.cpa.service.unitexam.impl;
 
 
-import cn.kanyun.cpa.dao.unitexam.IUnitExamDao;
+import cn.kanyun.cpa.dao.itempool.IUnitExamDao;
 import cn.kanyun.cpa.model.CpaResult;
-import cn.kanyun.cpa.model.exam.CpaOption;
-import cn.kanyun.cpa.model.exam.CpaRepertory;
+import cn.kanyun.cpa.model.itempool.CpaOption;
+import cn.kanyun.cpa.model.itempool.CpaRepertory;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.unitexam.IUnitExamService;
 import org.springframework.stereotype.Service;

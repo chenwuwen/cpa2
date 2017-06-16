@@ -1,7 +1,7 @@
-package cn.kanyun.cpa.dao.unitexam.impl;
+package cn.kanyun.cpa.dao.itempool.impl;
 import cn.kanyun.cpa.dao.CommonDaoImpl;
-import cn.kanyun.cpa.dao.unitexam.IUnitExamDao;
-import cn.kanyun.cpa.model.exam.CpaRepertory;
+import cn.kanyun.cpa.dao.itempool.IUnitExamDao;
+import cn.kanyun.cpa.model.itempool.CpaRepertory;
 import org.springframework.stereotype.Repository;
 
 

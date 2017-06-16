@@ -1,9 +1,8 @@
-package cn.kanyun.cpa.system.impl;
+package cn.kanyun.cpa.service.system.impl;
 
-import cn.kanyun.cpa.model.system.CpaRole;
 import cn.kanyun.cpa.model.system.RolePermission;
 import cn.kanyun.cpa.service.CommonServiceImpl;
-import cn.kanyun.cpa.system.IRolePermissionService;
+import cn.kanyun.cpa.service.system.IRolePermissionService;
 import org.springframework.stereotype.Service;
 
 /**

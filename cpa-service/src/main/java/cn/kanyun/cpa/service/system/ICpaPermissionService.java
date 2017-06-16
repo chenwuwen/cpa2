@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.system;
+package cn.kanyun.cpa.service.system;
 
 import cn.kanyun.cpa.model.system.CpaPermission;
 import cn.kanyun.cpa.service.ICommonService;
