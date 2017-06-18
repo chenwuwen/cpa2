@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.util;
+package cn.kanyun.cpa.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

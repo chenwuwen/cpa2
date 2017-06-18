@@ -39,7 +39,7 @@ package cn.kanyun.cpa.controller;
             // 设置realm的名称
             @Override
             public void setName(String name) {
-                super.setName("customRealm");
+                super.setName("myRealm");
             }
 
             // 用于认证
@@ -48,16 +48,18 @@ package cn.kanyun.cpa.controller;
             protected AuthenticationInfo doGetAuthenticationInfo(
                     AuthenticationToken token) throws AuthenticationException {
 
+
+
                 // token是用户输入的用户名和密码 
                 // 第一步从token中取出用户名
-                String userCode = (String) token.getPrincipal();
+                String userName = (String) token.getPrincipal();
 
-                // 第二步：根据用户输入的userCode从数据库查询
+                // 第二步：根据用户输入的userName从数据库查询
                 CpaUser user = null;
                 try {
-                    user = userService.finduserByUserCode(userCode);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                    user = userService.findByUserName(userName);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 // 如果查询不到返回null

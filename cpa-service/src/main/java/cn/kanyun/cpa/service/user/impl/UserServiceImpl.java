@@ -51,4 +51,11 @@ public class UserServiceImpl extends CommonServiceImpl<Integer, CpaUser> impleme
 
         return result;
     }
+
+    @Override
+    public CpaUser findByUserName(String userName) {
+        CpaUser user = userdao.findByUserName(userName);
+        return user;
+    }
+
 }
