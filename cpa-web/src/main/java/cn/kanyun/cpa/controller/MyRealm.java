@@ -1,145 +1,132 @@
 package cn.kanyun.cpa.controller;
-            import java.util.Date;
-            import java.util.List;
 
-            import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-            import cn.kanyun.cpa.model.user.CpaUser;
-            import cn.kanyun.cpa.service.user.IUserService;
-            import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
-            import org.apache.commons.codec.digest.DigestUtils;
-            import org.apache.commons.lang.ArrayUtils;
-            import org.apache.commons.lang.time.DateUtils;
-            import org.apache.shiro.SecurityUtils;
-            import org.apache.shiro.authc.AuthenticationException;
-            import org.apache.shiro.authc.AuthenticationInfo;
-            import org.apache.shiro.authc.AuthenticationToken;
-            import org.apache.shiro.authc.DisabledAccountException;
-            import org.apache.shiro.authc.IncorrectCredentialsException;
-            import org.apache.shiro.authc.LockedAccountException;
-            import org.apache.shiro.authc.SimpleAuthenticationInfo;
-            import org.apache.shiro.authc.UnknownAccountException;
-            import org.apache.shiro.authc.pam.UnsupportedTokenException;
-            import org.apache.shiro.authz.AuthorizationInfo;
-            import org.apache.shiro.authz.SimpleAuthorizationInfo;
-            import org.apache.shiro.realm.AuthorizingRealm;
-            import org.apache.shiro.subject.PrincipalCollection;
+import javax.annotation.Resource;
+
+import cn.kanyun.cpa.model.system.CpaPermission;
+import cn.kanyun.cpa.model.system.CpaRole;
+import cn.kanyun.cpa.model.system.UserRole;
+import cn.kanyun.cpa.model.user.CpaUser;
+import cn.kanyun.cpa.service.system.IRolePermissionService;
+import cn.kanyun.cpa.service.system.IUserRoleService;
+import cn.kanyun.cpa.service.user.IUserService;
+import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
+import net.sf.ehcache.CacheManager;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.time.DateUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.pam.UnsupportedTokenException;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+
+/**
+ * 权限认证
+ * <p>
+ * Created by Administrator on 2017/6/14.
+ */
+public class MyRealm extends AuthorizingRealm {
+    @Resource
+    private IUserService userService;
+    @Resource
+    private IUserRoleService userRoleService;
+    @Resource
+    private IRolePermissionService rolePermissionService;
+
+    public MyRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
+        super(cacheManager, matcher);
+    }
 
     /**
-     * 权限认证
-     *
-     * Created by Administrator on 2017/6/14.
+     * Shiro登录认证(原理：用户提交 用户名和密码  --- shiro 封装令牌 ---- realm 通过用户名将密码查询返回 ---- shiro 自动去比较查询出密码和用户输入密码是否一致---- 进行登陆控制 )
      */
-    public class MyRealm extends AuthorizingRealm {
-        
-            //注入service
-            @Resource
-            private IUserService userService;
-
-            // 设置realm的名称
-            @Override
-            public void setName(String name) {
-                super.setName("myRealm");
-            }
-
-            // 用于认证
-            //realm的认证方法，从数据库查询用户信息
-            @Override
-            protected AuthenticationInfo doGetAuthenticationInfo(
-                    AuthenticationToken token) throws AuthenticationException {
-
-
-
-                // token是用户输入的用户名和密码 
-                // 第一步从token中取出用户名
-                String userName = (String) token.getPrincipal();
-
-                // 第二步：根据用户输入的userName从数据库查询
-                CpaUser user = null;
-                try {
-                    user = userService.findByUserName(userName);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                // 如果查询不到返回null
-                if(user==null){//
-                    return null;
-                }
-                // 从数据库查询到密码
-                String password = user.getPassword();
-
-                //盐
-                String salt = user.getSalt();
-
-                // 如果查询到返回认证信息AuthenticationInfo
-
-                //activeUser就是用户身份信息
-                ActiveUser activeUser = new ActiveUser();
-
-                activeUser.setUserid(user.getId());
-                activeUser.setUsercode(user.getUsercode());
-                activeUser.setUsername(user.getUsername());
-                //..
-
-                //根据用户id取出菜单
-                List<SysPermission> menus  = null;
-                try {
-                    //通过service取出菜单 
-                    menus = sysService.findMenuListByUserId(user.getId());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                //将用户菜单 设置到activeUser
-                activeUser.setMenus(menus);
-
-                //将activeUser设置simpleAuthenticationInfo
-                SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
-                        activeUser, password,ByteSource.Util.bytes(salt), this.getName());
-
-                return simpleAuthenticationInfo;
-            }
-
-
-
-            // 用于授权
-            @Override
-            protected AuthorizationInfo doGetAuthorizationInfo(
-                    PrincipalCollection principals) {
-
-                //从 principals获取主身份信息
-                //将getPrimaryPrincipal方法返回值转为真实身份类型（在上边的doGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo中身份类型），
-                ActiveUser activeUser =  (ActiveUser) principals.getPrimaryPrincipal();
-
-                //根据身份信息获取权限信息
-                //从数据库获取到权限数据
-                List<SysPermission> permissionList = null;
-                try {
-                    permissionList = sysService.findMenuListByUserId(activeUser.getUserid());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                //单独定一个集合对象 
-                List<String> permissions = new ArrayList<String>();
-                if(permissionList!=null){
-                    for(SysPermission sysPermission:permissionList){
-                        //将数据库中的权限标签 符放入集合
-                        permissions.add(sysPermission.getPercode());
-                    }
-                }
-
-                //查到权限数据，返回授权信息(要包括 上边的permissions)
-                SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-                //将上边查询到授权信息填充到simpleAuthorizationInfo对象中
-                simpleAuthorizationInfo.addStringPermissions(permissions);
-
-                return simpleAuthorizationInfo;
-            }
-
-            //清除缓存
-            public void clearCached() {
-                PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
-                super.clearCache(principals);
-            }
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(
+            AuthenticationToken authcToken) throws AuthenticationException {
+        System.out.println("Shiro开始登录认证");
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        CpaUser user = userService.findByUserName(token.getUsername())
+        // 账号不存在
+        if (user == null) {
+            return null;
+        }
+        // 账号未启用
+//        if (user.getStatus() == 1) {
+//            return null;
+//        }
+        // 读取用户的url和角色
+        //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
+        SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
+        //用户的角色集合
+        info.setRoles(userRoleService.findRoleUserId(user.getId()));
+        //用户的角色对应的所有权限，如果只使用角色定义访问权限
+        Collection<CpaPermission> permissions=userRoleService.findPermissionByUserId(user.getId());
+        for (CpaPermission cpaPermission : permissions) {
+            info.addStringPermissions(cpaPermission.getPermissionsName());
+        }
+        return info;
+        // 认证缓存信息
+        return new SimpleAuthenticationInfo(shiroUser, user.getPassword().toCharArray(),
+                ShiroByteSource.of(user.getSalt()), getName());
     }
+
+    /**
+     * Shiro权限认证
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(
+            PrincipalCollection principals) {
+        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
+
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setRoles(shiroUser.getRoles());
+        info.addStringPermissions(shiroUser.getUrlSet());
+
+        return info;
+    }
+
+    @Override
+    public void onLogout(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
+        removeUserCache(shiroUser);
+    }
+
+    /**
+     * 清除用户缓存
+     *
+     * @param CpaUser
+     */
+    public void removeUserCache(CpaUser user) {
+        removeUserCache(user.getUsername());
+    }
+
+    /**
+     * 清除用户缓存
+     *
+     * @param userName
+     */
+    public void removeUserCache(String userName) {
+        SimplePrincipalCollection principals = new SimplePrincipalCollection();
+        principals.add(userName, super.getName());
+        super.clearCachedAuthenticationInfo(principals);
+    }
+}
 
