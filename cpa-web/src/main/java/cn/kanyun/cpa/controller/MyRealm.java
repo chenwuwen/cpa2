@@ -75,11 +75,11 @@ public class MyRealm extends AuthorizingRealm {
         //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
         SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
         //用户的角色集合
-        info.setRoles(userRoleService.findRoleUserId(user.getId()));
+        info.setRoles(userRoleService.findRoleByUserId(user.getId()));
         //用户的角色对应的所有权限，如果只使用角色定义访问权限
         Collection<CpaPermission> permissions=userRoleService.findPermissionByUserId(user.getId());
-        for (CpaPermission cpaPermission : permissions) {
-            info.addStringPermissions(cpaPermission.getPermissionsName());
+        for (CpaPermission permission : permissions) {
+            info.addStringPermissions(permission.getPermission());
         }
         return info;
         // 认证缓存信息

@@ -18,7 +18,7 @@ public class UserDaoImpl extends CommonDaoImpl<Integer,CpaUser> implements IUser
     Session session = HibernateSessionFactory.getSession();
     @Override
     public CpaUser findByUserName(String userName) {
-        String hql = "select * from CpaUser o where o.username = :userName";
+        String hql = "select o from CpaUser o where o.username = :userName";
         Query query=session.createQuery(hql);
         query.setParameter("userName",userName);
         return (CpaUser) query.uniqueResult();

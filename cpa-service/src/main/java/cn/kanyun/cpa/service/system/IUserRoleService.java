@@ -14,7 +14,7 @@ import java.util.Set;
 public interface IUserRoleService extends ICommonService<Integer,UserRole> {
     public static final String SERVICE_NAME="cn.kanyun.cpa.service.system.impl.UserRoleServiceImpl";
 
-    Set<String> findRoleUserId(Integer id);
+    Set<String> findRoleByUserId(Integer userId);
 
     Collection<CpaPermission> findPermissionByUserId(Integer id);
 }
