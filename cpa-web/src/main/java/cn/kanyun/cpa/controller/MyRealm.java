@@ -62,7 +62,7 @@ public class MyRealm extends AuthorizingRealm {
             AuthenticationToken authcToken) throws AuthenticationException {
         System.out.println("Shiro开始登录认证");
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        CpaUser user = userService.findByUserName(token.getUsername())
+        CpaUser user = userService.findByUserName(token.getUsername());
         // 账号不存在
         if (user == null) {
             return null;

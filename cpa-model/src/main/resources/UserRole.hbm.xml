@@ -15,12 +15,12 @@
         <property name="roleId">
             <column name="role_id" sql-type="int(11)" not-null="true"/>
         </property>
-        <many-to-one name="cpaUser" class="cn.kanyun.cpa.model.user.CpaUser" fetch="select">
+        <many-to-one name="cpaUser" class="cn.kanyun.cpa.model.user.CpaUser" fetch="select" insert="false" update="false">
             <column name="user_id">
                 <comment>用户ID</comment>
             </column>
         </many-to-one>
-        <many-to-one name="cpaRole" class="cn.kanyun.cpa.model.system.CpaRole" fetch="select">
+        <many-to-one name="cpaRole" class="cn.kanyun.cpa.model.system.CpaRole" fetch="select"  insert="false" update="false">
             <column name="role_id">
                 <comment>角色ID</comment>
             </column>

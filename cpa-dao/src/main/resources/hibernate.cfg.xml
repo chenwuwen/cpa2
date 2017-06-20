@@ -7,7 +7,7 @@
     <session-factory>
         <!-- 连接数据库的信息-->
         <property name="dialect">
-            ${dialect}
+            org.hibernate.dialect.MySQLDialect
         </property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/cpa?useUnicode=true&characterEncoding=utf8]]></property>
