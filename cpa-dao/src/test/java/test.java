@@ -1,5 +1,4 @@
-package cn.kanyun.cpa.dao;
-
+import cn.kanyun.cpa.dao.HibernateSessionFactory;
 import cn.kanyun.cpa.model.system.CpaRole;
 import org.hibernate.Query;
 import org.hibernate.Session;

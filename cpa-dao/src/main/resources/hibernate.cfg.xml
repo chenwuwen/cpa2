@@ -11,6 +11,10 @@
         </property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/cpa?useUnicode=true&characterEncoding=utf8]]></property>
+        <!--连接数据库是用户名-->
+        <property name="hibernate.connection.username">root</property>
+        <!--连接数据库是密码-->
+        <property name="hibernate.connection.password">root</property>
         <!--错误org.hibernate.HibernateException: Error applying BeanValidation relational constraints的解决方法-->
         <property name="javax.persistence.validation.mode">none</property>
         <!-- 将hibernate底层执行的sql语句从控制台显示 -->
