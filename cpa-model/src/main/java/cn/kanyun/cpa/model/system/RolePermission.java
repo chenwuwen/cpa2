@@ -18,19 +18,13 @@ public class RolePermission implements java.io.Serializable{
     private CpaRole cpaRole;
     private CpaPermission cpaPermission;
 
-    public CpaRole getCpaRole() {
-        return cpaRole;
-    }
+    public RolePermission(){};
 
-    public void setCpaRole(CpaRole cpaRole) {
+    public RolePermission(int id, Integer roleId, Integer permissionId, CpaRole cpaRole, CpaPermission cpaPermission) {
+        this.id = id;
+        this.roleId = roleId;
+        this.permissionId = permissionId;
         this.cpaRole = cpaRole;
-    }
-
-    public CpaPermission getCpaPermission() {
-        return cpaPermission;
-    }
-
-    public void setCpaPermission(CpaPermission cpaPermission) {
         this.cpaPermission = cpaPermission;
     }
 
@@ -62,6 +56,23 @@ public class RolePermission implements java.io.Serializable{
 
     public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
+    }
+
+
+    public CpaRole getCpaRole() {
+        return cpaRole;
+    }
+
+    public void setCpaRole(CpaRole cpaRole) {
+        this.cpaRole = cpaRole;
+    }
+
+    public CpaPermission getCpaPermission() {
+        return cpaPermission;
+    }
+
+    public void setCpaPermission(CpaPermission cpaPermission) {
+        this.cpaPermission = cpaPermission;
     }
 
     @Override

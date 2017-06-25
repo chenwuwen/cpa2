@@ -15,26 +15,22 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "cpa_role", schema = "cpa", catalog = "")
-public class CpaRole implements java.io.Serializable{
+public class CpaRole implements java.io.Serializable {
     private int id;
     private String roleName;
+
+
     private Set RolePermissions = new HashSet();
+
+
     private Set UserRole = new HashSet();
+    public CpaRole(){};
 
-    public Set getUserRole() {
-        return UserRole;
-    }
-
-    public void setUserRole(Set userRole) {
+    public CpaRole(int id, String roleName, Set rolePermissions, Set userRole) {
+        this.id = id;
+        this.roleName = roleName;
+        RolePermissions = rolePermissions;
         UserRole = userRole;
-    }
-
-    public Set getRolePermissions() {
-        return RolePermissions;
-    }
-
-    public void setRolePermissions(Set rolePermissions) {
-       this.RolePermissions = rolePermissions;
     }
 
     @Id
@@ -56,6 +52,24 @@ public class CpaRole implements java.io.Serializable{
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
+
+    public Set getRolePermissions() {
+        return RolePermissions;
+    }
+
+    public void setRolePermissions(Set rolePermissions) {
+        RolePermissions = rolePermissions;
+    }
+
+    public Set getUserRole() {
+        return UserRole;
+    }
+
+    public void setUserRole(Set userRole) {
+        UserRole = userRole;
+    }
+
 
     @Override
     public boolean equals(Object o) {

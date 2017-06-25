@@ -13,16 +13,18 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "cpa_permission", schema = "cpa", catalog = "")
-public class CpaPermission implements java.io.Serializable{
+public class CpaPermission implements java.io.Serializable {
     private int id;
     private String permission;
+
+
     private Set RolePermissions = new HashSet<>();
 
-    public Set getRolePermissions() {
-        return RolePermissions;
-    }
+    public CpaPermission(){};
 
-    public void setRolePermissions(Set rolePermissions) {
+    public CpaPermission(int id, String permission, Set rolePermissions) {
+        this.id = id;
+        this.permission = permission;
         RolePermissions = rolePermissions;
     }
 
@@ -44,6 +46,14 @@ public class CpaPermission implements java.io.Serializable{
 
     public void setPermission(String permission) {
         this.permission = permission;
+    }
+
+    public Set getRolePermissions() {
+        return RolePermissions;
+    }
+
+    public void setRolePermissions(Set rolePermissions) {
+        RolePermissions = rolePermissions;
     }
 
     @Override

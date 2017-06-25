@@ -47,7 +47,7 @@ public class CpaUser implements java.io.Serializable {
     /**
      * full constructor
      */
-    public CpaUser(String username, String password, String petname, String gender, String email, Timestamp regdate, Timestamp lastlogindate, String petName, Timestamp regDate, Timestamp lastLoginDate) {
+    public CpaUser(String username, String password, String petname, String gender, String email, Timestamp regdate, Timestamp lastlogindate, String petName, Timestamp regDate, Timestamp lastLoginDate,Set userRoles) {
         this.username = username;
         this.password = password;
         this.petname = petname;
@@ -58,15 +58,10 @@ public class CpaUser implements java.io.Serializable {
         this.petName = petName;
         this.regDate = regDate;
         this.lastLoginDate = lastLoginDate;
-    }
-
-    public Set getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set userRoles) {
         this.userRoles = userRoles;
     }
+
+
 
     // Property accessors
 
@@ -156,6 +151,13 @@ public class CpaUser implements java.io.Serializable {
 
     public void setLastLoginDate(Timestamp lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
+    }
+    public Set getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set userRoles) {
+        this.userRoles = userRoles;
     }
 
 

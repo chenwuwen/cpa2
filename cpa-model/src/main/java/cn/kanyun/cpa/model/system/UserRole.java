@@ -22,20 +22,14 @@ public class UserRole implements java.io.Serializable{
     private CpaUser cpaUser;
     private CpaRole cpaRole;
 
-    public CpaRole getCpaRole() {
-        return cpaRole;
-    }
+    public UserRole(){};
 
-    public void setCpaRole(CpaRole cpaRole) {
-        this.cpaRole = cpaRole;
-    }
-
-    public CpaUser getCpaUser() {
-        return cpaUser;
-    }
-
-    public void setCpaUser(CpaUser cpaUser) {
+    public UserRole(int id, Integer userId, Integer roleId, CpaUser cpaUser, CpaRole cpaRole) {
+        this.id = id;
+        this.userId = userId;
+        this.roleId = roleId;
         this.cpaUser = cpaUser;
+        this.cpaRole = cpaRole;
     }
     @Id
     @Column(name = "id", nullable = false)
@@ -65,6 +59,23 @@ public class UserRole implements java.io.Serializable{
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
+    }
+
+
+    public CpaUser getCpaUser() {
+        return cpaUser;
+    }
+
+    public void setCpaUser(CpaUser cpaUser) {
+        this.cpaUser = cpaUser;
+    }
+
+    public CpaRole getCpaRole() {
+        return cpaRole;
+    }
+
+    public void setCpaRole(CpaRole cpaRole) {
+        this.cpaRole = cpaRole;
     }
 
     @Override
