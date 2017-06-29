@@ -18,17 +18,16 @@ import java.util.Set;
 public class CpaRole implements java.io.Serializable {
     private int id;
     private String roleName;
-
-
+    private String description;
     private Set RolePermissions = new HashSet();
-
-
     private Set UserRole = new HashSet();
-    public CpaRole(){};
 
-    public CpaRole(int id, String roleName, Set rolePermissions, Set userRole) {
+    public CpaRole() {};
+
+    public CpaRole(int id, String roleName, String description, Set rolePermissions, Set userRole) {
         this.id = id;
         this.roleName = roleName;
+        this.description = description;
         RolePermissions = rolePermissions;
         UserRole = userRole;
     }
@@ -47,6 +46,12 @@ public class CpaRole implements java.io.Serializable {
     @Column(name = "role_name", nullable = true, length = 10)
     public String getRoleName() {
         return roleName;
+    }
+
+    @Basic
+    @Column(name = "description", nullable = true,length = 255)
+    public String getDescription() {
+        return description;
     }
 
     public void setRoleName(String roleName) {
@@ -71,6 +76,11 @@ public class CpaRole implements java.io.Serializable {
     }
 
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,5 +99,16 @@ public class CpaRole implements java.io.Serializable {
         int result = id;
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CpaRole{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", description='" + description + '\'' +
+                ", RolePermissions=" + RolePermissions +
+                ", UserRole=" + UserRole +
+                '}';
     }
 }

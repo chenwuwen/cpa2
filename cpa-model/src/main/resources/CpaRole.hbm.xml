@@ -12,6 +12,9 @@
         <property name="roleName">
             <column name="role_name" sql-type="varchar(10)" length="10" not-null="true"/>
         </property>
+        <property name="description">
+            <column name="description" sql-type="varchar(255)" length="255" not-null="true"/>
+        </property>
         <set name="rolePermissions" inverse="true">
             <key>
                 <column name="role_id">

@@ -15,17 +15,17 @@ import java.util.Set;
 @Table(name = "cpa_permission", schema = "cpa", catalog = "")
 public class CpaPermission implements java.io.Serializable {
     private int id;
-    private String permission;
-
-
+    private String permissionCode;
+    private String permissionDescription;
     private Set RolePermissions = new HashSet<>();
 
     public CpaPermission(){};
 
-    public CpaPermission(int id, String permission, Set rolePermissions) {
+    public CpaPermission(int id, String permissionCode,String permissionDescription, Set rolepermissions) {
         this.id = id;
-        this.permission = permission;
-        RolePermissions = rolePermissions;
+        this.permissionCode = permissionCode;
+        this.permissionDescription=permissionDescription;
+        RolePermissions = rolepermissions;
     }
 
     @Id
@@ -39,22 +39,33 @@ public class CpaPermission implements java.io.Serializable {
     }
 
     @Basic
-    @Column(name = "permission", nullable = true, length = 255)
-    public String getPermission() {
-        return permission;
+    @Column(name = "permission_code", nullable = true, length = 255)
+    public String getPermissionCode() {
+        return permissionCode;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setPermissionCode(String permissionCode) {
+        this.permissionCode = permissionCode;
+    }
+
+    @Basic
+    @Column(name = "permission_description", nullable = true,length = 255)
+    public String getPermissionDescription() {
+        return permissionDescription;
+    }
+
+    public void setPermissionDescription(String permissionDescription) {
+        this.permissionDescription = permissionDescription;
     }
 
     public Set getRolePermissions() {
         return RolePermissions;
     }
 
-    public void setRolePermissions(Set rolePermissions) {
-        RolePermissions = rolePermissions;
+    public void setRolepermissions(Set rolepermissions) {
+        RolePermissions = rolepermissions;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -63,16 +74,18 @@ public class CpaPermission implements java.io.Serializable {
 
         CpaPermission that = (CpaPermission) o;
 
-        if (id != that.id) return false;
-        if (permission != null ? !permission.equals(that.permission) : that.permission != null) return false;
-
-        return true;
+        if (!permissionCode.equals(that.permissionCode)) return false;
+        if (!permissionDescription.equals(that.permissionDescription)) return false;
+        return RolePermissions.equals(that.RolePermissions);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (permission != null ? permission.hashCode() : 0);
+        int result = permissionCode.hashCode();
+        result = 31 * result + permissionDescription.hashCode();
+        result = 31 * result + RolePermissions.hashCode();
         return result;
     }
+
+
 }
