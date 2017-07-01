@@ -22,7 +22,7 @@ public class CpaRole implements java.io.Serializable {
     private Set RolePermissions = new HashSet();
     private Set UserRole = new HashSet();
 
-    public CpaRole() {};
+    public CpaRole() {}
 
     public CpaRole(int id, String roleName, String description, Set rolePermissions, Set userRole) {
         this.id = id;
@@ -37,7 +37,6 @@ public class CpaRole implements java.io.Serializable {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -47,22 +46,22 @@ public class CpaRole implements java.io.Serializable {
     public String getRoleName() {
         return roleName;
     }
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
     @Basic
     @Column(name = "description", nullable = true,length = 255)
     public String getDescription() {
         return description;
     }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setDescription(String description) {
+        this.description=description;
     }
-
 
     public Set getRolePermissions() {
         return RolePermissions;
     }
-
     public void setRolePermissions(Set rolePermissions) {
         RolePermissions = rolePermissions;
     }
@@ -70,14 +69,8 @@ public class CpaRole implements java.io.Serializable {
     public Set getUserRole() {
         return UserRole;
     }
-
     public void setUserRole(Set userRole) {
         UserRole = userRole;
-    }
-
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 

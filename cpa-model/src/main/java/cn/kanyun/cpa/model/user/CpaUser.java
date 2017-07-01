@@ -68,7 +68,6 @@ public class CpaUser implements java.io.Serializable {
     public Integer getId() {
         return this.id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -76,7 +75,6 @@ public class CpaUser implements java.io.Serializable {
     public String getUsername() {
         return this.username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -84,7 +82,6 @@ public class CpaUser implements java.io.Serializable {
     public String getPassword() {
         return this.password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -92,7 +89,6 @@ public class CpaUser implements java.io.Serializable {
     public String getPetname() {
         return this.petname;
     }
-
     public void setPetname(String petname) {
         this.petname = petname;
     }
@@ -100,7 +96,6 @@ public class CpaUser implements java.io.Serializable {
     public String getGender() {
         return this.gender;
     }
-
     public void setGender(String gender) {
         this.gender = gender;
     }
@@ -108,7 +103,6 @@ public class CpaUser implements java.io.Serializable {
     public String getEmail() {
         return this.email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -116,7 +110,6 @@ public class CpaUser implements java.io.Serializable {
     public Timestamp getRegdate() {
         return this.regdate;
     }
-
     public void setRegdate(Timestamp regdate) {
         this.regdate = regdate;
     }
@@ -124,7 +117,6 @@ public class CpaUser implements java.io.Serializable {
     public Timestamp getLastlogindate() {
         return this.lastlogindate;
     }
-
     public void setLastlogindate(Timestamp lastlogindate) {
         this.lastlogindate = lastlogindate;
     }
@@ -132,7 +124,6 @@ public class CpaUser implements java.io.Serializable {
     public String getPetName() {
         return this.petName;
     }
-
     public void setPetName(String petName) {
         this.petName = petName;
     }
@@ -140,7 +131,6 @@ public class CpaUser implements java.io.Serializable {
     public Timestamp getRegDate() {
         return this.regDate;
     }
-
     public void setRegDate(Timestamp regDate) {
         this.regDate = regDate;
     }
@@ -148,14 +138,13 @@ public class CpaUser implements java.io.Serializable {
     public Timestamp getLastLoginDate() {
         return this.lastLoginDate;
     }
-
     public void setLastLoginDate(Timestamp lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
+
     public Set getUserRoles() {
         return userRoles;
     }
-
     public void setUserRoles(Set userRoles) {
         this.userRoles = userRoles;
     }

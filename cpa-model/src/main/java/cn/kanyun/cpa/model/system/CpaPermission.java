@@ -19,7 +19,7 @@ public class CpaPermission implements java.io.Serializable {
     private String permissionDescription;
     private Set RolePermissions = new HashSet<>();
 
-    public CpaPermission(){};
+    public CpaPermission(){}
 
     public CpaPermission(int id, String permissionCode,String permissionDescription, Set rolepermissions) {
         this.id = id;
@@ -33,7 +33,6 @@ public class CpaPermission implements java.io.Serializable {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -43,7 +42,6 @@ public class CpaPermission implements java.io.Serializable {
     public String getPermissionCode() {
         return permissionCode;
     }
-
     public void setPermissionCode(String permissionCode) {
         this.permissionCode = permissionCode;
     }
@@ -53,7 +51,6 @@ public class CpaPermission implements java.io.Serializable {
     public String getPermissionDescription() {
         return permissionDescription;
     }
-
     public void setPermissionDescription(String permissionDescription) {
         this.permissionDescription = permissionDescription;
     }
@@ -61,7 +58,6 @@ public class CpaPermission implements java.io.Serializable {
     public Set getRolePermissions() {
         return RolePermissions;
     }
-
     public void setRolepermissions(Set rolepermissions) {
         RolePermissions = rolepermissions;
     }

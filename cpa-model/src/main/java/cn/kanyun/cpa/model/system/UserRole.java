@@ -22,7 +22,7 @@ public class UserRole implements java.io.Serializable{
     private CpaUser cpaUser;
     private CpaRole cpaRole;
 
-    public UserRole(){};
+    public UserRole(){}
 
     public UserRole(int id, Integer userId, Integer roleId, CpaUser cpaUser, CpaRole cpaRole) {
         this.id = id;
@@ -36,7 +36,6 @@ public class UserRole implements java.io.Serializable{
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -56,7 +55,6 @@ public class UserRole implements java.io.Serializable{
     public Integer getRoleId() {
         return roleId;
     }
-
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
@@ -65,7 +63,6 @@ public class UserRole implements java.io.Serializable{
     public CpaUser getCpaUser() {
         return cpaUser;
     }
-
     public void setCpaUser(CpaUser cpaUser) {
         this.cpaUser = cpaUser;
     }
@@ -73,7 +70,6 @@ public class UserRole implements java.io.Serializable{
     public CpaRole getCpaRole() {
         return cpaRole;
     }
-
     public void setCpaRole(CpaRole cpaRole) {
         this.cpaRole = cpaRole;
     }

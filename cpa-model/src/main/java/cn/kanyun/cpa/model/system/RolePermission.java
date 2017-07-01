@@ -18,7 +18,7 @@ public class RolePermission implements java.io.Serializable{
     private CpaRole cpaRole;
     private CpaPermission cpaPermission;
 
-    public RolePermission(){};
+    public RolePermission(){}
 
     public RolePermission(int id, Integer roleId, Integer permissionId, CpaRole cpaRole, CpaPermission cpaPermission) {
         this.id = id;
@@ -33,7 +33,6 @@ public class RolePermission implements java.io.Serializable{
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -43,7 +42,6 @@ public class RolePermission implements java.io.Serializable{
     public Integer getRoleId() {
         return roleId;
     }
-
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
@@ -53,7 +51,6 @@ public class RolePermission implements java.io.Serializable{
     public Integer getPermissionId() {
         return permissionId;
     }
-
     public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
@@ -62,7 +59,6 @@ public class RolePermission implements java.io.Serializable{
     public CpaRole getCpaRole() {
         return cpaRole;
     }
-
     public void setCpaRole(CpaRole cpaRole) {
         this.cpaRole = cpaRole;
     }
@@ -70,7 +66,6 @@ public class RolePermission implements java.io.Serializable{
     public CpaPermission getCpaPermission() {
         return cpaPermission;
     }
-
     public void setCpaPermission(CpaPermission cpaPermission) {
         this.cpaPermission = cpaPermission;
     }
