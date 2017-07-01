@@ -1,37 +1,20 @@
 package cn.kanyun.cpa.controller;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
+import java.util.*;
 
 import javax.annotation.Resource;
 
-import cn.kanyun.cpa.model.system.CpaPermission;
-import cn.kanyun.cpa.model.system.CpaRole;
-import cn.kanyun.cpa.model.system.UserRole;
 import cn.kanyun.cpa.model.user.CpaUser;
 import cn.kanyun.cpa.service.system.IRolePermissionService;
 import cn.kanyun.cpa.service.system.IUserRoleService;
 import cn.kanyun.cpa.service.user.IUserService;
-import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
 import net.sf.ehcache.CacheManager;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.time.DateUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -51,9 +34,11 @@ public class MyRealm extends AuthorizingRealm {
     private IUserRoleService userRoleService;
     @Resource
     private IRolePermissionService rolePermissionService;
+
     private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MyRealm.class);
+
     public MyRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
-        super(cacheManager, matcher);
+        super((org.apache.shiro.cache.CacheManager) cacheManager, matcher);
     }
 
     /**
@@ -70,7 +55,7 @@ public class MyRealm extends AuthorizingRealm {
         // 账号不存在
         if (user == null) {
             return null;
-        }else if(user.getStatus() == 1){
+        }else if(user.getStatus() != 1){
             // 账号状态异常
             return null;
         }else if(!password.equals(user.getPassword())){
@@ -108,20 +93,23 @@ public class MyRealm extends AuthorizingRealm {
         logger.info("===========检测权限=========");
         CpaUser user = (CpaUser) principals.getPrimaryPrincipal();
         if (user!=null) {
-            Set<CpaRole> roleSet = userRoleService.findRoleByUserId(user.getId());
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            info.setRoles(shiroUser.getRoles());
-            info.addStringPermissions(shiroUser.getUrlSet());
-
+            //角色名集合
+            Set<String> roles = userRoleService.findRoleByUserId(user.getId());
+            //权限名的集合
+            Set<String> permissions = userRoleService.findPermissionByUerId(user.getId());
+            info.setRoles(roles);
+            info.addStringPermissions(permissions);
             return info;
         }
+        return null;
     }
 
     @Override
     public void onLogout(PrincipalCollection principals) {
         super.clearCachedAuthorizationInfo(principals);
-        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-        removeUserCache(shiroUser);
+        CpaUser user = (CpaUser) principals.getPrimaryPrincipal();
+        removeUserCache(user);
     }
 
     /**

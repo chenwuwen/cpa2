@@ -25,6 +25,7 @@ public class CpaUser implements java.io.Serializable {
     private String petName;
     private Timestamp regDate;
     private Timestamp lastLoginDate;
+    private Integer status;
     private Set userRoles = new HashSet<>();
 
 
@@ -47,7 +48,7 @@ public class CpaUser implements java.io.Serializable {
     /**
      * full constructor
      */
-    public CpaUser(String username, String password, String petname, String gender, String email, Timestamp regdate, Timestamp lastlogindate, String petName, Timestamp regDate, Timestamp lastLoginDate,Set userRoles) {
+    public CpaUser(String username, String password, String petname, String gender, String email, Timestamp regdate, Timestamp lastlogindate, String petName, Timestamp regDate, Timestamp lastLoginDate,Integer status,Set userRoles) {
         this.username = username;
         this.password = password;
         this.petname = petname;
@@ -58,6 +59,7 @@ public class CpaUser implements java.io.Serializable {
         this.petName = petName;
         this.regDate = regDate;
         this.lastLoginDate = lastLoginDate;
+        this.status=status;
         this.userRoles = userRoles;
     }
 
@@ -140,6 +142,14 @@ public class CpaUser implements java.io.Serializable {
     }
     public void setLastLoginDate(Timestamp lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Set getUserRoles() {

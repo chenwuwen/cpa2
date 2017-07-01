@@ -1,5 +1,6 @@
 import ch.qos.logback.core.net.SyslogOutputStream;
 import cn.kanyun.cpa.dao.HibernateSessionFactory;
+import cn.kanyun.cpa.model.system.CpaPermission;
 import cn.kanyun.cpa.model.system.CpaRole;
 import cn.kanyun.cpa.model.system.UserRole;
 import cn.kanyun.cpa.model.user.CpaUser;
@@ -7,10 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/6/20.
@@ -21,6 +19,7 @@ public class test {
     public static void main(String[] args) {
         Integer userId = 1;
          exeute(userId);
+        exec3();
 
     }
     public static void exeute(Integer userId){
@@ -29,7 +28,7 @@ public class test {
         Query query = session.createQuery(hql);
         query.setParameter("userId",userId);
         List<UserRole> list = (List<UserRole>) query.list();
-        System.out.print(list);
+        System.out.print(list.get(0).getCpaRole().getRolePermissions());
     }
 
     @Test
@@ -41,4 +40,21 @@ public class test {
         List<CpaUser> list =  query.list();
         System.out.print(list);
     }
+
+//    @Test
+    public static void exec3(){
+        Session session = HibernateSessionFactory.getSession();
+        String hql = " from CpaPermission o where o.id in (:id)";
+        Query query = session.createQuery(hql);
+        List list =new ArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        query.setParameterList("id",list);
+        List<CpaPermission> list1 =  query.list();
+        for(CpaPermission cpaPermission:list1){
+            System.out.print(cpaPermission.getPermissionCode());
+        }
+    }
+
 }

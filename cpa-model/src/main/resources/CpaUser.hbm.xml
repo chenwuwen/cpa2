@@ -55,6 +55,9 @@
         <property name="lastLoginDate" type="java.sql.Timestamp">
             <column name="last_login_date" length="19" />
         </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" length="4" />
+        </property>
         <set name="userRoles" inverse="true">
             <key>
                 <column name="user_id">

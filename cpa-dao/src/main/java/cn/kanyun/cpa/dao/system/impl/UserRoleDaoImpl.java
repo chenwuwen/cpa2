@@ -30,7 +30,7 @@ public class UserRoleDaoImpl extends CommonDaoImpl<Integer,UserRole> implements 
     @Override
     public Set<CpaRole> findRoleByUserId(Integer userId) {
         Session session = getSession();
-        String hql = "select o from UserRole o where userId = :userId";
+        String hql = " from UserRole o where userId = :userId";
         Query query = session.createQuery(hql);
         query.setParameter("userId",userId);
         return (Set<CpaRole>) query.list();

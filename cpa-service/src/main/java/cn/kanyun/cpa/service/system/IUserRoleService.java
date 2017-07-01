@@ -16,5 +16,5 @@ public interface IUserRoleService extends ICommonService<Integer,UserRole> {
 
     Set<String> findRoleByUserId(Integer userId);
 
-    Collection<CpaPermission> findPermissionByUserId(Integer id);
+    Set<String> findPermissionByUerId(Integer userId);
 }
