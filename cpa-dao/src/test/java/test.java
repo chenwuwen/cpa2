@@ -17,9 +17,10 @@ public class test {
 
 
     public static void main(String[] args) {
-        Integer userId = 1;
-         exeute(userId);
-        exec3();
+//        Integer userId = 1;
+//         exeute(userId);
+//        exec3();
+        exec4();
 
     }
     public static void exeute(Integer userId){
@@ -55,6 +56,25 @@ public class test {
         for(CpaPermission cpaPermission:list1){
             System.out.print(cpaPermission.getPermissionCode());
         }
+    }
+
+
+    public static void exec4(){
+        try{
+            for(int i=0;i<5;i++) {
+                System.out.println(1);
+                System.out.println(2);
+                if (1 == 1) {
+                    throw new Exception();
+                }
+                System.out.println(3);
+                System.out.println(4);
+                System.out.println(5);
+            }
+        }catch (Exception e){
+            System.out.println("捕获异常");
+        }
+
     }
 
 }

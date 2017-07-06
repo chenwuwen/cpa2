@@ -20,6 +20,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 /**
  * 权限认证
@@ -62,8 +63,10 @@ public class MyRealm extends AuthorizingRealm {
             //密码不匹配
             return null;
         }else {
+//            盐值：取用户信息中唯一的字段来生成盐值，避免由于两个用户原始密码相同，加密后的密码也相同
+            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
             //若存在，将此用户存放到登录认证info中
-            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
+            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), credentialsSalt,getName());
         }
 
 

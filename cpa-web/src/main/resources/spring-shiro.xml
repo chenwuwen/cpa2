@@ -5,7 +5,27 @@
        default-lazy-init="true">
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm -->
     <!-- Shiro配置,继承自AuthorizingRealm的自定义Realm (解决初始化时的依赖循环问题，通过这里向realm中注入userservice实现)-->
-    <bean id="myRealm" class="cn.kanyun.cpa.controller.MyRealm"/>
+    <bean id="myRealm" class="cn.kanyun.cpa.controller.MyRealm">
+        <!--<constructor-arg index="0" ref=""/>-->
+        <!--<constructor-arg index="1" ref=""/>-->
+        <!-- 配置密码匹配器 -->
+    <property name="credentialsMatcher">
+        <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+            <!-- 加密算法为MD5 -->
+            <property name="hashAlgorithmName" value="MD5"></property>
+            <!-- 加密次数 -->
+            <property name="hashIterations" value="1024"></property>
+        </bean>
+    </property>
+    </bean>
+
+    <!-- 7. 配置ModularRealmAuthenticator，可以实现多Realm认证 -->
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+        </property>
+    </bean>
 
     <!-- 定义缓存管理器,可使用多种缓存组件-->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
