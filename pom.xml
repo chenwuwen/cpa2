@@ -345,6 +345,13 @@
             <version>1.8.10</version>
         </dependency>
 
+        <!--计算日期组件-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
         <!--其他-->
         <dependency>
             <groupId>commons-io</groupId>
@@ -426,10 +433,5 @@
             <version>1.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.7</version>
-        </dependency>
     </dependencies>
 </project>

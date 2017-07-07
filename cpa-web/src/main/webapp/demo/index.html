@@ -4,13 +4,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Bootstrap 101 Template</title>
     <!--引入jquery时需要注意，bootstrap3.3.7支持jquery3.1，如果引入了不对应版本的jquery，则会出错，bootstrap的有些效果会不显示-->
-    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../framework/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../framework/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="./login.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" type="text/css" href="./animate-custom.css">
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrapValidator.js"></script>
+    <script src="../framework/bootstrap-3.3.7-dist/js/zh_CN.js"></script>
+    <script src="../scripts/login_register.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -34,25 +38,39 @@
                           action="http://www.jq22.com/demo/LoginRegistrationForm20160331/index.html#" autocomplete="on">
                         <h1>Log in</h1>
                         <div class="form-group">
-                            <label for="username"> 用户名 </label>
-                            <input id="username" name="username" required="required"
+                            <label class="sr-only sr-only-focusable" for="username"> 用户名 </label>
+                            <input id="username" name="username" required="required" class="form-control input-sm"
                                    type="text" placeholder="用户名">
                         </div>
 
                         <div class="form-group">
-                            <label for="password">密&nbsp;&nbsp;码</label>
+                            <label class="sr-only sr-only-focusable" for="password">密&nbsp;&nbsp;码</label>
                             <input id="password" name="password" required="required" type="password"
                                    placeholder="密&nbsp;&nbsp;码">
                         </div>
-
+                        <div class="form-group">
+                            <label class="sr-only sr-only-focusable" for="identifyingCode">验&nbsp;证&nbsp;码</label>
+                            <div class="row">
+                                <div class="col-md-6 .col-md-offset-2">
+                            <input id="identifyingCode" name="identifyingCode" required="required" type="password"
+                                   placeholder="验&nbsp;证&nbsp;码">
+                            </div>
+                                <div class="col-md-4">
+                                    <img src="code.do" id="changecode">
+                                </div>
+                        </div>
+                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox">记住我
                             </label>
                         </div>
-                        <p class="login button">
-                            <input type="submit" value="Login">
-                        </p>
+                        <!--<p class="login button">-->
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary">登陆</button>
+                        </div>
+                        <!--</p>-->
+
                         <p class="change_link">
                             还没有账号 ?
                             <a href="./index.html#toregister" class="to_register">加入我们</a>
@@ -65,29 +83,29 @@
                           action="http://www.jq22.com/demo/LoginRegistrationForm20160331/index.html#" autocomplete="on">
                         <h1> Sign up </h1>
                         <div class="form-group">
-                            <label for="usernamesignup">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+                            <label class="sr-only sr-only-focusable" for="usernamesignup">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
                             <input id="usernamesignup" name="usernamesignup" required="required" type="text"
                                    placeholder="用&nbsp;户&nbsp;名">
                         </div>
                         <div class="form-group">
-                            <label for="emailsignup"> 邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                            <label class="sr-only sr-only-focusable" for="emailsignup"> 邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
                             <div class="input-group-lg">
-                                <input id="emailsignup" name="emailsignup" required="required" type="email"
+                                <input id="emailsignup" name="email" required="required" type="email"
                                        placeholder="如:XXXXX@mail.com">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="passwordsignup">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                            <input id="passwordsignup" name="passwordsignup" required="required" type="password"
+                            <label class="sr-only sr-only-focusable" for="passwordsignup">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                            <input id="passwordsignup" name="password" required="required" type="password"
                                    placeholder="密&nbsp;&nbsp;&nbsp;&nbsp;码">
                         </div>
                         <div class="form-group">
-                            <label for="passwordsignup_confirm">确认密码 </label>
-                            <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required"
+                            <label class="sr-only sr-only-focusable" for="passwordsignup_confirm">确认密码 </label>
+                            <input id="passwordsignup_confirm" name="confirmPassword" required="required"
                                    type="password" placeholder="确认密码">
                         </div>
                         <p class="signin button">
-                            <input type="submit" value="Sign up">
+                            <input type="submit" value="注册">
                         </p>
                         <p class="change_link">
                             已有账号 ?
