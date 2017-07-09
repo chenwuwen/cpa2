@@ -81,4 +81,14 @@ $(function () {
             }
 
 });
-})
+    // submitHandler: function(validator, form, submitButton) {
+    //     $.post(form.attr('action'), form.serialize(), function(result) {
+    //         if (result.status == false){
+    //             window.location.reload();
+    //         }else{
+    //
+    //         }
+    //         },'json')
+    //     }
+
+    })

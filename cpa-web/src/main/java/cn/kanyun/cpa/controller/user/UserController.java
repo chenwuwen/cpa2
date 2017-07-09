@@ -10,6 +10,7 @@ import cn.kanyun.cpa.model.CpaResult;
 import cn.kanyun.cpa.model.user.CpaUser;
 import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.MD5util;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -26,15 +27,16 @@ public class UserController {
 	private IUserService userService;
 	/* 登陆检查 */
 	@RequestMapping("/login.do")
-	@ResponseBody
-	public CpaResult toLogin(String v_code, String username, String password,HttpSession session){
+//	@ResponseBody
+	public String toLogin(String v_code, CpaUser user,HttpSession session){
 		CpaResult result = new CpaResult();
+		JSONObject obj = new JSONObject();
         /*就是代表当前的用户。*/
 		Subject currentUser = SecurityUtils.getSubject();
 		//获取基于用户名和密码的令牌
 		//这里的token大家叫他令牌，也就相当于一张表格，你要去验证，你就得填个表，里面写好用户名密码，交给公安局的同志给你验证。
 		UsernamePasswordToken token = new UsernamePasswordToken(
-				user.getUserName(), EncryptUtils.encryptMD5(user.getPassword()));
+				user.getUsername(), EncryptUtils.encryptMD5(user.getPassword()));
         /*UsernamePasswordToken token = new UsernamePasswordToken(
                 user.getUserName(), user.getPassword());*/
 //      但是，“已记住”和“已认证”是有区别的：
@@ -47,9 +49,12 @@ public class UserController {
 			// 回调doGetAuthenticationInfo，进行认证
 			currentUser.login(token);
 		} catch (AuthenticationException e) {
-			result.setMsg("登陆失败");
-			result.setStatus(2);
-			return "redirect:/login";
+//			result.setMsg("登陆失败");
+//			result.setStatus(2);
+//			return "redirect:/login";
+//			obj.put("msg","登陆失败");
+//			obj.put("status",2);
+//			return obj;
 		}
 		//验证是否通过
 		if(currentUser.isAuthenticated()){

@@ -38,12 +38,15 @@
         <!--<property name="httpOnly" value="true"/>-->
         <!-- 配置存储rememberMe Cookie的domain为 一级域名 -->
         <!--<property name="domain" value=".itboy.net"/>-->
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
         <property name="maxAge" value="2592000"/><!-- 30天时间，记住我30天 -->
     </bean>
 
     <!-- rememberMe管理器 记住我 -->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
         <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <!--rememberMe管理器，cipherKey是加密rememberMe Cookie的密钥；默认AES算法；-->
         <property name="cipherKey"
                   value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
         <property name="cookie" ref="rememberMeCookie"/>
@@ -137,14 +140,14 @@
 
         <!-- 表单中账号的input名称 -->
 
-        <property name="username" value="username" />
+        <property name="usernameParam" value="username" />
 
         <!-- 表单中密码的input名称 -->
 
-        <property name="password" value="password" />
+        <property name="passwordParam" value="password" />
 
         <!--记住我input框名称-->
-        <property name="rememberMe" value="rememberMe"/>
+        <property name="rememberMeParam" value="rememberMe"/>
 
         <!-- loginurl：用户登陆地址，此地址是可以http访问的url地址 -->
 

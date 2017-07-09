@@ -159,5 +159,4 @@ public class CpaUser implements java.io.Serializable {
         this.userRoles = userRoles;
     }
 
-
 }
