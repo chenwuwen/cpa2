@@ -228,21 +228,21 @@ p.change_link {
     rgba(255, 255, 255, 0) 15px,
     rgba(255, 255, 255, .15) 15px,
     rgba(255, 255, 255, .15) 30px,
-    rgba(255, 255, 255, .15) 30px)
+    rgba(255, 255, 255, .15) 30px);
     );
     background: -webkit-repeating-linear-gradient(-45deg,
     rgba(25, 60, 56, 0.3),
     rgba(255, 255, 255, 0) 15px,
     rgba(255, 255, 255, .15) 15px,
     rgba(255, 255, 255, .15) 30px,
-    rgba(255, 255, 255, .15) 30px)
+    rgba(255, 255, 255, .15) 30px);
     );
     background: -o-repeating-linear-gradient(-45deg,
     rgba(25, 60, 56, 0.3),
     rgba(255, 255, 255, 0) 15px,
     rgba(255, 255, 255, .15) 15px,
     rgba(255, 255, 255, .15) 30px,
-    rgba(255, 255, 255, .15) 30px)
+    rgba(255, 255, 255, .15) 30px);
     );
     background: repeating-linear-gradient(-45deg,
     rgba(25, 60, 56, 0.3),
