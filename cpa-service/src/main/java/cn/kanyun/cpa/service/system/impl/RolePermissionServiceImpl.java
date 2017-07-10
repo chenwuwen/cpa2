@@ -17,7 +17,7 @@ import java.util.Set;
 @Service(IRolePermissionService.SERVICE_NAME)
 public class RolePermissionServiceImpl extends CommonServiceImpl<Integer,RolePermission> implements IRolePermissionService {
 
-    @Resource
+    @Resource(name=IRolePermissionDao.REPOSITORY_NAME)
     private IRolePermissionDao rolePermissionDao;
 
 

@@ -5,6 +5,7 @@
        default-lazy-init="true">
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm -->
     <!-- Shiro配置,继承自AuthorizingRealm的自定义Realm (解决初始化时的依赖循环问题，通过这里向realm中注入userservice实现)-->
+    <!--应该注意的是shiro的realm属于Filter,简单说就是初始化realm时,spring还未加载相关业务Bean,那么解决办法就是将springmvc的配置文件加载提前。-->
     <bean id="myRealm" class="cn.kanyun.cpa.controller.MyRealm">
         <!--自定义Realm中如果有带有参数的构造方法,也需要加入下列配置,如果有无参的构造函数则不需要一下配置-->
         <!--<constructor-arg index="0" ref=""/>-->

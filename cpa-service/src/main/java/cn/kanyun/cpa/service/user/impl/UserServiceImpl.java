@@ -18,7 +18,7 @@ import cn.kanyun.cpa.util.MD5util;
 @Service(IUserService.SERVICE_NAME)
 @Transactional
 public class UserServiceImpl extends CommonServiceImpl<Integer, CpaUser> implements IUserService {
-    @Resource(name = IUserDao.SERVICE_NAME )
+    @Resource(name = IUserDao.REPOSITORY_NAME )
     private IUserDao userdao;
 
     /*检测用户登陆*/

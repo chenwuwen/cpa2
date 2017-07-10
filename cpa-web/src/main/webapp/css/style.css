@@ -73,10 +73,10 @@ a.hiddenanchor {
     margin: 0px;
 }
 
-#wrapper label {
-    color: rgb(64, 92, 96);
-    position: relative;
-}
+/*#wrapper label {*/
+    /*color: rgb(64, 92, 96);*/
+    /*position: relative;*/
+/*}*/
 
 /**** advanced input styling ****/
 /* placeholder */

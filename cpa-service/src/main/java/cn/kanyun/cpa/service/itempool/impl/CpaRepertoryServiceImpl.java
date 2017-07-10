@@ -18,7 +18,7 @@ import java.util.*;
  */
 @Service(ICpaRepertoryService.SERVICE_NAME)
 public class CpaRepertoryServiceImpl extends CommonServiceImpl<Integer, CpaRepertory> implements ICpaRepertoryService {
-    @Resource(name = ICpaRepertoryDao.SERVICE_NAME)
+    @Resource(name = ICpaRepertoryDao.REPOSITORY_NAME)
     private IUnitExamDao unitExamDao;
     //获取单元测试数据
     public CpaResult getUnitExam(String where, Object[] params) {

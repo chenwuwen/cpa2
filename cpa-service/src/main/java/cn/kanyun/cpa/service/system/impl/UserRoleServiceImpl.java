@@ -18,9 +18,9 @@ import java.util.Set;
  */
 @Service(IUserRoleService.SERVICE_NAME)
 public class UserRoleServiceImpl extends CommonServiceImpl<Integer, UserRole> implements IUserRoleService {
-    @Resource
+    @Resource(name = IUserRoleDao.REPOSITORY_NAME)
     private IUserRoleDao userRoleDao;
-    @Resource
+    @Resource(name = IRolePermissionDao.REPOSITORY_NAME)
     private IRolePermissionDao rolePermissionDao;
 
     @Override
