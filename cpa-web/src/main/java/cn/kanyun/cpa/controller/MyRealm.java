@@ -38,6 +38,8 @@ public class MyRealm extends AuthorizingRealm {
 
     private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MyRealm.class);
 
+    public  MyRealm(){};
+
     public MyRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
         super((org.apache.shiro.cache.CacheManager) cacheManager, matcher);
     }

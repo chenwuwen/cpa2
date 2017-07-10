@@ -1,11 +1,8 @@
 package cn.kanyun.cpa.service.system;
 
-import cn.kanyun.cpa.model.system.CpaPermission;
-import cn.kanyun.cpa.model.system.CpaRole;
+
 import cn.kanyun.cpa.model.system.UserRole;
 import cn.kanyun.cpa.service.ICommonService;
-
-import java.util.Collection;
 import java.util.Set;
 
 /**

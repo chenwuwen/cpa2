@@ -20,7 +20,12 @@
     <!--为使IE浏览器(IE10以上)支持sweetalert2需引入该脚本-->
     <script src="js/es6-promise.min.js"></script>
     <script src="scripts/login.js"></script>
-    <script src="scripts/v_code.js"></script>
+    <!--<script src="scripts/v_code.js"></script>-->
+    <script type="text/javascript">
+        function reloadValidateCode() {
+            $(".changecode").attr("src", "/validateCode?data=" + new Date() + Math.floor(Math.random() * 24));
+        }
+    </script>
 
 </head>
 <body>
@@ -49,7 +54,9 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="username" name="username" required="required" class="form-control"
                                        type="text" placeholder="用&nbsp;户&nbsp;名">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                             </div>
+
                         </div>
 
                         <div class="form-group">
@@ -70,7 +77,7 @@
                                            placeholder="验&nbsp;证&nbsp;码">
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="validateCode" id="changecode" class="img-responsive" title="点击重新获取验证码" alt="验证码">
+                                    <img src="validateCode" id="changecode" class="img-responsive" title="点击重新获取验证码" alt="验证码" onclick="javascript:reloadValidateCode()">
                                 </div>
                             </div>
                         </div>

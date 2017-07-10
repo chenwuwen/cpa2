@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="forward:/login.html"/>
+    <mvc:view-controller path="/" view-name="forward:/index.html"/>
 
     <!-- 1：注解的方式，引入组件的自动扫描，在类和方法上可以添加对注解的支持 -->
     <!-- 这是SpringMVC的配置文件，这里的扫描仅仅针对@Controller和@Handlermapping来说的，而Spring配置

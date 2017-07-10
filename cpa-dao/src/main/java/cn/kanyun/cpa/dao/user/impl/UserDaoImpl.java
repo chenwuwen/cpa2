@@ -9,7 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-@Repository(IUserDao.SERVICE_NAME)
+@Repository(IUserDao.REPOSITORY_NAME)
 public class UserDaoImpl extends CommonDaoImpl<Integer,CpaUser> implements IUserDao {
 	//通过调用父类的构造函数指定clazz值，即实体类的类类型  
     public UserDaoImpl() {  

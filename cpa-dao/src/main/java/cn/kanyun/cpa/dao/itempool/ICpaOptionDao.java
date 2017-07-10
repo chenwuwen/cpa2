@@ -7,5 +7,5 @@ import cn.kanyun.cpa.model.itempool.CpaOption;
  * Created by Administrator on 2017/6/16.
  */
 public interface ICpaOptionDao extends ICommonDao<Integer,CpaOption> {
-    public static final String SERVICE_NAME="cn.kanyun.cpa.dao.itempool.impl.CpaOptionDaoImpl";
+    public static final String REPOSITORY_NAME="cn.kanyun.cpa.dao.itempool.impl.CpaOptionDaoImpl";
 }

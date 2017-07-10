@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by Administrator on 2017/6/16.
  */
-@Repository(ICpaOptionDao.SERVICE_NAME)
+@Repository(ICpaOptionDao.REPOSITORY_NAME)
 public class CpaOptionDaoImpl extends CommonDaoImpl<Integer, CpaOption> implements ICpaOptionDao {
     /**
      * 保留指定clatt值的接口【通过子类显示调用父类的构造函数来指定】

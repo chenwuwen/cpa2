@@ -159,7 +159,8 @@
                 <version>2.19.1</version>
                 <configuration>
                     <forkMode>once</forkMode>
-                    <argLine>Dfile.encoding=UTF-8</argLine>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>
