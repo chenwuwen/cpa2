@@ -27,18 +27,21 @@ public class UserController {
 	private IUserService userService;
 	/* 登陆检查 */
 	@RequestMapping("/login.do")
-//	@ResponseBody
-	public String toLogin(String v_code, CpaUser user,HttpSession session){
+	@ResponseBody
+	public CpaResult toLogin(String v_code, CpaUser user,HttpSession session){
 		CpaResult result = new CpaResult();
-		JSONObject obj = new JSONObject();
+		String s_code = (String) session.getAttribute("validateCode");
+		// 先比较验证码(equalsIgnoreCase忽略大小写，equals不忽略)
+		if (!s_code.equalsIgnoreCase(v_code)) {
+			result.setStatus(2);
+			result.setMsg("验证码错误！");
+		}else{
         /*就是代表当前的用户。*/
 		Subject currentUser = SecurityUtils.getSubject();
 		//获取基于用户名和密码的令牌
 		//这里的token大家叫他令牌，也就相当于一张表格，你要去验证，你就得填个表，里面写好用户名密码，交给公安局的同志给你验证。
 		UsernamePasswordToken token = new UsernamePasswordToken(
-				user.getUsername(), EncryptUtils.encryptMD5(user.getPassword()));
-        /*UsernamePasswordToken token = new UsernamePasswordToken(
-                user.getUserName(), user.getPassword());*/
+				user.getUsername(), user.getPassword());
 //      但是，“已记住”和“已认证”是有区别的：
 //      已记住的用户仅仅是非匿名用户，你可以通过subject.getPrincipals()获取用户信息。但是它并非是完全认证通过的用户，当你访问需要认证用户的功能时，你仍然需要重新提交认证信息。
 //      这一区别可以参考亚马逊网站，网站会默认记住登录的用户，再次访问网站时，对于非敏感的页面功能，页面上会显示记住的用户信息，但是当你访问网站账户信息时仍然需要再次进行登录认证。
@@ -49,35 +52,20 @@ public class UserController {
 			// 回调doGetAuthenticationInfo，进行认证
 			currentUser.login(token);
 		} catch (AuthenticationException e) {
-//			result.setMsg("登陆失败");
-//			result.setStatus(2);
-//			return "redirect:/login";
-//			obj.put("msg","登陆失败");
-//			obj.put("status",2);
-//			return obj;
+			result.setMsg("登陆失败");
+			result.setStatus(2);
+
 		}
 		//验证是否通过
 		if(currentUser.isAuthenticated()){
-			user.setUserName("张三");
+			user.setUsername(user.getUsername());
 			session.setAttribute("userinfo", user);
-			modelView.setViewName("/main");
+			result.setMsg("登陆成功");
+			result.setStatus(1);
 		}else{
-			modelView.addObject("message", "login errors");
-			modelView.setViewName("/login");
-		}
-		return modelView;
-		CpaResult result = new CpaResult();
-		String s_code = (String) session.getAttribute("code");
-		// 先比较验证码(equalsIgnoreCase忽略大小写，equals不忽略)
-		if (!s_code.equalsIgnoreCase(v_code)) {
+			result.setMsg("登陆失败");
 			result.setStatus(2);
-			result.setMsg("验证码错误！");
-		}else{
-		 result = userService.checkLogin(username, password);
-		 if (result.getStatus()==1){
-		 	session.setAttribute("username",username);
-
-			}
+		}
 		}
 		return result;
 		

@@ -14,15 +14,7 @@ $(function () {
                      notEmpty: {
                          message: '用户名不能为空'
                      },
-                     stringLength: {
-                         min: 3,
-                         max: 12,
-                         message: '用户名长度必须在3到12位之间'
-                     },
-                     regexp: {
-                         regexp: /^[a-zA-Z0-9_]+$/,
-                         message: '用户名只能包含大写、小写、数字和下划线'
-                     }
+
                  }
              },
              password: {
@@ -30,11 +22,6 @@ $(function () {
                  validators: {
                      notEmpty: {
                          message: '密码不能为空'
-                     },
-                     stringLength: {
-                         min: 6,
-                         max: 18,
-                         message: '密码长度必须在6到18位之间'
                      },
                      regexp: {
                          regexp: /^[a-zA-Z0-9_]+$/,
@@ -54,22 +41,31 @@ $(function () {
                      },
                  }
              }
-         },
-             submitHandler: function(validator, form, submitButton) {
-                 // a)
-                 // Use Ajax to submit form data
-                 //$.post(form.attr('action'), form.serialize(), function(result) {
-                 // ... process the result ...
-                 //}, 'json');
-
-                 //b)
-                 // Do your task
-                 // ...
-                 // Submit the form
-                 validator.defaultSubmit();
-             }
          }
-     );
+     })
+         .on('success.form.bv', function(e) { //表单验证通过;表单元素最好放在 <div class="form-group">下
+                 $('#success_message').slideDown({ opacity: "show" }, "slow") // 验证通过,隐藏成功标志
+                 $('#loginform').data('bootstrapValidator').resetForm();
+                 // 阻止表单提交
+                 e.preventDefault();
+                 // 获得表单实例
+                 var $form = $(e.target);
+                 // 得到BootstrapValidator实例
+                 var bv = $form.data('bootstrapValidator');
+                 // 使用Ajax提交表单数据
+                 $.post($form.attr('action'), $form.serialize(), function(result) {
+                     console.log(result);
+                     alert("sadas");
+                        if (result.success){
+                            var userId = result.userId;//将数据中用户信息的ID赋值给变量
+                            sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
+                            // window.location.href='http://localhost/index.html';//正确登录后页面跳转至
+                        }else{
+                            alert("error");
+                        }
+                 }, 'json')
+
+             });
 
      //注册
     $('#registerform').bootstrapValidator({
@@ -172,7 +168,33 @@ $(function () {
                 },
             }
         }
-    });
+    })
+        .on('success.form.bv', function(e) { //表单验证通过;表单元素最好放在 <div class="form-group">下
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+            $('#contact_form').data('bootstrapValidator').resetForm();
+
+            // 阻止表单提交
+            e.preventDefault();
+
+            // 获得表单实例
+            var $form = $(e.target);
+
+            // 得到BootstrapValidator实例
+            var bv = $form.data('bootstrapValidator');
+
+            // 使用Ajax提交表单数据
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+                if (result.success){
+                    var userId = result.userId;//将数据中用户信息的ID赋值给变量
+                    sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
+                    window.location.href='http://localhost/index.html';//正确登录后页面跳转至
+                }else{
+                    alert("error");
+                }
+            }, 'json')
+
+        });
 
 
 

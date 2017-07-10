@@ -2,7 +2,7 @@
 $(function(){
 		$("#changecode").click(function(){	
 			/*alert("sdfsdf");*/
-			$(this).attr("src","code.do?id="+Math.random())
+			$(this).attr("src","validateCode?id="+Math.random())
 		})
 	})
 //点击图片更换验证码（js方式，需要在页面添加点击时间 onclick="f1(this)"）		

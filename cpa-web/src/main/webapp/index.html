@@ -4,16 +4,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Bootstrap 101 Template</title>
     <!--引入jquery时需要注意，bootstrap3.3.7支持jquery3.1，如果引入了不对应版本的jquery，则会出错，bootstrap的有些效果会不显示-->
-    <link rel="stylesheet" href="../framework/bootstrap-3.3.7-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../framework/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="./login.css">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="stylesheet" type="text/css" href="./animate-custom.css">
-    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrapValidator.js"></script>
-    <script src="../framework/bootstrap-3.3.7-dist/js/zh_CN.js"></script>
-    <script src="../scripts/login_register.js"></script>
+    <link rel="stylesheet" href="framework/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="framework/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script src="framework/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="framework/bootstrap-3.3.7-dist/js/bootstrapValidator.js"></script>
+    <script src="framework/bootstrap-3.3.7-dist/js/zh_CN.js"></script>
+    <script src="scripts/login_register.js"></script>
     <!--引入sweetalert2的js脚本-->
     <script src="framework/sweetalert2/dist/sweetalert2.js"></script>
     <link rel="stylesheet" href="framework/sweetalert2/dist/sweetalert2.css">
@@ -41,7 +41,7 @@
             <div id="wrapper">
                 <div id="login" class="animate form">
                     <form role="form" method="post" id="loginform"
-                          action="" autocomplete="on">
+                          action="user/login.do" autocomplete="on">
                         <h2>Log in</h2>
                         <div class="form-group">
                             <label class="sr-only sr-only-focusable" for="username"> 用户名 </label>
@@ -70,7 +70,7 @@
                                            placeholder="验&nbsp;证&nbsp;码">
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="code.do" id="changecode" class="img-responsive">
+                                    <img src="validateCode" id="changecode" class="img-responsive" title="点击重新获取验证码" alt="验证码">
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
 
                 <div id="register" class="animate form">
                     <form role="form" method="post" id="registerform"
-                          action="" autocomplete="on">
+                          action="user/register.do" autocomplete="on">
                         <h2> Sign up </h2>
                         <div class="form-group">
                             <label class="sr-only sr-only-focusable"
