@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LocalMysql
-Source Server Version : 50718
+Source Server         : MySql
+Source Server Version : 50712
 Source Host           : localhost:3306
 Source Database       : cpa
 
 Target Server Type    : MYSQL
-Target Server Version : 50718
+Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-05-26 14:58:32
+Date: 2017-07-10 22:46:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -154,6 +154,25 @@ INSERT INTO `cpa_option` VALUES ('119', '30', 'C', '费用的减少 ');
 INSERT INTO `cpa_option` VALUES ('120', '30', 'D', '所有者权益的增加');
 
 -- ----------------------------
+-- Table structure for cpa_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `cpa_permission`;
+CREATE TABLE `cpa_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_code` varchar(255) DEFAULT NULL COMMENT '权限内容',
+  `permission_description` varchar(255) DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cpa_permission
+-- ----------------------------
+INSERT INTO `cpa_permission` VALUES ('1', 'select', null);
+INSERT INTO `cpa_permission` VALUES ('2', 'delete', null);
+INSERT INTO `cpa_permission` VALUES ('3', 'update', null);
+INSERT INTO `cpa_permission` VALUES ('4', 'insert', null);
+
+-- ----------------------------
 -- Table structure for cpa_repertory
 -- ----------------------------
 DROP TABLE IF EXISTS `cpa_repertory`;
@@ -198,6 +217,24 @@ INSERT INTO `cpa_repertory` VALUES ('27', '汇总记账凭证账务处理程序�
 INSERT INTO `cpa_repertory` VALUES ('28', '企业购买或出售交易性金融资产过程中发生的交易费用应直接记入的会计科目是（）', '3', null);
 INSERT INTO `cpa_repertory` VALUES ('29', '各单位每年形成的会计档案，都应由本单位(     ) 负责整理立卷，装订成册，编制会计档案保管清册。', '3', null);
 INSERT INTO `cpa_repertory` VALUES ('30', '根据借贷记账法的账户结构，在账户借方登记的是(     )。', '3', null);
+
+-- ----------------------------
+-- Table structure for cpa_role
+-- ----------------------------
+DROP TABLE IF EXISTS `cpa_role`;
+CREATE TABLE `cpa_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(10) DEFAULT NULL COMMENT ' 角色名称',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cpa_role
+-- ----------------------------
+INSERT INTO `cpa_role` VALUES ('1', 'admin', null);
+INSERT INTO `cpa_role` VALUES ('2', 'manager', null);
+INSERT INTO `cpa_role` VALUES ('3', 'normal', null);
 
 -- ----------------------------
 -- Table structure for cpa_solution
@@ -262,6 +299,7 @@ CREATE TABLE `cpa_user` (
   `pet_name` varchar(20) DEFAULT '',
   `reg_date` timestamp NULL DEFAULT NULL,
   `last_login_date` timestamp NULL DEFAULT NULL,
+  `status` tinyint(2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UserName` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户表';
@@ -269,6 +307,51 @@ CREATE TABLE `cpa_user` (
 -- ----------------------------
 -- Records of cpa_user
 -- ----------------------------
-INSERT INTO `cpa_user` VALUES ('1', 'admin', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, null, null);
-INSERT INTO `cpa_user` VALUES ('8', 'kanyun', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-03-13 21:21:02', null);
-INSERT INTO `cpa_user` VALUES ('9', 'chenwuwen', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-04-17 09:44:08', null);
+INSERT INTO `cpa_user` VALUES ('1', 'admin', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, null, null, null);
+INSERT INTO `cpa_user` VALUES ('8', 'kanyun', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-03-13 21:21:02', null, null);
+INSERT INTO `cpa_user` VALUES ('9', 'chenwuwen', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-04-17 09:44:08', null, null);
+
+-- ----------------------------
+-- Table structure for role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) DEFAULT NULL COMMENT '角色ID',
+  `permission_id` int(11) DEFAULT NULL COMMENT '权限ID',
+  PRIMARY KEY (`id`),
+  KEY `FKBD40D538902585DF` (`permission_id`),
+  KEY `FKBD40D5389752B83F` (`role_id`),
+  CONSTRAINT `FKBD40D5389752B83F` FOREIGN KEY (`role_id`) REFERENCES `cpa_role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_permission
+-- ----------------------------
+INSERT INTO `role_permission` VALUES ('1', '1', '1');
+INSERT INTO `role_permission` VALUES ('2', '1', '2');
+INSERT INTO `role_permission` VALUES ('3', '1', '3');
+INSERT INTO `role_permission` VALUES ('4', '1', '4');
+INSERT INTO `role_permission` VALUES ('5', '2', '1');
+INSERT INTO `role_permission` VALUES ('6', '2', '2');
+INSERT INTO `role_permission` VALUES ('7', '2', '3');
+
+-- ----------------------------
+-- Table structure for user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '用户ID',
+  `role_id` int(11) DEFAULT NULL COMMENT '角色ID',
+  PRIMARY KEY (`id`),
+  KEY `FK143BF46A9752B83F` (`role_id`),
+  CONSTRAINT `FK143BF46A9752B83F` FOREIGN KEY (`role_id`) REFERENCES `cpa_role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
+INSERT INTO `user_role` VALUES ('1', '1', '1');
+INSERT INTO `user_role` VALUES ('2', '8', '2');
+INSERT INTO `user_role` VALUES ('3', '9', '3');
