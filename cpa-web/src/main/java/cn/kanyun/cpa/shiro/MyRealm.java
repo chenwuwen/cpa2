@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.controller;
+package cn.kanyun.cpa.shiro;
 
 import java.util.*;
 
@@ -21,7 +21,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.stereotype.Service;
 
 /**
  * 权限认证
@@ -39,7 +38,7 @@ public class MyRealm extends AuthorizingRealm {
 
     private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MyRealm.class);
 
-    public  MyRealm(){};
+    public  MyRealm(){}
 
     public MyRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
         super((org.apache.shiro.cache.CacheManager) cacheManager, matcher);

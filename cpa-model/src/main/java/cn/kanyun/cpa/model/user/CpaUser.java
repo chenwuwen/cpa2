@@ -147,7 +147,6 @@ public class CpaUser implements java.io.Serializable {
     public Integer getStatus() {
         return status;
     }
-
     public void setStatus(Integer status) {
         this.status = status;
     }
