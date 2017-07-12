@@ -53,7 +53,6 @@ public class MyRealm extends AuthorizingRealm {
             AuthenticationToken authcToken) throws AuthenticationException {
         logger.info("=================Shiro开始登录认证===================");
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        String password = String.valueOf(token.getPassword());
         CpaUser user = userService.findByUserName(token.getUsername());
         // 账号不存在
         if (user == null) {
@@ -61,14 +60,11 @@ public class MyRealm extends AuthorizingRealm {
         } else if (user.getStatus() != 1) {
             // 账号状态异常
             return null;
-        } else if (!password.equals(user.getPassword())) {
-            //密码不匹配
-            return null;
         } else {
 //            盐值：取用户信息中唯一的字段来生成盐值，避免由于两个用户原始密码相同，加密后的密码也相同
-            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
+//            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
             //若存在，将此用户存放到登录认证info中
-            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), credentialsSalt, getName());
+            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
         }
 
     }
