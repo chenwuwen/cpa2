@@ -1,6 +1,6 @@
 package cn.kanyun.cpa.service.system.impl;
 
-import cn.kanyun.cpa.model.system.CpaPermission;
+import cn.kanyun.cpa.model.entity.system.CpaPermission;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.system.ICpaPermissionService;
 import org.springframework.stereotype.Service;

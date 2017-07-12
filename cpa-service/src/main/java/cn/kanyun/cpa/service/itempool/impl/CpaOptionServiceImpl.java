@@ -1,7 +1,7 @@
 package cn.kanyun.cpa.service.itempool.impl;
 
 
-import cn.kanyun.cpa.model.itempool.CpaOption;
+import cn.kanyun.cpa.model.entity.itempool.CpaOption;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.itempool.ICpaOptionService;
 import org.springframework.stereotype.Service;

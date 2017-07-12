@@ -2,7 +2,7 @@ package cn.kanyun.cpa.dao.system.impl;
 
 import cn.kanyun.cpa.dao.CommonDaoImpl;
 import cn.kanyun.cpa.dao.system.ICpaRoleDao;
-import cn.kanyun.cpa.model.system.CpaRole;
+import cn.kanyun.cpa.model.entity.system.CpaRole;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository(ICpaRoleDao.REPOSITORY_NAME)
 public class CpaRoleDaoImpl extends CommonDaoImpl<Integer,CpaRole> implements ICpaRoleDao {
+
+    public CpaRoleDaoImpl() {
+        super(CpaRole.class);
+    }
+
     /**
      * 保留指定clatt值的接口【通过子类显示调用父类的构造函数来指定】
      *
@@ -18,4 +23,6 @@ public class CpaRoleDaoImpl extends CommonDaoImpl<Integer,CpaRole> implements IC
     public CpaRoleDaoImpl(Class<CpaRole> clatt) {
         super(clatt);
     }
+
+
 }

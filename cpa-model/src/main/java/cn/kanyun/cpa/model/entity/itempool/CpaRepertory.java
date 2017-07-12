@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.model.itempool;
+package cn.kanyun.cpa.model.entity.itempool;
 
 import java.sql.Timestamp;
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package cn.kanyun.cpa.service;
 
 import cn.kanyun.cpa.dao.ICommonDao;
-import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.entity.CpaResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;

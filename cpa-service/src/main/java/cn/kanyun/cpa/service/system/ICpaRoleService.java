@@ -1,6 +1,6 @@
 package cn.kanyun.cpa.service.system;
 
-import cn.kanyun.cpa.model.system.CpaRole;
+import cn.kanyun.cpa.model.entity.system.CpaRole;
 import cn.kanyun.cpa.service.ICommonService;
 
 /**

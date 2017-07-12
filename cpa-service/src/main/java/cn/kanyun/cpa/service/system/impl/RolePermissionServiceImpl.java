@@ -1,14 +1,13 @@
 package cn.kanyun.cpa.service.system.impl;
 
 import cn.kanyun.cpa.dao.system.IRolePermissionDao;
-import cn.kanyun.cpa.model.system.CpaPermission;
-import cn.kanyun.cpa.model.system.RolePermission;
+import cn.kanyun.cpa.model.entity.system.CpaPermission;
+import cn.kanyun.cpa.model.entity.system.RolePermission;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.system.IRolePermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Set;
 
 /**

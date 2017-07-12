@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.model.itempool;
+package cn.kanyun.cpa.model.entity.itempool;
 
 
 

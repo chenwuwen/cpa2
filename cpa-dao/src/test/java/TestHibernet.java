@@ -1,8 +1,8 @@
 import cn.kanyun.cpa.dao.HibernateSessionFactory;
-import cn.kanyun.cpa.model.itempool.CpaOption;
-import cn.kanyun.cpa.model.itempool.CpaRepertory;
-import cn.kanyun.cpa.model.itempool.CpaSolution;
-import cn.kanyun.cpa.model.user.CpaUser;
+import cn.kanyun.cpa.model.entity.itempool.CpaOption;
+import cn.kanyun.cpa.model.entity.itempool.CpaRepertory;
+import cn.kanyun.cpa.model.entity.itempool.CpaSolution;
+import cn.kanyun.cpa.model.entity.user.CpaUser;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;

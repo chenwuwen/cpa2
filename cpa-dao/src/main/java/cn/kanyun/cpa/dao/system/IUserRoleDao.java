@@ -1,10 +1,9 @@
 package cn.kanyun.cpa.dao.system;
 
 import cn.kanyun.cpa.dao.ICommonDao;
-import cn.kanyun.cpa.model.system.CpaRole;
-import cn.kanyun.cpa.model.system.UserRole;
+import cn.kanyun.cpa.model.entity.system.CpaRole;
+import cn.kanyun.cpa.model.entity.system.UserRole;
 
-import java.util.List;
 import java.util.Set;
 
 /**

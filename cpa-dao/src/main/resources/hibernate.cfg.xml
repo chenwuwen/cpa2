@@ -104,9 +104,9 @@
         <!--指定需要缓存的对象类型:这里可以在映射文件中配置，也可以在hibernate核心配置文件中进行配置（推荐）-->
         <!--这个<class-cache>标签必须放在<mapping>标签的后面！-->
         <!--配置哪些实体类的对象需要二级缓存  ,usage属性为缓存策略  -->
-        <class-cache class="cn.kanyun.cpa.model.itempool.CpaRepertory" usage="read-write"/>
-        <class-cache class="cn.kanyun.cpa.model.itempool.CpaOption" usage="read-write"/>
-        <class-cache class="cn.kanyun.cpa.model.itempool.CpaSolution" usage="read-write"/>
+        <class-cache class="cn.kanyun.cpa.model.entity.itempool.CpaRepertory" usage="read-write"/>
+        <class-cache class="cn.kanyun.cpa.model.entity.itempool.CpaOption" usage="read-write"/>
+        <class-cache class="cn.kanyun.cpa.model.entity.itempool.CpaSolution" usage="read-write"/>
     </session-factory>
 
 </hibernate-configuration>

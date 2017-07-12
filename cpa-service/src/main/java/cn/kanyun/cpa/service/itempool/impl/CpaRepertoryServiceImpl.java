@@ -2,10 +2,9 @@ package cn.kanyun.cpa.service.itempool.impl;
 
 
 import cn.kanyun.cpa.dao.itempool.ICpaRepertoryDao;
-import cn.kanyun.cpa.dao.itempool.IUnitExamDao;
-import cn.kanyun.cpa.model.CpaResult;
-import cn.kanyun.cpa.model.itempool.CpaOption;
-import cn.kanyun.cpa.model.itempool.CpaRepertory;
+import cn.kanyun.cpa.model.entity.CpaResult;
+import cn.kanyun.cpa.model.entity.itempool.CpaOption;
+import cn.kanyun.cpa.model.entity.itempool.CpaRepertory;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.itempool.ICpaRepertoryService;
 import org.springframework.stereotype.Service;

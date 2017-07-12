@@ -6,8 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.kanyun.cpa.dao.user.IUserDao;
-import cn.kanyun.cpa.model.CpaResult;
-import cn.kanyun.cpa.model.user.CpaUser;
+import cn.kanyun.cpa.model.entity.CpaResult;
+import cn.kanyun.cpa.model.entity.user.CpaUser;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.user.IUserService;
 import org.springframework.stereotype.Service;

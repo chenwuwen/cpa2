@@ -1,6 +1,6 @@
 package cn.kanyun.cpa.controller.itempool;
 
-import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.service.itempool.ICpaRepertoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

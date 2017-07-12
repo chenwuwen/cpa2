@@ -1,7 +1,7 @@
 package cn.kanyun.cpa.service.itempool;
 
-import cn.kanyun.cpa.model.CpaResult;
-import cn.kanyun.cpa.model.itempool.CpaRepertory;
+import cn.kanyun.cpa.model.entity.CpaResult;
+import cn.kanyun.cpa.model.entity.itempool.CpaRepertory;
 import cn.kanyun.cpa.service.ICommonService;
 
 /**

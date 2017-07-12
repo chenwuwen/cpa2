@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.entity.CpaResult;
 import org.hibernate.Session;
 
 public interface ICommonDao<K extends Serializable ,T extends Serializable> {

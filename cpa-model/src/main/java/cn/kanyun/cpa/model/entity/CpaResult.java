@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.model;
+package cn.kanyun.cpa.model.entity;
 /*模型驱动，用于返回字符串数据*/
 public class CpaResult<T> implements java.io.Serializable {
 	public int status;//状态  0:代表未找到，1:代表成功，2:代表失败

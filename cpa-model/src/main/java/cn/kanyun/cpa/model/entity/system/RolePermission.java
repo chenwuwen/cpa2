@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.model.system;
+package cn.kanyun.cpa.model.entity.system;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

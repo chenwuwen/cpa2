@@ -2,13 +2,12 @@ package cn.kanyun.cpa.dao.system.impl;
 
 import cn.kanyun.cpa.dao.CommonDaoImpl;
 import cn.kanyun.cpa.dao.system.IRolePermissionDao;
-import cn.kanyun.cpa.model.system.CpaPermission;
-import cn.kanyun.cpa.model.system.RolePermission;
+import cn.kanyun.cpa.model.entity.system.CpaPermission;
+import cn.kanyun.cpa.model.entity.system.RolePermission;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,6 +15,11 @@ import java.util.Set;
  */
 @Repository(IRolePermissionDao.REPOSITORY_NAME)
 public class RolePermissionDaoImpl extends CommonDaoImpl<Integer,RolePermission> implements IRolePermissionDao {
+
+    public RolePermissionDaoImpl() {
+        super(RolePermission.class);
+    }
+
     /**
      * 保留指定clatt值的接口【通过子类显示调用父类的构造函数来指定】
      *
@@ -24,6 +28,8 @@ public class RolePermissionDaoImpl extends CommonDaoImpl<Integer,RolePermission>
     public RolePermissionDaoImpl(Class<RolePermission> clatt) {
         super(clatt);
     }
+
+
 
 
     @Override

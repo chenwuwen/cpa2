@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-import cn.kanyun.cpa.model.CpaResult;
+import cn.kanyun.cpa.model.entity.CpaResult;
 
 public interface ICommonService <K extends Serializable,T extends Serializable>  {
 	    /**

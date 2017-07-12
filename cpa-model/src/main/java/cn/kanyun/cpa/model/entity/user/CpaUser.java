@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.model.user;
+package cn.kanyun.cpa.model.entity.user;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -15,131 +15,92 @@ public class CpaUser implements java.io.Serializable {
     // Fields    
 
     private Integer id;
-    private String username;
+    private String userName;
     private String password;
-    private String petname;
     private String gender;
     private String email;
-    private Timestamp regdate;
-    private Timestamp lastlogindate;
     private String petName;
     private Timestamp regDate;
     private Timestamp lastLoginDate;
     private Integer status;
     private Set userRoles = new HashSet<>();
 
+    public CpaUser(){}
 
-    // Constructors
-
-    /**
-     * default constructor
-     */
-    public CpaUser() {
-    }
-
-    /**
-     * minimal constructor
-     */
-    public CpaUser(String username, String password) {
-        this.username = username;
+    public CpaUser(Integer id, String userName, String password, String gender, String email, String petName, Timestamp regDate, Timestamp lastLoginDate, Integer status, Set userRoles) {
+        this.id = id;
+        this.userName = userName;
         this.password = password;
-    }
-
-    /**
-     * full constructor
-     */
-    public CpaUser(String username, String password, String petname, String gender, String email, Timestamp regdate, Timestamp lastlogindate, String petName, Timestamp regDate, Timestamp lastLoginDate,Integer status,Set userRoles) {
-        this.username = username;
-        this.password = password;
-        this.petname = petname;
         this.gender = gender;
         this.email = email;
-        this.regdate = regdate;
-        this.lastlogindate = lastlogindate;
         this.petName = petName;
         this.regDate = regDate;
         this.lastLoginDate = lastLoginDate;
-        this.status=status;
+        this.status = status;
         this.userRoles = userRoles;
     }
 
-
-
-    // Property accessors
-
     public Integer getId() {
-        return this.id;
+        return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getUserName() {
+        return userName;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getPetname() {
-        return this.petname;
-    }
-    public void setPetname(String petname) {
-        this.petname = petname;
+    public String getGender() {
+        return gender;
     }
 
-    public String getGender() {
-        return this.gender;
-    }
     public void setGender(String gender) {
         this.gender = gender;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public Timestamp getRegdate() {
-        return this.regdate;
-    }
-    public void setRegdate(Timestamp regdate) {
-        this.regdate = regdate;
-    }
-
-    public Timestamp getLastlogindate() {
-        return this.lastlogindate;
-    }
-    public void setLastlogindate(Timestamp lastlogindate) {
-        this.lastlogindate = lastlogindate;
-    }
 
     public String getPetName() {
-        return this.petName;
+        return petName;
     }
+
     public void setPetName(String petName) {
         this.petName = petName;
     }
 
     public Timestamp getRegDate() {
-        return this.regDate;
+        return regDate;
     }
+
     public void setRegDate(Timestamp regDate) {
         this.regDate = regDate;
     }
 
     public Timestamp getLastLoginDate() {
-        return this.lastLoginDate;
+        return lastLoginDate;
     }
+
     public void setLastLoginDate(Timestamp lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
@@ -147,6 +108,7 @@ public class CpaUser implements java.io.Serializable {
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
@@ -154,8 +116,24 @@ public class CpaUser implements java.io.Serializable {
     public Set getUserRoles() {
         return userRoles;
     }
+
     public void setUserRoles(Set userRoles) {
         this.userRoles = userRoles;
     }
 
+    @Override
+    public String toString() {
+        return "CpaUser{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", petName='" + petName + '\'' +
+                ", regDate=" + regDate +
+                ", lastLoginDate=" + lastLoginDate +
+                ", status=" + status +
+                ", userRoles=" + userRoles +
+                '}';
+    }
 }
