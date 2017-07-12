@@ -31,7 +31,7 @@
 
     <!-- 定义缓存管理器,可使用多种缓存组件-->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:cache/ehcache.xml"/>
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
     </bean>
 
     <!-- 记住我cookie -->

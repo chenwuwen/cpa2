@@ -23,5 +23,13 @@
             </key>
             <one-to-many class="cn.kanyun.cpa.model.entity.system.RolePermission" />
         </set>
+        <set name="userRoles" inverse="true">
+            <key>
+                <column name="role_id">
+                    <comment>角色ID</comment>
+                </column>
+            </key>
+            <one-to-many class="cn.kanyun.cpa.model.entity.system.UserRole" />
+        </set>
     </class>
 </hibernate-mapping>

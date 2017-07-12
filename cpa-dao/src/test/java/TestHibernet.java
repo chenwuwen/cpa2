@@ -72,7 +72,7 @@ public class TestHibernet {
         criteria = criteria.add(criterion);
         List<CpaUser> list = criteria.list();
         for (CpaUser CpaUser:list){
-            System.out.println(CpaUser.getUsername());
+            System.out.println(CpaUser.getUserName());
         }
     }
     @Test

@@ -18,10 +18,10 @@ import java.util.*;
 @Service(ICpaRepertoryService.SERVICE_NAME)
 public class CpaRepertoryServiceImpl extends CommonServiceImpl<Integer, CpaRepertory> implements ICpaRepertoryService {
     @Resource(name = ICpaRepertoryDao.REPOSITORY_NAME)
-    private IUnitExamDao unitExamDao;
+    private ICpaRepertoryDao iCpaRepertoryDao;
     //获取单元测试数据
     public CpaResult getUnitExam(String where, Object[] params) {
-        CpaResult result = unitExamDao.getScrollData(-1, -1, where, params);
+        CpaResult result = iCpaRepertoryDao.getScrollData(-1, -1, where, params);
         if (result.getTotalCount() > 0) {
             List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
             List<CpaRepertory> listcr = (List<CpaRepertory>) result.getData();

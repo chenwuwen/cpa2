@@ -1,5 +1,6 @@
 package cn.kanyun.cpa.shiro;
 
+import cn.kanyun.cpa.model.entity.user.CpaUser;
 import cn.kanyun.cpa.service.system.IRolePermissionService;
 import cn.kanyun.cpa.service.system.IUserRoleService;
 import cn.kanyun.cpa.service.user.IUserService;
