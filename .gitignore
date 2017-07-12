@@ -6,7 +6,6 @@
 release.properties
 
 .idea/
-.logs/
 target/
 .setting/
 .settings/

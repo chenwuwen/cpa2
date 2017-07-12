@@ -12,8 +12,14 @@ public class CpaUserDto extends BaseEntity {
     private String password;
     private String email;
     private String validateCode; //验证码
+    private String isRememberMe;
 
-
+    public String getIsRememberMe() {
+        return isRememberMe;
+    }
+    public void setIsRememberMe(String isRememberMe) {
+        this.isRememberMe = isRememberMe;
+    }
     public String getUserName() {
         return userName;
     }
