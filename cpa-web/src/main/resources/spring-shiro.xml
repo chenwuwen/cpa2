@@ -10,7 +10,7 @@
         <!--自定义Realm中如果有带有参数的构造方法,也需要加入下列配置,如果有无参的构造函数则不需要一下配置-->
         <!--<constructor-arg index="0" ref=""/>-->
         <!--<constructor-arg index="1" ref=""/>-->
-        <!-- 配置密码匹配器 -->
+        <!-- 配置密码匹配器 密码凭证器-->
     <property name="credentialsMatcher">
         <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
             <!-- 加密算法为MD5 -->
@@ -63,13 +63,6 @@
         <property name="deleteInvalidSessions" value="true"/>
     </bean>
 
-    <!--4 凭证匹配器 -->
-    <bean id="credentialsMatcher"
-          class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-        <property name="hashAlgorithmName" value="md5" />
-        <property name="hashIterations" value="1" />
-    </bean>
-
 
     <!-- 安全管理器 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -112,17 +105,17 @@
         <property name="filterChainDefinitions">
             <value>
                 <!--没有参数，表示可以匿名使用。-->
-                /admins/**=anon ,
+                /admins/**=anon
                 <!--表示需要认证(登录)才能使用，没有参数-->
-                /admins/user/**=authc,
+                /admins/user/**=authc
                 <!--参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，当有多个参数时，例如admins/user/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。-->
-                /admins/user/**=roles[admin],
+                /admins/user/**=roles[admin]
                 <!--参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，例如/admins/user/**=perms["user:add:*,user:modify:*"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。-->
-                /admins/user/**=perms[user:add:*],
+                /admins/user/**=perms[user:add:*]
                 <!--根据请求的方法，相当于/admins/user/**=perms[user:method] ,其中method为post，get，delete等。-->
-                /admins/user/**=rest[user],
+                /admins/user/**=rest[user]
                 <!--当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString是你访问的url里的？后面的参数。-->
-               /admins/user/**=port[8081],
+               /admins/user/**=port[8081]
                 <!--没有参数表示httpBasic认证-->
                 /admins/user/**=authcBasic
                 <!--没有参数，表示安全的url请求，协议为https-->
