@@ -16,7 +16,7 @@
             <!-- 加密算法为MD5 -->
             <property name="hashAlgorithmName" value="MD5"></property>
             <!-- 加密次数 -->
-            <property name="hashIterations" value="1024"></property>
+            <property name="hashIterations" value="1"></property>
         </bean>
     </property>
     </bean>
@@ -90,8 +90,8 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
-        <property name="loginUrl" value="/login.html"/>
-        <!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->
+        <property name="loginUrl" value="/index.html"/>
+        <!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后由Js进行跳转了) -->
         <!-- <property name="successUrl" value="/system/main"/> -->
         <!-- 用户访问未对其授权的资源时,所显示的连接 没有权限跳转的地址 -->
         <!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->
@@ -111,11 +111,24 @@
         <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
         <property name="filterChainDefinitions">
             <value>
-                /mydemo/login=anon
-                /mydemo/getVerifyCodeImage=anon
-                /main**=authc
-                /user/info**=authc
-                /admin/listUser**=authc,perms[admin:manage]
+                <!--没有参数，表示可以匿名使用。-->
+                /admins/**=anon ,
+                <!--表示需要认证(登录)才能使用，没有参数-->
+                /admins/user/**=authc,
+                <!--参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，当有多个参数时，例如admins/user/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。-->
+                /admins/user/**=roles[admin],
+                <!--参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，例如/admins/user/**=perms["user:add:*,user:modify:*"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。-->
+                /admins/user/**=perms[user:add:*],
+                <!--根据请求的方法，相当于/admins/user/**=perms[user:method] ,其中method为post，get，delete等。-->
+                /admins/user/**=rest[user],
+                <!--当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString是你访问的url里的？后面的参数。-->
+               /admins/user/**=port[8081],
+                <!--没有参数表示httpBasic认证-->
+                /admins/user/**=authcBasic
+                <!--没有参数，表示安全的url请求，协议为https-->
+                /admins/user/**=ssl
+                <!--没有参数表示必须存在用户，当登入操作时不做检查-->
+                /admins/user/**=user
             </value>
         </property>
     </bean>

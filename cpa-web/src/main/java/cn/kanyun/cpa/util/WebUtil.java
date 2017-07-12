@@ -1,6 +1,8 @@
 package cn.kanyun.cpa.util;
 
 
+import cn.kanyun.cpa.model.dto.user.CpaUserDto;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,19 +17,19 @@ public class WebUtil {
      * @param request
      * @return
      */
-//    public synchronized static UserSession getSessionUser(HttpServletRequest request){
-//        UserSession us  = (UserSession)request.getSession().getAttribute(ConstUtil.LOGIN_USER);
-//        return us;
-//    }
-//
-//    /**
-//     * 在session中获得user
-//     * @param request
-//     * @return
-//     */
-//    public synchronized static void setSessionUser(HttpServletRequest request, UserSession us){
-//        request.getSession().setAttribute(ConstUtil.LOGIN_USER,us);
-//    }
+    public synchronized static CpaUserDto getSessionUser(HttpServletRequest request){
+        CpaUserDto user  = (CpaUserDto)request.getSession().getAttribute("CPAUSER");
+        return user;
+    }
+
+    /**
+     * 在session中获得user
+     * @param request
+     * @return
+     */
+    public synchronized static void setSessionUser(HttpServletRequest request, CpaUserDto us){
+        request.getSession().setAttribute("CPAUSER",us);
+    }
 
     /**
      * 验证当前的手机浏览器是否是app内置的浏览器
