@@ -64,9 +64,9 @@ public class MyRealm extends AuthorizingRealm {
             throw new LockedAccountException(); //账号被锁定
         } else {
 //            盐值：取用户信息中唯一的字段来生成盐值，避免由于两个用户原始密码相同，加密后的密码也相同
-//            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
+            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getSalt());
             //若存在，将此用户存放到登录认证info中
-            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
+            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(),credentialsSalt, this.getName());
         }
 
     }

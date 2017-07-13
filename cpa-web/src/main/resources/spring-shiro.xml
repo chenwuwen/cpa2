@@ -13,10 +13,12 @@
         <!-- 配置密码匹配器 密码凭证器-->
     <property name="credentialsMatcher">
         <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-            <!-- 加密算法为MD5 -->
+            <!-- 指定散列算法为MD5,需要和生成密码时的一样 -->
             <property name="hashAlgorithmName" value="MD5"></property>
-            <!-- 加密次数 -->
-            <property name="hashIterations" value="1"></property>
+            <!-- 散列迭代次数，需要和生成密码时的一样 -->
+            <property name="hashIterations" value="4"></property>
+            <!--是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64-->
+            <property name="storedCredentialsHexEncoded" value="false"></property>
         </bean>
     </property>
     </bean>

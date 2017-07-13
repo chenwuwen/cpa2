@@ -23,6 +23,7 @@ public class CpaUser implements java.io.Serializable {
     private Timestamp regDate;
     private Timestamp lastLoginDate;
     private Integer status;
+    private String salt;
     private Set userRoles = new HashSet<>();
 
     public CpaUser(){}
@@ -121,6 +122,16 @@ public class CpaUser implements java.io.Serializable {
         this.userRoles = userRoles;
     }
 
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+
     @Override
     public String toString() {
         return "CpaUser{" +
@@ -134,6 +145,7 @@ public class CpaUser implements java.io.Serializable {
                 ", lastLoginDate=" + lastLoginDate +
                 ", status=" + status +
                 ", userRoles=" + userRoles +
+                ", salt=" + salt +
                 '}';
     }
 }

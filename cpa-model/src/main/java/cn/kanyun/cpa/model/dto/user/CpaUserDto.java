@@ -13,6 +13,7 @@ public class CpaUserDto extends BaseEntity {
     private String email;
     private String validateCode; //验证码
     private String isRememberMe;
+    private String salt; //盐
 
     public String getIsRememberMe() {
         return isRememberMe;
@@ -50,6 +51,15 @@ public class CpaUserDto extends BaseEntity {
 
     public void setValidateCode(String validateCode) {
         this.validateCode = validateCode;
+    }
+
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
 

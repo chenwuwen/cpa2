@@ -5,7 +5,7 @@ import cn.kanyun.cpa.model.dto.user.CpaUserDto;
 import cn.kanyun.cpa.model.entity.user.CpaUser;
 import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.service.user.IUserService;
-import cn.kanyun.cpa.util.MD5util;
+import cn.kanyun.cpa.util.EndecryptUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -98,17 +98,19 @@ public class UserController {
 	public CpaResult saveUser(CpaUserDto userDto,HttpSession session) throws NoSuchAlgorithmException{
 		CpaResult result = new CpaResult();
 		// 获取session中保存的验证码
-		String s_code = (String) session.getAttribute("code");
+		String s_code = (String) session.getAttribute("validateCode");
 		// 先比较验证码(equalsIgnoreCase忽略大小写，equals不忽略)
 		if (!s_code.equalsIgnoreCase(userDto.getValidateCode())) {
 			result.setStatus(2);
 			result.setMsg("验证码错误！");
 		}else{
-		String md5_pwd = MD5util.md5(userDto.getPassword());
+			userDto = EndecryptUtils.md5Password(userDto.getUserName(), userDto.getPassword());
 		CpaUser user = new CpaUser();
-		user.setPassword(md5_pwd);
+		user.setPassword(userDto.getEmail());
 		user.setUserName(userDto.getUserName());
 		user.setRegDate(new Timestamp(System.currentTimeMillis()));
+		user.setSalt(userDto.getSalt());
+		user.setStatus(1);
 		Integer k =userService.save(user);
 		if (k!=null){
 		result.setStatus(1);

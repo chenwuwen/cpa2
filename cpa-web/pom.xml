@@ -113,6 +113,12 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <groupId>org.bitbucket.cowwoc</groupId>
+            <artifactId>preconditions</artifactId>
+            <version>1.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
