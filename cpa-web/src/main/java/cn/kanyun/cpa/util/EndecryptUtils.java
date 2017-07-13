@@ -108,6 +108,7 @@ public final class EndecryptUtils {
 
 
     public static void main(String[] args) {
+        String username="chenwuwen";
         String password = "1234";
         String cipherText = encrytHex(password);
         System.out.println(password + "hex加密之后的密文是：" + cipherText);
@@ -123,7 +124,7 @@ public final class EndecryptUtils {
 //        randomNumberGenerator是Math中持有的Random类单例,用于生成随机数,这里用随机数做盐值,再将盐值存储到数据库
         String salt= secureRandomNumberGenerator.nextBytes().toHex();
         System.out.println(salt);
-        String cipherText_md5= new Md5Hash(password,password+salt,4).toHex();
+        String cipherText_md5= new Md5Hash(password,username+salt,4).toHex();
         System.out.println(password+"通过md5加密之后的密文是："+cipherText_md5);
         System.out.println(generateKey());
         System.out.println("==========================================================");
