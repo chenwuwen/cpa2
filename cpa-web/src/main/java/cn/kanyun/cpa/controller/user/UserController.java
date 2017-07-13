@@ -8,6 +8,8 @@ import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.MD5util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ public class UserController {
 	@Resource(name= IUserService.SERVICE_NAME)
 	private IUserService userService;
 	/* 登陆检查 */
-	@RequestMapping("/login.do")
+	@RequestMapping("/login")
 	@ResponseBody
 	public CpaResult toLogin(CpaUserDto user, HttpSession session){
 		CpaResult result = new CpaResult();
@@ -53,7 +55,13 @@ public class UserController {
 			// 回调doGetAuthenticationInfo，进行认证
 			currentUser.login(token);
 		} catch (AuthenticationException e) {
-			result.setMsg("登陆失败");
+			if (UnknownAccountException.class.getName().equals(e.getClass().getName())){
+				result.setMsg("登录失败,用户名或密码错误!");
+			}else if(LockedAccountException.class.getName().equals(e.getClass().getName())){
+				result.setMsg("登录失败,用户被锁定,请联系管理员!");
+			}else {
+				result.setMsg("登陆失败");
+			}
 			result.setStatus(2);
 
 		}
@@ -72,7 +80,7 @@ public class UserController {
 		
 	}
 	/* 注册Ajax检查用户名是否可用 */
-	@RequestMapping("/checkname.do")
+	@RequestMapping("/checkname")
 	@ResponseBody
 	public CpaResult checkName(String username) {
 		Object[] params = { username };
@@ -85,7 +93,7 @@ public class UserController {
 		return result;
 	}
 	/*用户注册*/
-	@RequestMapping("/register.do")
+	@RequestMapping("/register")
 	@ResponseBody
 	public CpaResult saveUser(CpaUserDto userDto,HttpSession session) throws NoSuchAlgorithmException{
 		CpaResult result = new CpaResult();
