@@ -80,7 +80,7 @@ public final class EndecryptUtils {
 //        randomNumberGenerator是Math中持有的Random类单例,用于生成随机数,这里用随机数做盐值,再将盐值存储到数据库
         String salt= secureRandomNumberGenerator.nextBytes().toHex();
         //组合username,四次迭代，对密码进行加密
-        String password_cipherText= new Md5Hash(password,username+salt,4).toBase64();
+        String password_cipherText= new Md5Hash(password,username+salt,4).toHex();
         CpaUserDto user=new CpaUserDto();
         user.setPassword(password_cipherText);
         user.setSalt(salt);

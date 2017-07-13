@@ -182,13 +182,15 @@ $(function () {
 
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
+                console.log(1);
                 console.log(result);
-                if (result.success) {
+                console.log(2);
+                if (result.status==1) {
                     var userId = result.userId;//将数据中用户信息的ID赋值给变量
                     sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
                     window.location.href = 'http://localhost/index.html';//正确登录后页面跳转至
                 } else {
-                    alert("error");
+                    alert(result.msg);
                 }
             }, 'json')
 
