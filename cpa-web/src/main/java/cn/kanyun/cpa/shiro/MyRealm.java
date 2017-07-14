@@ -79,7 +79,11 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(
             PrincipalCollection principals) {
         logger.info("===========检测权限=========");
-        CpaUser user = (CpaUser) principals.getPrimaryPrincipal();
+
+        String userName = (String) principals.getPrimaryPrincipal();
+//        System.out.println(userName);
+        CpaUser user = userService.findByUserName(userName);
+
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             //角色名集合

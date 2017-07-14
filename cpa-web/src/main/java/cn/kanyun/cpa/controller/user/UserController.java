@@ -6,7 +6,6 @@ import cn.kanyun.cpa.model.entity.user.CpaUser;
 import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.EndecryptUtils;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -14,6 +13,8 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 
 @Controller
@@ -88,6 +90,18 @@ public class UserController {
             try {
                 // 回调doGetAuthenticationInfo，进行认证, 回调reaml里的一个方法,验证用户
                 currentUser.login(token);
+                if(currentUser.hasRole("admin")){
+//                    user.setRoles(currentUser.getPreviousPrincipals());
+//                    user.setPermissions();
+                    logger.info("角色为admin的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +"登录系统");
+//                    return "/admin";
+                }else if (currentUser.hasRole("manager")){
+                    logger.info("角色为manager的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统");
+                }else if (currentUser.hasRole("normal")){
+                    logger.info("角色为normal的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统");
+                }else{
+                    logger.info("用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统未分配角色");
+                }
                 result.setStatus(1);
                 result.setMsg("登陆成功");
                 result.setData(user);

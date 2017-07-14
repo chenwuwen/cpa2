@@ -12,5 +12,5 @@ import java.util.Set;
 public interface IUserRoleDao extends ICommonDao<Integer,UserRole> {
     public static final String REPOSITORY_NAME="cn.kanyun.cpa.dao.system.impl.UserRoleDaoImpl";
 
-    Set<CpaRole> findRoleByUserId(Integer userId);
+    Set<UserRole> findRoleByUserId(Integer userId);
 }

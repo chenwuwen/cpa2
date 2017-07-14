@@ -179,7 +179,7 @@ $(function () {
 
             // 得到BootstrapValidator实例
             var bv = $form.data('bootstrapValidator');
-
+            console.log(0);
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
                 console.log(1);

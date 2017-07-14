@@ -4,6 +4,7 @@ import cn.kanyun.cpa.dao.system.IRolePermissionDao;
 import cn.kanyun.cpa.dao.system.IUserRoleDao;
 import cn.kanyun.cpa.model.entity.system.CpaPermission;
 import cn.kanyun.cpa.model.entity.system.CpaRole;
+import cn.kanyun.cpa.model.entity.system.RolePermission;
 import cn.kanyun.cpa.model.entity.system.UserRole;
 import cn.kanyun.cpa.service.CommonServiceImpl;
 import cn.kanyun.cpa.service.system.IUserRoleService;
@@ -25,26 +26,27 @@ public class UserRoleServiceImpl extends CommonServiceImpl<Integer, UserRole> im
 
     @Override
     public Set<String> findRoleByUserId(Integer userId) {
-        Set<CpaRole> setRoles = userRoleDao.findRoleByUserId(userId);
+        Set<UserRole> setUserRoles = userRoleDao.findRoleByUserId(userId);
         Set<String> set = new HashSet<>();
-        for (CpaRole role : setRoles) {
+        for (UserRole userRole : setUserRoles) {
 //            set.add(String.valueOf(role.getId())); //shiro中要的是roleName不是roleId
-            set.add(role.getRoleName());
+            set.add(userRole.getCpaRole().getRoleName());
         }
         return set;
     }
 
     @Override
     public  Set<String> findPermissionByUerId(Integer userId) {
-        Set<CpaRole> setRoles = userRoleDao.findRoleByUserId(userId);
-        Set<String> roleIds = new HashSet<>();
-        for (CpaRole role : setRoles) {
-            roleIds.add(String.valueOf(role.getId()));
+        Set<UserRole> setUserRoles = userRoleDao.findRoleByUserId(userId);
+        Set<Integer> roleIds = new HashSet<>();
+        for (UserRole userRole : setUserRoles) {
+            roleIds.add(userRole.getCpaRole().getId());
         }
-        Set<CpaPermission> setPermissions = rolePermissionDao.findPermissionByRoleId(roleIds);
+        Set<RolePermission> setRolePermissions = rolePermissionDao.findPermissionByRoleId(roleIds);
         Set<String> set = new HashSet<>();
-        for (CpaPermission cpaPermission:setPermissions){
-            set.add(cpaPermission.getPermissionCode());
+        for (RolePermission rolePermission:setRolePermissions){
+
+            set.add(rolePermission.getCpaPermission().getPermissionCode());
         }
         return set;
     }
