@@ -22,13 +22,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
-import java.util.Calendar;
 
 
 @Controller
@@ -93,15 +90,17 @@ public class UserController {
                 if(currentUser.hasRole("admin")){
 //                    user.setRoles(currentUser.getPreviousPrincipals());
 //                    user.setPermissions();
-                    logger.info("角色为admin的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +"登录系统");
+                    logger.info("角色为admin的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +" 登录系统");
 //                    return "/admin";
                 }else if (currentUser.hasRole("manager")){
-                    logger.info("角色为manager的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统");
+                    logger.info("角色为manager的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统");
                 }else if (currentUser.hasRole("normal")){
-                    logger.info("角色为normal的用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统");
+                    logger.info("角色为normal的用户: "+user.getUserName()+" 于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统");
                 }else{
-                    logger.info("用户:"+user.getUserName()+"于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +"登录系统未分配角色");
+                    logger.info("用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统未分配角色");
                 }
+                CpaUser u = userService.findByUserName(user.getUserName());
+                user.setId(u.getId());
                 result.setStatus(1);
                 result.setMsg("登陆成功");
                 result.setData(user);

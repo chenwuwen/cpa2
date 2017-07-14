@@ -81,7 +81,6 @@ public class MyRealm extends AuthorizingRealm {
         logger.info("===========检测权限=========");
 
         String userName = (String) principals.getPrimaryPrincipal();
-//        System.out.println(userName);
         CpaUser user = userService.findByUserName(userName);
 
         if (user != null) {
