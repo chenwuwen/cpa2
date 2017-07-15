@@ -44,10 +44,9 @@ $(function () {
         }
     })
         .on('success.form.bv', function (e) { //表单验证通过;表单元素最好放在 <div class="form-group">下
-            $('#success_message').slideDown({opacity: "show"}, "slow") // 验证通过,隐藏成功标志
-            $('#loginform').data('bootstrapValidator').resetForm();
-            // 阻止表单提交
-            e.preventDefault();
+            // $('#success_message').slideDown({opacity: "show"}, "slow") // 验证通过,隐藏成功标志
+            // $('#loginform').data('bootstrapValidator').resetForm();
+            e.preventDefault();  // 阻止默认事件提交
             // 获得表单实例
             var $form = $(e.target);
             // 得到BootstrapValidator实例
@@ -81,9 +80,9 @@ $(function () {
                         message: '用户名不能为空'
                     },
                     stringLength: {
-                        min: 3,
-                        max: 12,
-                        message: '用户名长度必须在3到12位之间'
+                        min: 5,
+                        max: 10,
+                        message: '用户名长度必须在5到10位之间'
                     },
                     regexp: {
                         regexp: /^[a-zA-Z0-9_]+$/,
@@ -94,7 +93,7 @@ $(function () {
                         callback: function (value, validator) {
                             if (value.match(/^[a-zA-Z0-9_]+$/)) {
                                 $.ajax({
-                                    url: 'user/checkname.do',
+                                    url: 'user/checkname',
                                     type: 'post',
                                     dataType: 'json',
                                     async: false,
@@ -179,16 +178,18 @@ $(function () {
 
             // 得到BootstrapValidator实例
             var bv = $form.data('bootstrapValidator');
-
+            console.log(0);
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
+                console.log(1);
                 console.log(result);
-                if (result.success) {
+                console.log(2);
+                if (result.status==1) {
                     var userId = result.userId;//将数据中用户信息的ID赋值给变量
                     sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
                     window.location.href = 'http://localhost/index.html';//正确登录后页面跳转至
                 } else {
-                    alert("error");
+                    alert(result.msg);
                 }
             }, 'json')
 

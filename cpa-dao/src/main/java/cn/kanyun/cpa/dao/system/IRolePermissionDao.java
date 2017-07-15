@@ -12,5 +12,5 @@ import java.util.Set;
 public interface IRolePermissionDao extends ICommonDao<Integer,RolePermission> {
     public static final String REPOSITORY_NAME="cn.kanyun.cpa.dao.system.impl.RolePermissionDaoImpl";
 
-    Set<CpaPermission> findPermissionByRoleId(Set roleIds);
+    Set<RolePermission> findPermissionByRoleId(Set roleIds);
 }

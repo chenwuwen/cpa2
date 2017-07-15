@@ -6,6 +6,7 @@
     <!--引入jquery时需要注意，bootstrap3.3.7支持jquery3.1，如果引入了不对应版本的jquery，则会出错，bootstrap的有些效果会不显示-->
     <link rel="stylesheet" href="framework/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="framework/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="framework/bootstrap-3.3.7-dist/css/bootstrapValidator.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/animate-custom.css">
@@ -19,8 +20,6 @@
     <link rel="stylesheet" href="framework/sweetalert2/dist/sweetalert2.css">
     <!--为使IE浏览器(IE10以上)支持sweetalert2需引入该脚本-->
     <script src="js/es6-promise.min.js"></script>
-    <script src="scripts/login.js"></script>
-    <!--<script src="scripts/v_code.js"></script>-->
     <script type="text/javascript">
         function reloadValidateCode() {
             $(".changecode").attr("src", "/validateCode?data=" + new Date() + Math.floor(Math.random() * 24));
@@ -44,9 +43,10 @@
             <a class="hiddenanchor" id="toregister"></a>
             <a class="hiddenanchor" id="tologin"></a>
             <div id="wrapper">
+                <!--登陆-->
                 <div id="login" class="animate form">
                     <form role="form" method="post" id="loginform"
-                          action="user/login.do" autocomplete="on">
+                          action="user/login" autocomplete="on">
                         <h2>Log in</h2>
                         <div class="form-group">
                             <label class="sr-only sr-only-focusable" for="userName"> 用户名 </label>
@@ -68,19 +68,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only sr-only-focusable" for="identifyingCode">验&nbsp;证&nbsp;码</label>
+                            <label class="sr-only sr-only-focusable" for="identifyingCode1">验&nbsp;证&nbsp;码</label>
                             <div class="row">
-                                <div class="col-md-6 .col-md-offset-2">
-                                    <input id="identifyingCode" required="required"
-                                           type="password" class="form-control" name="validateCode"
+                                <div class="col-md-6">
+                                    <input id="identifyingCode1" required="required"
+                                           type="text" class="form-control" name="validateCode"
                                            placeholder="验&nbsp;证&nbsp;码">
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="validateCode" id="changecode" class="img-responsive" title="点击重新获取验证码"
+                                    <img src="validateCode" class="changecode" class="img-responsive" title="点击重新获取验证码"
                                          alt="验证码" onclick="javascript:reloadValidateCode()">
                                 </div>
                             </div>
-                            </div>
+                        </div>
                         <div class="checkbox">
                             <label>
                                 <input name="isRememberMe" name="isRememberMe" type="checkbox">记住我
@@ -96,17 +96,17 @@
                         </p>
                     </form>
                 </div>
-
+                <!--注册-->
                 <div id="register" class="animate form">
                     <form role="form" method="post" id="registerform"
-                          action="user/register.do" autocomplete="on">
+                          action="user/register" autocomplete="on">
                         <h2> Sign up </h2>
                         <div class="form-group">
                             <label class="sr-only sr-only-focusable"
                                    for="userNamesignup">用&nbsp;&nbsp;;&nbsp;户&nbsp;&nbsp;;&nbsp;名</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="userNamesignup" name="userNamesignup" required="required" type="text"
+                                <input id="userNamesignup" name="userName" required="required" type="text"
                                        class="form-control"
                                        placeholder="用&nbsp;&nbsp;户&nbsp;&nbsp;名">
                             </div>
@@ -139,11 +139,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only sr-only-focusable" for="identifyingCode">验&nbsp;证&nbsp;码</label>
+                            <label class="sr-only sr-only-focusable" for="identifyingCode2">验&nbsp;证&nbsp;码</label>
                             <div class="row">
-                                <div class="col-md-6 .col-md-offset-2">
-                                    <input required="required"
-                                           type="password" class="form-control" name="validateCode"
+                                <div class="col-md-6">
+                                    <input required="required" id="identifyingCode2"
+                                           type="text" class="form-control" name="validateCode"
                                            placeholder="验&nbsp;证&nbsp;码">
                                 </div>
                                 <div class="col-md-4">

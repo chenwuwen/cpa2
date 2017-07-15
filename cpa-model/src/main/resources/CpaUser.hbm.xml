@@ -51,6 +51,11 @@
                 <comment>用户状态</comment>
             </column>
         </property>
+        <property name="salt" type="java.lang.String">
+            <column name="salt" length="40" >
+                <comment>盐</comment>
+            </column>
+        </property>
         <set name="userRoles" inverse="true">
             <key>
                 <column name="user_id">

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySql
-Source Server Version : 50712
+Source Server         : LocalMysql
+Source Server Version : 50718
 Source Host           : localhost:3306
 Source Database       : cpa
 
 Target Server Type    : MYSQL
-Target Server Version : 50712
+Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-07-10 22:46:35
+Date: 2017-07-14 16:34:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -179,7 +179,7 @@ DROP TABLE IF EXISTS `cpa_repertory`;
 CREATE TABLE `cpa_repertory` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `test_stem` varchar(200) DEFAULT NULL COMMENT '题干',
-  `test_type` varchar(2) DEFAULT NULL COMMENT '试题类型',
+  `test_type` varchar(20) DEFAULT NULL COMMENT '试题类型',
   `insert_date` timestamp NULL DEFAULT NULL COMMENT '插入时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='题库表';
@@ -300,6 +300,7 @@ CREATE TABLE `cpa_user` (
   `reg_date` timestamp NULL DEFAULT NULL,
   `last_login_date` timestamp NULL DEFAULT NULL,
   `status` tinyint(2) DEFAULT NULL,
+  `salt` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UserName` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户表';
@@ -307,9 +308,9 @@ CREATE TABLE `cpa_user` (
 -- ----------------------------
 -- Records of cpa_user
 -- ----------------------------
-INSERT INTO `cpa_user` VALUES ('1', 'admin', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, null, null, null);
-INSERT INTO `cpa_user` VALUES ('8', 'kanyun', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-03-13 21:21:02', null, null);
-INSERT INTO `cpa_user` VALUES ('9', 'chenwuwen', 'gdyb21LQTcIANtvYMT7QVQ==', null, null, null, null, null, null, '2017-04-17 09:44:08', null, null);
+INSERT INTO `cpa_user` VALUES ('1', 'admin', '0997cdf3576e93e1562a3d8b8467cc47', null, null, null, null, null, null, null, null, '1', '567841dde604e0bde6bd2837ac992feb');
+INSERT INTO `cpa_user` VALUES ('8', 'kanyun', 'ea0bd5db8ae426453038a77be3951627', null, null, null, null, null, null, '2017-03-13 21:21:02', null, '1', '85d20b4f7c329ae648a9631c630a00d5');
+INSERT INTO `cpa_user` VALUES ('9', 'chenwuwen', '279747a0e7eb66a87ca32defad059bd7', null, null, null, null, null, null, '2017-04-17 09:44:08', null, null, '7e44463994010a0e2c89358d4dd0881c');
 
 -- ----------------------------
 -- Table structure for role_permission
@@ -322,7 +323,9 @@ CREATE TABLE `role_permission` (
   PRIMARY KEY (`id`),
   KEY `FKBD40D538902585DF` (`permission_id`),
   KEY `FKBD40D5389752B83F` (`role_id`),
-  CONSTRAINT `FKBD40D5389752B83F` FOREIGN KEY (`role_id`) REFERENCES `cpa_role` (`id`)
+  KEY `FKBD40D538BA24E2A` (`permission_id`),
+  CONSTRAINT `FKBD40D5389752B83F` FOREIGN KEY (`role_id`) REFERENCES `cpa_role` (`id`),
+  CONSTRAINT `FKBD40D538BA24E2A` FOREIGN KEY (`permission_id`) REFERENCES `cpa_permission` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -346,6 +349,8 @@ CREATE TABLE `user_role` (
   `role_id` int(11) DEFAULT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`),
   KEY `FK143BF46A9752B83F` (`role_id`),
+  KEY `FK143BF46A8172B5BB` (`user_id`),
+  CONSTRAINT `FK143BF46A8172B5BB` FOREIGN KEY (`user_id`) REFERENCES `cpa_user` (`id`),
   CONSTRAINT `FK143BF46A9752B83F` FOREIGN KEY (`role_id`) REFERENCES `cpa_role` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 

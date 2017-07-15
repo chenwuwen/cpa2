@@ -8,7 +8,9 @@ import net.sf.ehcache.CacheManager;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -50,21 +52,21 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
-            AuthenticationToken authcToken) throws AuthenticationException {
+            AuthenticationToken token) throws AuthenticationException {
         logger.info("=================Shiro开始登录认证===================");
-        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        CpaUser user = userService.findByUserName(token.getUsername());
+        UsernamePasswordToken upToken  = (UsernamePasswordToken) token;
+        CpaUser user = userService.findByUserName(upToken.getUsername());
         // 账号不存在
-        if (user == null) {
-            return null;
-        } else if (user.getStatus() != 1) {
+        if (user == null || 0 == user.getStatus()) {
+            throw new UnknownAccountException(); //没找到用户,或用户被删除
+        } else if (user.getStatus() == 2) {
             // 账号状态异常
-            return null;
+            throw new LockedAccountException(); //账号被锁定
         } else {
-//            盐值：取用户信息中唯一的字段来生成盐值，避免由于两个用户原始密码相同，加密后的密码也相同
-//            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
+//            盐值：取用户信息中盐值字段的值(随机值)，避免由于两个用户原始密码相同，加密后的密码也相同
+            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUserName()+user.getSalt());
             //若存在，将此用户存放到登录认证info中
-            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
+            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(),credentialsSalt, this.getName());
         }
 
     }
@@ -77,7 +79,10 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(
             PrincipalCollection principals) {
         logger.info("===========检测权限=========");
-        CpaUser user = (CpaUser) principals.getPrimaryPrincipal();
+
+        String userName = (String) principals.getPrimaryPrincipal();
+        CpaUser user = userService.findByUserName(userName);
+
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             //角色名集合

@@ -11,6 +11,11 @@ a.hiddenanchor {
     display: none;
 }
 
+/*验证码反馈图标错位，重写样式定位*/
+.col-md-6 i{
+    left:155px;
+}
+
 /** The wrapper that will contain our two forms **/
 #wrapper {
     width: 60%;

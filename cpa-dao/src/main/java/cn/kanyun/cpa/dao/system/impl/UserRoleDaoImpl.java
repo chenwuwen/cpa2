@@ -8,6 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,11 +32,13 @@ public class UserRoleDaoImpl extends CommonDaoImpl<Integer,UserRole> implements 
     }
 
     @Override
-    public Set<CpaRole> findRoleByUserId(Integer userId) {
+    public Set<UserRole> findRoleByUserId(Integer userId) {
         Session session = getSession();
         String hql = " from UserRole o where userId = :userId";
         Query query = session.createQuery(hql);
         query.setParameter("userId",userId);
-        return (Set<CpaRole>) query.list();
+        List<UserRole> listWithoutDup = new ArrayList<UserRole>(new HashSet<UserRole>(query.list()));
+        Set<UserRole> set = new HashSet<UserRole>(listWithoutDup);
+        return set;
     }
 }
