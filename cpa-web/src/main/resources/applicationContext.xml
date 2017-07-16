@@ -43,10 +43,10 @@
         <property name="testWhileIdle" value="true"/>
         <property name="testOnBorrow" value="false"/>
         <property name="testOnReturn" value="false"/>
-        <!-- 打开removeAbandoned功能(连接泄漏监测，怀疑存在泄漏之后再打开) -->
+        <!-- 打开removeAbandoned功能(连接泄漏监测，怀疑存在泄漏之后再打开) 超过时间限制是否回收 -->
         <property name="removeAbandoned" value="true"/>
-        <!-- 1800秒，也就是30分钟, 打开removeAbandoned功能  -->
-        <property name="removeAbandonedTimeout" value="1800"/>
+        <!-- 180秒，也就是3分钟, 打开removeAbandoned功能  -->
+        <property name="removeAbandonedTimeout" value="180"/>
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
         <property name="poolPreparedStatements" value="false"/>
         <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>

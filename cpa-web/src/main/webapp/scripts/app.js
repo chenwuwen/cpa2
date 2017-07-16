@@ -40,7 +40,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 //     }
 // );
 app.controller('welcomeCtrl',function($scope){
-    $scope.name="kanyun"
+    $scope.name=localStorage.getItem("userName");
 });
 
 
