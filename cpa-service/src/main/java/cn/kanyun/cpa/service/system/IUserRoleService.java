@@ -14,4 +14,5 @@ public interface IUserRoleService extends ICommonService<Integer,UserRole> {
     Set<String> findRoleByUserId(Integer userId);
 
     Set<String> findPermissionByUerId(Integer userId);
+
 }

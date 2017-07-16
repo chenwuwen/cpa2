@@ -2,6 +2,8 @@ package cn.kanyun.cpa.service.itempool.impl;
 
 
 import cn.kanyun.cpa.dao.itempool.ICpaRepertoryDao;
+import cn.kanyun.cpa.model.dto.itempool.CpaOptionDto;
+import cn.kanyun.cpa.model.dto.itempool.CpaRepertoryDto;
 import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.model.entity.itempool.CpaOption;
 import cn.kanyun.cpa.model.entity.itempool.CpaRepertory;
@@ -23,12 +25,12 @@ public class CpaRepertoryServiceImpl extends CommonServiceImpl<Integer, CpaReper
     public CpaResult getUnitExam(String where, Object[] params) {
         CpaResult result = iCpaRepertoryDao.getScrollData(-1, -1, where, params);
         if (result.getTotalCount() > 0) {
-            List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+            List<CpaRepertoryDto> cpaRepertoryDtos = new ArrayList<>();
             List<CpaRepertory> listcr = (List<CpaRepertory>) result.getData();
             for (CpaRepertory cr : listcr) {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put("stem", cr.getTestStem());
-                map.put("cr_id", cr.getId());
+                CpaRepertoryDto cpaRepertoryDto = new CpaRepertoryDto();
+                cpaRepertoryDto.setTestStem(cr.getTestStem());
+                cpaRepertoryDto.setId(cr.getId());
                 Set<CpaOption> setco = cr.getCpaOptions();
 //                将Set集合转换为List集合
                 List<CpaOption> listco = new ArrayList<CpaOption>();
@@ -44,20 +46,20 @@ public class CpaRepertoryServiceImpl extends CommonServiceImpl<Integer, CpaReper
                     }
                 });
 //                从排序后的List集合里取出选项内容，可以保证，他们的顺序不变
-                List<Map<String, Object>> listoptions = new ArrayList<>();
+                List<CpaOptionDto> listoptions = new ArrayList<>();
 //                List<CpaOption> listoptions = new ArrayList<CpaOption>(); //原写法,只取出选项的内容,ABCD在前台用Angular的过滤器来得到,由于选项内容已经排序故不必担心顺序不对的问题
                 for (CpaOption co : listco) {
-//                    listoptions.add(co.getOptionData()); //原写法,只取出数据即可.但后来发现在提交的时候有些问题,故将ABCD也加上
-                    Map<String, Object> mapco = new HashMap<String, Object>();
-                    mapco.put("optionKey",co.getSelectData());
-                    mapco.put("optionData",co.getOptionData());
-                    listoptions.add(mapco);
+//                    listoptions.add(co.getOptionData());
+                    CpaOptionDto cpaOptionDto = new CpaOptionDto();
+                    cpaOptionDto.setSelectData(co.getSelectData());//原写法,只取出数据即可.但后来发现在提交的时候有些问题,故将ABCD也加上
+                    cpaOptionDto.setOptionData(co.getOptionData());
+                    listoptions.add(cpaOptionDto);
                 }
-                map.put("optionList", listoptions);
-                list.add(map);
+                cpaRepertoryDto.setCpaOptionDtos(listoptions);
+                cpaRepertoryDtos.add(cpaRepertoryDto);
             }
             result.setStatus(1);
-            result.setData(list);
+            result.setData(cpaRepertoryDtos);
         } else {
             result.setStatus(0);
             result.setMsg("未获取到记录！");

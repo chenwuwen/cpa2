@@ -1,6 +1,5 @@
 import cn.kanyun.cpa.dao.HibernateSessionFactory;
 import cn.kanyun.cpa.model.entity.system.CpaPermission;
-import cn.kanyun.cpa.model.entity.system.CpaRole;
 import cn.kanyun.cpa.model.entity.system.UserRole;
 import cn.kanyun.cpa.model.entity.user.CpaUser;
 import org.hibernate.Query;

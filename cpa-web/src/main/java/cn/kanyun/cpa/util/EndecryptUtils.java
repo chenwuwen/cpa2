@@ -84,7 +84,6 @@ public final class EndecryptUtils {
         CpaUserDto user=new CpaUserDto();
         user.setPassword(password_cipherText);
         user.setSalt(salt);
-        user.setUserName(username);
         return user;
     }
     /**
@@ -108,8 +107,8 @@ public final class EndecryptUtils {
 
 
     public static void main(String[] args) {
-        String username="chenwuwen";
-        String password = "1234";
+        String username="chen2";
+        String password = "123456";
         String cipherText = encrytHex(password);
         System.out.println(password + "hex加密之后的密文是：" + cipherText);
         String decrptPassword=decryptHex(cipherText);

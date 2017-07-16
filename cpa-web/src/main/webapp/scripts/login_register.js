@@ -53,14 +53,18 @@ $(function () {
             var bv = $form.data('bootstrapValidator');
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
-                if (result.success) {
+                if (result.status==1) {
                     var userId = result.userId;//将数据中用户信息的ID赋值给变量
                     sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
-                    // window.location.href='http://localhost/index.html';//正确登录后页面跳转至
+                    window.location.href = 'page/main.html';//正确登录后页面跳转至
                 } else {
-                    alert("error");
-                }
-            }, 'json')
+                    swal({
+                        title: result.msg,
+                        text: '2秒后将自动关闭窗口',
+                        timer: 2000,
+                        type:'error'
+                    });
+                }}, 'json')
 
         });
 
@@ -168,7 +172,7 @@ $(function () {
     })
         .on('success.form.bv', function (e) { //表单验证通过;表单元素最好放在 <div class="form-group">下
             $('#success_message').slideDown({opacity: "show"}, "slow") // Do something ...
-            $('#contact_form').data('bootstrapValidator').resetForm();
+            // $('#contact_form').data('bootstrapValidator').resetForm();
 
             // 阻止表单提交
             e.preventDefault();
@@ -178,18 +182,29 @@ $(function () {
 
             // 得到BootstrapValidator实例
             var bv = $form.data('bootstrapValidator');
-            console.log(0);
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
-                console.log(1);
-                console.log(result);
-                console.log(2);
                 if (result.status==1) {
                     var userId = result.userId;//将数据中用户信息的ID赋值给变量
                     sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
-                    window.location.href = 'http://localhost/index.html';//正确登录后页面跳转至
+                    swal({
+                        title:'注册成功!',
+                        text:'2秒后自动跳转到登陆页面!',
+                        type:'success',
+                        timer: 2000,
+                        showConfirmButton:false
+                    });
+                    setTimeout(function () {
+                        window.location.href = 'index.html#tologin';//正确登录后页面跳转至
+                    },2000)
                 } else {
-                    alert(result.msg);
+                    swal({
+                        title: result.msg,
+                        text: '2秒后将自动关闭窗口',
+                        type:'error',
+                        timer: 2000,
+                        type:'warning'
+                    });
                 }
             }, 'json')
 

@@ -2,12 +2,12 @@
     <div class="col-md-5 col-md-offset-1">
         <div class="panel panel-default" ng-repeat='(i,exam) in exams.data'>
             <div class="panel-heading">
-                <h3 class="panel-title">{{$index+1}}.{{exam.stem}}</h3>
+                <h3 class="panel-title">{{$index+1}}.{{exam.testStem}}</h3>
             </div>
-            <div class="panel-body" crId="{{exam.cr_id}}">
+            <div class="panel-body" crId="{{exam.id}}">
                 <ul class="list" style="margin:0;padding:0;list-style:none">
-                    <li ng-repeat='(key,options) in exam.optionList'>
-                        <input class="magic-radio"  type="radio" ng-model="options.optionKey" name="optionsRadio{{i}}" id="{{i}}{{key}}"/>
+                    <li ng-repeat='(key,options) in exam.cpaOptionDtos'>
+                        <input class="magic-radio"  type="radio" ng-model="options.selectData" name="optionsRadio{{i}}" id="{{i}}{{key}}"/>
                         <label for="{{i}}{{key}}">{{key|CovertKey}}.{{options.optionData}}</label>
                     </li>
                 </ul>

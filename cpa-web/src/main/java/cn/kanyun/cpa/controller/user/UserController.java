@@ -2,8 +2,10 @@ package cn.kanyun.cpa.controller.user;
 
 
 import cn.kanyun.cpa.model.dto.user.CpaUserDto;
+import cn.kanyun.cpa.model.entity.system.UserRole;
 import cn.kanyun.cpa.model.entity.user.CpaUser;
 import cn.kanyun.cpa.model.entity.CpaResult;
+import cn.kanyun.cpa.service.system.IUserRoleService;
 import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.EndecryptUtils;
 import org.apache.shiro.SecurityUtils;
@@ -36,6 +38,8 @@ public class UserController {
 
     @Resource(name = IUserService.SERVICE_NAME)
     private IUserService userService;
+    @Resource
+    private IUserRoleService userRoleService;
 
     /**
      * 首页
@@ -144,17 +148,34 @@ public class UserController {
             result.setStatus(2);
             result.setMsg("验证码错误！");
         } else {
-            userDto = EndecryptUtils.md5Password(userDto.getUserName(), userDto.getPassword());
-            CpaUser user = new CpaUser();
-            user.setPassword(userDto.getEmail());
-            user.setUserName(userDto.getUserName());
-            user.setRegDate(new Timestamp(System.currentTimeMillis()));
-            user.setSalt(userDto.getSalt());
-            user.setStatus(1);
-            Integer k = userService.save(user);
-            if (k != null) {
-                result.setStatus(1);
-            } else {
+            try {
+                CpaUser user = new CpaUser();
+                user.setEmail(userDto.getEmail());
+                user.setUserName(userDto.getUserName());
+                userDto = EndecryptUtils.md5Password(userDto.getUserName(), userDto.getPassword());
+                user.setRegDate(new Timestamp(System.currentTimeMillis()));
+                user.setSalt(userDto.getSalt());
+                user.setPassword(userDto.getPassword());
+                user.setStatus(1);
+                Integer k = userService.save(user);
+                if (k != null) {
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(k);
+                    userRole.setRoleId(3);
+                    Integer r = userRoleService.save(userRole);
+                    if(r!=null) {
+                        result.setStatus(1);
+                        result.setMsg("注册成功,即将跳转至登陆页！");
+                    }else{
+                        result.setStatus(2);
+                        result.setMsg("注册失败,请重试！");
+                    }
+                } else {
+                    result.setStatus(2);
+                    result.setMsg("注册失败,请重试！");
+                }
+            }catch (Exception e){
+                logger.info("用户注册异常：  "+e);
                 result.setStatus(2);
                 result.setMsg("注册失败,请重试！");
             }
