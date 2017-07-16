@@ -8,6 +8,8 @@ import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.service.system.IUserRoleService;
 import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.EndecryptUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -28,6 +30,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -125,15 +129,24 @@ public class UserController {
     /* 注册Ajax检查用户名是否可用 */
     @RequestMapping("/checkname")
     @ResponseBody
-    public CpaResult checkName(String username) {
+    public String checkName(String username) {
+        boolean b = true;
         Object[] params = {username};
         String where = "o.username=? ";
         CpaResult result = userService.getScrollData(-1, -1, where, params);
         if (result.getTotalCount() > 0) {
-            result.setStatus(2);
-            result.setMsg("当前用户名已存在!");
+           b = false;
         }
-        return result;
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("valid", b);
+        ObjectMapper mapper = new ObjectMapper();
+        String resultString = "";
+        try {
+            resultString = mapper.writeValueAsString(map); //使用jackson的writeValueAsString把java对象输出成字符串实例,此处Map集合即为对象;转换为字符串后在通过@ResponseBody转换为json
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return resultString;
     }
 
     /*用户注册*/

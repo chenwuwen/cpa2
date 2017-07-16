@@ -93,7 +93,7 @@ $(function () {
                         message: '用户名只能包含大写、小写、数字和下划线'
                     },
                     threshold :  5 , //有6字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
-                    remote: { //ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
+                    remote: { //ajax验证,向服务发送当前input name值，获得一个json数据。这里需要说明的是bootstrap的remote验证器需要的返回结果一定是json格式的数据 :{"valid":false} //表示不合法，验证不通过,{"valid":true} //表示合法，验证通过
                         message: "用户名已被占用",
                                     url: 'user/checkname',
                                     type: 'post',
