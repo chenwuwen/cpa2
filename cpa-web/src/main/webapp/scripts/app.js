@@ -14,8 +14,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: 'navbar.html'
                 },
                 'welcome@index': {
-                    templateUrl: 'welcome.html',
-                    controller: 'welcomeCtrl'
+                    templateUrl: 'welcome.html'
+                    // controller: 'welcomeCtrl'
                 }
             }
         })
@@ -27,8 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             // controller: 'UnitExamCtrl' //此处若写controller,则必须指定一个存在的组件,否则页面可能不正常显示
             views: {
                 'welcome@index': {
-                    templateUrl: 'unitExam.html',
-                    controller: 'UnitExamCtrl'
+                    templateUrl: 'unitExam.html'
                 }
         }})
     // 默认路径，在status中匹配不到时执行
