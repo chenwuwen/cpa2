@@ -1,4 +1,4 @@
-package cn.kanyun.cpa.util;
+package cn.kanyun.cpa.redis;
 
 import java.util.HashSet;
 import java.util.Properties;

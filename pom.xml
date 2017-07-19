@@ -120,6 +120,7 @@
         </plugins>
     </build>
 
+    <dependencyManagement>
     <dependencies>
         <!--Junit单元测试-->
         <dependency>
@@ -207,6 +208,13 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>4.1.6.Final</version>
+        </dependency>
+
+        <!--使用javax.persistence注解配置PO对象,如@Entity-->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
         </dependency>
 
         <!--使用redis-->
@@ -352,6 +360,19 @@
             <version>2.9.9</version>
         </dependency>
 
+
+        <!-- project lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jupf.staticlog</groupId>
+            <artifactId>staticlog</artifactId>
+            <version>2.1.9</version>
+        </dependency>
+
         <!--其他-->
         <dependency>
             <groupId>commons-io</groupId>
@@ -438,4 +459,5 @@
         </dependency>
 
     </dependencies>
+    </dependencyManagement>
 </project>

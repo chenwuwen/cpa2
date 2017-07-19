@@ -186,8 +186,6 @@ $(function () {
             // 使用Ajax提交表单数据
             $.post($form.attr('action'), $form.serialize(), function (result) {
                 if (result.status==1) {
-                    var userId = result.userId;//将数据中用户信息的ID赋值给变量
-                    sessionStorage.userId = userId; //将变量存储到本地sessionStorage中，并且value为userId
                     swal({
                         title:'注册成功!',
                         text:'2秒后自动跳转到登陆页面!',

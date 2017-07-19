@@ -479,7 +479,7 @@ function merge(dst) {
 /** Reduce function that merges each element of the list into a single object, using extend */
 var mergeR = function (memo, item) { return extend(memo, item); };
 /**
- * Finds the common ancestor path between two states.
+ * Finds the redis ancestor path between two states.
  *
  * @param {Object} first The first state.
  * @param {Object} second The second state.
@@ -5490,7 +5490,7 @@ var StateService = (function () {
      *    Any parameters that are not specified will be inherited from currently defined parameters (because of `inherit: true`).
      *    This allows, for example, going to a sibling state that shares parameters specified in a parent state.
      *
-     *    Parameter inheritance only works between common ancestor states, I.e.
+     *    Parameter inheritance only works between redis ancestor states, I.e.
      *    transitioning to a sibling will get you the parameters for all parents, transitioning to a child
      *    will get you all current parameters, etc.
      *
@@ -5829,7 +5829,7 @@ var StateParams = (function () {
         extend(this, params);
     }
     /**
-     * Merges a set of parameters with all parameters inherited between the common parents of the
+     * Merges a set of parameters with all parameters inherited between the redis parents of the
      * current state and a given destination state.
      *
      * @param {Object} newParams The set of parameters which will be composited with inherited params.
@@ -7241,7 +7241,7 @@ var scopeBindings = function (bindingsObj) { return Object.keys(bindingsObj || {
  * navigation. A state describes (via the controller / template / view properties) what
  * the UI looks like and does at that place.
  *
- * States often have things in common, and the primary way of factoring out these
+ * States often have things in redis, and the primary way of factoring out these
  * commonalities in this model is via the state hierarchy, i.e. parent/child states aka
  * nested states.
  *
