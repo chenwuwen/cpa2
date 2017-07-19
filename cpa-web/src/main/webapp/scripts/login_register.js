@@ -56,6 +56,8 @@ $(function () {
                 if (result.status==1) {
                     localStorage.setItem("userName",result.data.userName); //将变量存储到本地sessionStorage中，并且value为userName
                     localStorage.setItem("userId",result.data.id); //将变量存储到本地sessionStorage中，并且value为userId
+                    localStorage.setItem("Permissions",result.data.permissions);
+                    console.log("result.data.permissions"+result.data.permissions);
                     window.location.href = 'page/main.html';//正确登录后页面跳转至
                 } else {
                     swal({
@@ -195,7 +197,7 @@ $(function () {
                     });
                     setTimeout(function () {
                         window.location.href = 'index.html#tologin';//正确登录后页面跳转至
-                    },2000)
+                    },2000);
                 } else {
                     swal({
                         title: result.msg,

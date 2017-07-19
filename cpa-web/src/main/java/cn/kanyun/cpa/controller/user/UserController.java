@@ -96,10 +96,7 @@ public class UserController {
                 // 回调doGetAuthenticationInfo，进行认证, 回调reaml里的一个方法,验证用户
                 currentUser.login(token);
                 if(currentUser.hasRole("admin")){
-//                    user.setRoles(currentUser.getPreviousPrincipals());
-//                    user.setPermissions();
                     logger.info("角色为admin的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +" 登录系统");
-//                    return "/admin";
                 }else if (currentUser.hasRole("manager")){
                     logger.info("角色为manager的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统");
                 }else if (currentUser.hasRole("normal")){
@@ -108,6 +105,8 @@ public class UserController {
                     logger.info("用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统未分配角色");
                 }
                 CpaUser u = userService.findByUserName(user.getUserName());
+                user.setRoles(userRoleService.findRoleByUserId(u.getId()));
+                user.setPermissions(userRoleService.findPermissionByUerId(u.getId()));
                 user.setId(u.getId());
                 result.setStatus(1);
                 result.setMsg("登陆成功");
