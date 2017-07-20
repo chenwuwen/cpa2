@@ -33,11 +33,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     // 默认路径，在status中匹配不到时执行
     $urlRouterProvider.otherwise('/index');
 });
-// 定义navbarCtrl控制器，对应路由中设置的controller
-// app.controller('navbarCtrl', function ($scope, $stateParams, $http) {
-//
-//     }
-// );
+
 app.controller('welcomeCtrl',function($scope){
     $scope.name=localStorage.getItem("userName");
 });

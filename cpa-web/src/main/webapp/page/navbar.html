@@ -1,5 +1,5 @@
 <!--页头开始-->
-<div id="header" class="page-header" role="navigation">
+<div id="header" class="page-header" role="navigation" ng-controller="navbarCtrl">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,6 +34,7 @@
                     </li>
                     <li><a href="javascript:void(0)">模拟测验</a></li>
                     <li><a href="javascript:void(0)">个人中心</a></li>
+                    <li ng-if="isAdmin()"><a href="javascript:void(0)">管理中心</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">

@@ -12,11 +12,15 @@ app.controller('UnitExamCtrl',function($scope, $stateParams, $http){
     }).then(function onSuccess(response) {
         // 请求成功执行代码
         $scope.exams = response.data;
-        console.log(response);
     }).catch(function onError(response) {
         // 请求失败执行代码
         alert('error');
-    })
+    });
+    $scope.submitUnitExam = function(){
+        var pData = {authData:$scope.exam.id,reqData:$scope.options.selectData};
+        alert("dsad");
+        console.log(pData)
+    };
 });
 app.filter('CovertKey',function () { //可以注入依赖 ,前台通过{{key|CovertKey}}即可转换
     return function (x) {
@@ -40,14 +44,9 @@ app.filter('CovertKey',function () { //可以注入依赖 ,前台通过{{key|Cov
         }
     }
 });
-app.controller('zaxiang',function submitUnitExam($scope,$http){
-        $scope.submitUnitExam = function(){
-            alert("dsad");
-            var pData = {authData:$scope.exam,reqData:$scope.options};
-           alert("dsad");
-           console.log(pData)
-        };
-})
+// app.controller('zaxiang',function submitUnitExam($scope,$http){
+//
+// })
 
     
 
