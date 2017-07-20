@@ -40,3 +40,14 @@ app.filter('CovertKey',function () { //可以注入依赖 ,前台通过{{key|Cov
         }
     }
 });
+app.controller('zaxiang',function submitUnitExam($scope,$http){
+        $scope.submitUnitExam = function(){
+            alert("dsad");
+            var pData = {authData:$scope.exam,reqData:$scope.options};
+           alert("dsad");
+           console.log(pData)
+        };
+})
+
+    
+
