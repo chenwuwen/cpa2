@@ -8,6 +8,7 @@ import cn.kanyun.cpa.model.entity.CpaResult;
 import cn.kanyun.cpa.service.system.IUserRoleService;
 import cn.kanyun.cpa.service.user.IUserService;
 import cn.kanyun.cpa.util.EndecryptUtils;
+import cn.kanyun.cpa.util.WebUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
@@ -21,12 +22,14 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
@@ -72,9 +75,9 @@ public class UserController {
     /* 登陆检查 */
     @PostMapping("/login")
     @ResponseBody
-    public CpaResult toLogin(CpaUserDto user, HttpSession session) {
+    public CpaResult toLogin(CpaUserDto user, HttpServletRequest request) {
         CpaResult result = new CpaResult();
-        String s_code = (String) session.getAttribute("validateCode");
+        String s_code = (String) request.getSession().getAttribute("validateCode");
         // 先比较验证码(equalsIgnoreCase忽略大小写，equals不忽略)
         if (!s_code.equalsIgnoreCase(user.getValidateCode())) {
             result.setStatus(2);
@@ -96,13 +99,13 @@ public class UserController {
                 // 回调doGetAuthenticationInfo，进行认证, 回调reaml里的一个方法,验证用户
                 currentUser.login(token);
                 if(currentUser.hasRole("admin")){
-                    logger.info("角色为admin的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +" 登录系统");
+                    logger.info("角色为admin的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ")) +" 登录系统"+",登录IP为:"+ WebUtil.getClientAddr(request));
                 }else if (currentUser.hasRole("manager")){
-                    logger.info("角色为manager的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统");
+                    logger.info("角色为manager的用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统"+",登录IP为:"+ WebUtil.getClientAddr(request));
                 }else if (currentUser.hasRole("normal")){
-                    logger.info("角色为normal的用户: "+user.getUserName()+" 于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统");
+                    logger.info("角色为normal的用户: "+user.getUserName()+" 于时间:"+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统"+",登录IP为:"+ WebUtil.getClientAddr(request));
                 }else{
-                    logger.info("用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统未分配角色");
+                    logger.info("用户: "+user.getUserName()+" 于时间: "+ DateTime.now().toString(DateTimeFormat.forPattern("y-M-d zz H:m:s.SSS ZZ"))  +" 登录系统未分配角色"+",登录IP为:"+ WebUtil.getClientAddr(request));
                 }
                 CpaUser u = userService.findByUserName(user.getUserName());
                 user.setRoles(userRoleService.findRoleByUserId(u.getId()));
